@@ -1,7 +1,8 @@
 --[[
     Style Roller - Working Version
     - Fails ONLY when remote returns "You don't" (out of spins) OR 15s timer
-    - Normal rolls continue
+    - Rejoins the SAME server (TeleportToPlaceInstance)
+    - task.wait(3) before Kick so the rejoin actually starts
     - Config (ON/OFF) force-saved before every teleport
     - Full self-replicating queue_on_teleport
     - No blue line
@@ -16,7 +17,6 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local lp = Players.LocalPlayer
 
 local FILE = "StyleRoller.json"
-local PLACE_ID = 73956553001240
 
 -- ==================== Config ====================
 local cfg = {
@@ -241,7 +241,7 @@ local function stopAll()
     end
 end
 
--- Fail path: force OFF → save → teleport → kick
+-- Fail path: force OFF → save → rejoin SAME server → wait 3s → kick
 local function doFail()
     setToggle(false)
     forceSave()
@@ -252,9 +252,13 @@ local function doFail()
         end
     end)
 
+    -- Rejoin the exact same server
     pcall(function()
-        TeleportService:Teleport(PLACE_ID)
+        TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId)
     end)
+
+    -- Give the teleport time to start before we force-kick
+    task.wait(3)
 
     pcall(function()
         lp:Kick("FAILED — turn off Verified Teleports in your executor")
@@ -274,7 +278,6 @@ local function isOutOfSpins(result)
             return true
         end
         if type(v) == "table" then
-            -- recurse one level in case nested
             for _, nested in pairs(v) do
                 if type(nested) == "string" and string.find(string.lower(nested), "you don't", 1, true) then
                     return true
@@ -295,7 +298,6 @@ task.spawn(function()
                 Event, failRemote = getRemotes()
             end
 
-            -- desired style already owned?
             local cur = getStyle()
             if cur and string.lower(tostring(cur)) == string.lower(tostring(cfg.t)) then
                 stopAll()
@@ -303,14 +305,12 @@ task.spawn(function()
                 break
             end
 
-            -- 15 second hard timeout
             if startTime > 0 and (tick() - startTime) >= 15 then
                 doFail()
                 running = false
                 break
             end
 
-            -- Invoke + check for out-of-spins message
             if Event then
                 local ok, result = pcall(function()
                     return table.pack(Event:InvokeServer(true))
@@ -318,12 +318,10 @@ task.spawn(function()
 
                 if ok and type(result) == "table" then
                     if isOutOfSpins(result) then
-                        -- out of spins → immediate fail (saves time vs waiting for 15s)
                         doFail()
                         running = false
                         break
                     end
-                    -- any other output is ignored, continue rolling
                 end
             end
 
@@ -346,7 +344,6 @@ end
 
 local queueFunc = getQueueFunc()
 if queueFunc then
-    -- Full self-contained payload that re-queues itself
     local payload = [[
 local Players=game:GetService("Players")
 local UIS=game:GetService("UserInputService")
@@ -355,7 +352,6 @@ local TeleportService=game:GetService("TeleportService")
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
 local lp=Players.LocalPlayer
 local FILE="StyleRoller.json"
-local PLACE_ID=73956553001240
 
 local cfg={t="",on=false,x=0.5,y=0.5}
 
@@ -548,7 +544,8 @@ local function doFail()
     setToggle(false)
     forceSave()
     pcall(function() if failRemote then failRemote:InvokeServer("MouseButton1",true,"Spike\xE2\x80\x8B\x8F") end end)
-    pcall(function() TeleportService:Teleport(PLACE_ID) end)
+    pcall(function() TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId) end)
+    task.wait(3)
     pcall(function() lp:Kick("FAILED — turn off Verified Teleports in your executor") end)
     if sg and sg.Parent then sg:Destroy() end
 end
@@ -608,7 +605,7 @@ forceSave()
 
 local q=queue_on_teleport or (syn and syn.queue_on_teleport) or (fluxus and fluxus.queue_on_teleport)
 if q then
-    q([=[ -- self-requeue marker (full payload is already queued by outer) ]=])
+    q([=[ -- self-requeue marker ]=])
 end
 ]]
     queueFunc(payload)
