@@ -1,9 +1,11 @@
 --[[
     Style Roller - Working Version
     - Fails ONLY when remote returns "You don't" (out of spins) OR 15s timer
-    - Teleports to the same PlaceId (any server)
-    - task.wait(3) before Kick so the teleport actually starts
-    - Config (ON/OFF) force-saved before every teleport
+    - Keeps toggle ON when failing so next join auto-starts spinning
+    - Teleports to the same PlaceId
+    - task.wait(3) before Kick
+    - Fires NotifyLoadingScreenEnded before GUI loads
+    - Config force-saved before every teleport
     - Full self-replicating queue_on_teleport
     - No blue line
 ]]
@@ -63,6 +65,19 @@ local function forceSave()
 end
 
 loadConfig()
+
+-- ==================== Fire loading screen ended BEFORE GUI ====================
+pcall(function()
+    local packages = ReplicatedStorage:WaitForChild("Packages", 8)
+    local index = packages:WaitForChild("_Index", 5)
+    local knitPkg = index:WaitForChild("sleitnick_knit@1.7.0", 5)
+    local knit = knitPkg:WaitForChild("knit", 5)
+    local services = knit:WaitForChild("Services", 5)
+    local gameService = services:WaitForChild("GameService", 5)
+    local rf = gameService:WaitForChild("RF", 5)
+    local notify = rf:WaitForChild("NotifyLoadingScreenEnded", 5)
+    notify:InvokeServer()
+end)
 
 -- ==================== Remotes ====================
 local function getRemotes()
@@ -241,10 +256,10 @@ local function stopAll()
     end
 end
 
--- Fail path: force OFF → save → teleport same PlaceId → wait 3s → kick
+-- Fail path: KEEP ON so next join auto-starts → save → teleport same PlaceId → wait 3s → kick
 local function doFail()
-    setToggle(false)
-    forceSave()
+    -- deliberately do NOT turn off
+    forceSave()   -- saves current ON state
 
     pcall(function()
         if failRemote then
@@ -252,12 +267,10 @@ local function doFail()
         end
     end)
 
-    -- Teleport to the same PlaceId (any server)
     pcall(function()
         TeleportService:Teleport(game.PlaceId)
     end)
 
-    -- Give the teleport time to start before we force-kick
     task.wait(3)
 
     pcall(function()
@@ -387,6 +400,19 @@ local function forceSave()
 end
 
 loadConfig()
+
+-- Fire loading screen ended before GUI
+pcall(function()
+    local packages=ReplicatedStorage:WaitForChild("Packages",8)
+    local index=packages:WaitForChild("_Index",5)
+    local knitPkg=index:WaitForChild("sleitnick_knit@1.7.0",5)
+    local knit=knitPkg:WaitForChild("knit",5)
+    local services=knit:WaitForChild("Services",5)
+    local gameService=services:WaitForChild("GameService",5)
+    local rf=gameService:WaitForChild("RF",5)
+    local notify=rf:WaitForChild("NotifyLoadingScreenEnded",5)
+    notify:InvokeServer()
+end)
 
 local function getRemotes()
     local ok,Event,failRemote=pcall(function()
@@ -541,7 +567,7 @@ local function stopAll()
 end
 
 local function doFail()
-    setToggle(false)
+    -- keep ON
     forceSave()
     pcall(function() if failRemote then failRemote:InvokeServer("MouseButton1",true,"Spike\xE2\x80\x8B\x8F") end end)
     pcall(function() TeleportService:Teleport(game.PlaceId) end)
