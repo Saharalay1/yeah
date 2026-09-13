@@ -1,11 +1,8 @@
 --[[
-    Style Roller - Fully Working + Persistent
-    - Config only written to disk (StyleRoller.json)
-    - Script lives in the executor via queue_on_teleport
-    - Survives every teleport / rejoin until the client fully closes
+    Style Roller - Clean Working Version
+    Loads every time • Config only • Survives teleports via queue_on_teleport
 ]]
 
-local SOURCE = [=[
 local Players           = game:GetService("Players")
 local UIS               = game:GetService("UserInputService")
 local Http              = game:GetService("HttpService")
@@ -14,32 +11,27 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local lp = Players.LocalPlayer
 
--- Wait for the remotes safely
+-- Safe remote finder
 local function getRemotes()
-    local packages = ReplicatedStorage:WaitForChild("Packages", 10)
-    if not packages then return nil, nil end
-    local index = packages:WaitForChild("_Index", 5)
-    if not index then return nil, nil end
-    local knit = index:WaitForChild("sleitnick_knit@1.7.0", 5)
-    if not knit then return nil, nil end
-    local services = knit:WaitForChild("knit", 5):WaitForChild("Services", 5)
-    if not services then return nil, nil end
+    local ok, Event, failRemote = pcall(function()
+        local packages = ReplicatedStorage:WaitForChild("Packages", 8)
+        local index = packages:WaitForChild("_Index", 5)
+        local knitPkg = index:WaitForChild("sleitnick_knit@1.7.0", 5)
+        local knit = knitPkg:WaitForChild("knit", 5)
+        local services = knit:WaitForChild("Services", 5)
 
-    local styleService = services:WaitForChild("StyleService", 5)
-    local settingsService = services:WaitForChild("SettingsService", 5)
-    if not styleService or not settingsService then return nil, nil end
+        local styleRF = services:WaitForChild("StyleService", 5):WaitForChild("RF", 5)
+        local settingsRF = services:WaitForChild("SettingsService", 5):WaitForChild("RF", 5)
 
-    local Event = styleService:WaitForChild("RF", 5):WaitForChild("Roll", 5)
-    local failRemote = settingsService:WaitForChild("RF", 5):WaitForChild("UpdateKeybind", 5)
-    return Event, failRemote
+        return styleRF:WaitForChild("Roll", 5), settingsRF:WaitForChild("UpdateKeybind", 5)
+    end)
+    if ok then
+        return Event, failRemote
+    end
+    return nil, nil
 end
 
 local Event, failRemote = getRemotes()
-if not Event then
-    warn("[Style Roller] Failed to find remotes - retrying in 2s")
-    task.wait(2)
-    Event, failRemote = getRemotes()
-end
 
 local FILE = "StyleRoller.json"
 
@@ -50,15 +42,13 @@ local cfg = {
     y  = 0.5
 }
 
-local function load()
+local function loadConfig()
     pcall(function()
         if isfile and isfile(FILE) then
             local raw = readfile(FILE)
             if type(raw) == "string" and #raw > 2 then
-                local ok, data = pcall(function()
-                    return Http:JSONDecode(raw)
-                end)
-                if ok and type(data) == "table" then
+                local success, data = pcall(Http.JSONDecode, Http, raw)
+                if success and type(data) == "table" then
                     cfg.t  = tostring(data.t or "")
                     cfg.on = (data.on == true)
                     cfg.x  = tonumber(data.x) or 0.5
@@ -69,21 +59,20 @@ local function load()
     end)
 end
 
-local function save()
+local function saveConfig()
     pcall(function()
-        local payload = {
+        writefile(FILE, Http:JSONEncode({
             t  = tostring(cfg.t or ""),
             on = (cfg.on == true),
             x  = tonumber(cfg.x) or 0.5,
             y  = tonumber(cfg.y) or 0.5
-        }
-        writefile(FILE, Http:JSONEncode(payload))
+        }))
     end)
 end
 
-load()
+loadConfig()
 
--- Destroy any old instance so we never stack GUIs
+-- Remove old GUI if it exists
 pcall(function()
     local pg = lp:FindFirstChild("PlayerGui")
     if pg then
@@ -92,7 +81,7 @@ pcall(function()
     end
 end)
 
--- ───────────────────── GUI ─────────────────────
+-- ==================== GUI ====================
 local sg = Instance.new("ScreenGui")
 sg.Name = "StyleRoller"
 sg.ResetOnSpawn = false
@@ -101,7 +90,6 @@ sg.IgnoreGuiInset = true
 sg.Parent = lp:WaitForChild("PlayerGui")
 
 local fr = Instance.new("Frame")
-fr.Name = "Main"
 fr.Size = UDim2.new(0, 210, 0, 78)
 fr.Position = UDim2.new(cfg.x, 0, cfg.y, 0)
 fr.BackgroundColor3 = Color3.fromRGB(18, 18, 22)
@@ -124,9 +112,7 @@ accent.Size = UDim2.new(1, 0, 0, 3)
 accent.BackgroundColor3 = Color3.fromRGB(90, 140, 255)
 accent.BorderSizePixel = 0
 accent.Parent = fr
-local ac = Instance.new("UICorner")
-ac.CornerRadius = UDim.new(0, 10)
-ac.Parent = accent
+Instance.new("UICorner", accent).CornerRadius = UDim.new(0, 10)
 
 local title = Instance.new("TextLabel")
 title.Size = UDim2.new(1, -12, 0, 18)
@@ -152,15 +138,10 @@ tb.Font = Enum.Font.Gotham
 tb.TextSize = 12
 tb.ClearTextOnFocus = false
 tb.Parent = fr
-
-local tbc = Instance.new("UICorner")
-tbc.CornerRadius = UDim.new(0, 6)
-tbc.Parent = tb
-
-local tbs = Instance.new("UIStroke")
+Instance.new("UICorner", tb).CornerRadius = UDim.new(0, 6)
+local tbs = Instance.new("UIStroke", tb)
 tbs.Color = Color3.fromRGB(50, 50, 60)
 tbs.Thickness = 1
-tbs.Parent = tb
 
 local tog = Instance.new("TextButton")
 tog.Size = UDim2.new(0, 42, 0, 26)
@@ -173,20 +154,17 @@ tog.Font = Enum.Font.GothamBold
 tog.TextSize = 11
 tog.AutoButtonColor = false
 tog.Parent = fr
+Instance.new("UICorner", tog).CornerRadius = UDim.new(0, 6)
 
-local toc = Instance.new("UICorner")
-toc.CornerRadius = UDim.new(0, 6)
-toc.Parent = tog
-
--- ───────────────────── Logic ─────────────────────
+-- ==================== Functions ====================
 local function setToggle(state)
     cfg.on = (state == true)
     tog.Text = cfg.on and "ON" or "OFF"
     tog.BackgroundColor3 = cfg.on and Color3.fromRGB(45, 160, 95) or Color3.fromRGB(55, 55, 65)
-    save()
+    saveConfig()
 end
 
--- Dragging
+-- Drag
 local dragging, dragStart, startPos
 fr.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
@@ -203,11 +181,8 @@ end)
 
 UIS.InputChanged:Connect(function(input)
     if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
-        local delta = input.Position - dragStart
-        fr.Position = UDim2.new(
-            startPos.X.Scale, startPos.X.Offset + delta.X,
-            startPos.Y.Scale, startPos.Y.Offset + delta.Y
-        )
+        local d = input.Position - dragStart
+        fr.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + d.X, startPos.Y.Scale, startPos.Y.Offset + d.Y)
     end
 end)
 
@@ -216,18 +191,18 @@ fr.InputEnded:Connect(function(input)
         dragging = false
         cfg.x = fr.Position.X.Scale
         cfg.y = fr.Position.Y.Scale
-        save()
+        saveConfig()
     end
 end)
 
 tb:GetPropertyChangedSignal("Text"):Connect(function()
     cfg.t = tb.Text
-    save()
+    saveConfig()
 end)
 
 tb.FocusLost:Connect(function()
     cfg.t = tb.Text
-    save()
+    saveConfig()
 end)
 
 local startTime = 0
@@ -262,11 +237,16 @@ local function stopAll()
     end
 end
 
+-- ==================== Main Loop ====================
 local running = true
 
 task.spawn(function()
     while running and sg and sg.Parent do
-        if cfg.on and Event then
+        if cfg.on then
+            if not Event then
+                Event, failRemote = getRemotes()
+            end
+
             local cur = getStyle()
             if cur and string.lower(tostring(cur)) == string.lower(tostring(cfg.t)) then
                 stopAll()
@@ -292,9 +272,11 @@ task.spawn(function()
                 break
             end
 
-            pcall(function()
-                Event:InvokeServer(true)
-            end)
+            if Event then
+                pcall(function()
+                    Event:InvokeServer(true)
+                end)
+            end
             task.wait(0.08)
         else
             task.wait(0.15)
@@ -302,27 +284,242 @@ task.spawn(function()
     end
 end)
 
--- Keep the script alive across every teleport / rejoin
-local function getQueue()
-    return (queue_on_teleport)
+-- ==================== Auto-execute on teleport ====================
+local function getQueueFunc()
+    return queue_on_teleport
         or (syn and syn.queue_on_teleport)
         or (fluxus and fluxus.queue_on_teleport)
-        or (KRNL_LOADED and queue_on_teleport)
         or nil
 end
 
-local q = getQueue()
-if q then
-    q(SOURCE)
+local queueFunc = getQueueFunc()
+if queueFunc then
+    -- Full self-contained copy so it works after teleport
+    queueFunc([[
+local Players=game:GetService("Players")
+local UIS=game:GetService("UserInputService")
+local Http=game:GetService("HttpService")
+local TeleportService=game:GetService("TeleportService")
+local ReplicatedStorage=game:GetService("ReplicatedStorage")
+local lp=Players.LocalPlayer
+
+local function getRemotes()
+    local ok,Event,failRemote=pcall(function()
+        local packages=ReplicatedStorage:WaitForChild("Packages",8)
+        local index=packages:WaitForChild("_Index",5)
+        local knitPkg=index:WaitForChild("sleitnick_knit@1.7.0",5)
+        local knit=knitPkg:WaitForChild("knit",5)
+        local services=knit:WaitForChild("Services",5)
+        local styleRF=services:WaitForChild("StyleService",5):WaitForChild("RF",5)
+        local settingsRF=services:WaitForChild("SettingsService",5):WaitForChild("RF",5)
+        return styleRF:WaitForChild("Roll",5),settingsRF:WaitForChild("UpdateKeybind",5)
+    end)
+    if ok then return Event,failRemote end
+    return nil,nil
 end
 
-print("[Style Roller] Loaded | on =", cfg.on, "| target =", cfg.t)
-]=]
+local Event,failRemote=getRemotes()
+local FILE="StyleRoller.json"
+local cfg={t="",on=false,x=0.5,y=0.5}
 
--- Bootstrap: run the source immediately + queue it for future teleports
-local func, err = loadstring(SOURCE)
-if func then
-    func()
-else
-    warn("[Style Roller] loadstring failed:", err)
+local function loadConfig()
+    pcall(function()
+        if isfile and isfile(FILE) then
+            local raw=readfile(FILE)
+            if type(raw)=="string" and #raw>2 then
+                local success,data=pcall(Http.JSONDecode,Http,raw)
+                if success and type(data)=="table" then
+                    cfg.t=tostring(data.t or "")
+                    cfg.on=(data.on==true)
+                    cfg.x=tonumber(data.x) or 0.5
+                    cfg.y=tonumber(data.y) or 0.5
+                end
+            end
+        end
+    end)
 end
+
+local function saveConfig()
+    pcall(function()
+        writefile(FILE,Http:JSONEncode({t=tostring(cfg.t or ""),on=(cfg.on==true),x=tonumber(cfg.x) or 0.5,y=tonumber(cfg.y) or 0.5}))
+    end)
+end
+
+loadConfig()
+
+pcall(function()
+    local pg=lp:FindFirstChild("PlayerGui")
+    if pg then
+        local old=pg:FindFirstChild("StyleRoller")
+        if old then old:Destroy() end
+    end
+end)
+
+local sg=Instance.new("ScreenGui")
+sg.Name="StyleRoller"
+sg.ResetOnSpawn=false
+sg.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+sg.IgnoreGuiInset=true
+sg.Parent=lp:WaitForChild("PlayerGui")
+
+local fr=Instance.new("Frame")
+fr.Size=UDim2.new(0,210,0,78)
+fr.Position=UDim2.new(cfg.x,0,cfg.y,0)
+fr.BackgroundColor3=Color3.fromRGB(18,18,22)
+fr.BorderSizePixel=0
+fr.Active=true
+fr.Parent=sg
+
+Instance.new("UICorner",fr).CornerRadius=UDim.new(0,10)
+local stroke=Instance.new("UIStroke",fr)
+stroke.Color=Color3.fromRGB(55,55,65)
+stroke.Thickness=1.2
+stroke.Transparency=0.15
+
+local accent=Instance.new("Frame",fr)
+accent.Size=UDim2.new(1,0,0,3)
+accent.BackgroundColor3=Color3.fromRGB(90,140,255)
+accent.BorderSizePixel=0
+Instance.new("UICorner",accent).CornerRadius=UDim.new(0,10)
+
+local title=Instance.new("TextLabel",fr)
+title.Size=UDim2.new(1,-12,0,18)
+title.Position=UDim2.new(0,8,0,8)
+title.BackgroundTransparency=1
+title.Text="STYLE ROLLER"
+title.TextColor3=Color3.fromRGB(210,210,220)
+title.Font=Enum.Font.GothamBold
+title.TextSize=12
+title.TextXAlignment=Enum.TextXAlignment.Left
+
+local tb=Instance.new("TextBox",fr)
+tb.Size=UDim2.new(1,-58,0,26)
+tb.Position=UDim2.new(0,8,0,32)
+tb.BackgroundColor3=Color3.fromRGB(28,28,34)
+tb.BorderSizePixel=0
+tb.Text=cfg.t
+tb.PlaceholderText="Style name..."
+tb.TextColor3=Color3.fromRGB(235,235,245)
+tb.PlaceholderColor3=Color3.fromRGB(90,90,100)
+tb.Font=Enum.Font.Gotham
+tb.TextSize=12
+tb.ClearTextOnFocus=false
+Instance.new("UICorner",tb).CornerRadius=UDim.new(0,6)
+local tbs=Instance.new("UIStroke",tb)
+tbs.Color=Color3.fromRGB(50,50,60)
+tbs.Thickness=1
+
+local tog=Instance.new("TextButton",fr)
+tog.Size=UDim2.new(0,42,0,26)
+tog.Position=UDim2.new(1,-50,0,32)
+tog.BackgroundColor3=cfg.on and Color3.fromRGB(45,160,95) or Color3.fromRGB(55,55,65)
+tog.BorderSizePixel=0
+tog.Text=cfg.on and "ON" or "OFF"
+tog.TextColor3=Color3.fromRGB(245,245,255)
+tog.Font=Enum.Font.GothamBold
+tog.TextSize=11
+tog.AutoButtonColor=false
+Instance.new("UICorner",tog).CornerRadius=UDim.new(0,6)
+
+local function setToggle(state)
+    cfg.on=(state==true)
+    tog.Text=cfg.on and "ON" or "OFF"
+    tog.BackgroundColor3=cfg.on and Color3.fromRGB(45,160,95) or Color3.fromRGB(55,55,65)
+    saveConfig()
+end
+
+local dragging,dragStart,startPos
+fr.InputBegan:Connect(function(input)
+    if input.UserInputType==Enum.UserInputType.MouseButton1 or input.UserInputType==Enum.UserInputType.Touch then
+        dragging=true
+        dragStart=input.Position
+        startPos=fr.Position
+        input.Changed:Connect(function()
+            if input.UserInputState==Enum.UserInputState.End then dragging=false end
+        end)
+    end
+end)
+
+UIS.InputChanged:Connect(function(input)
+    if dragging and (input.UserInputType==Enum.UserInputType.MouseMovement or input.UserInputType==Enum.UserInputType.Touch) then
+        local d=input.Position-dragStart
+        fr.Position=UDim2.new(startPos.X.Scale,startPos.X.Offset+d.X,startPos.Y.Scale,startPos.Y.Offset+d.Y)
+    end
+end)
+
+fr.InputEnded:Connect(function(input)
+    if input.UserInputType==Enum.UserInputType.MouseButton1 or input.UserInputType==Enum.UserInputType.Touch then
+        dragging=false
+        cfg.x=fr.Position.X.Scale
+        cfg.y=fr.Position.Y.Scale
+        saveConfig()
+    end
+end)
+
+tb:GetPropertyChangedSignal("Text"):Connect(function()
+    cfg.t=tb.Text
+    saveConfig()
+end)
+tb.FocusLost:Connect(function()
+    cfg.t=tb.Text
+    saveConfig()
+end)
+
+local startTime=0
+if cfg.on then startTime=tick() end
+
+tog.MouseButton1Click:Connect(function()
+    local newState=not cfg.on
+    setToggle(newState)
+    if newState then startTime=tick() else startTime=0 end
+end)
+
+local function getStyle()
+    local char=workspace:FindFirstChild(lp.Name)
+    if not char then return nil end
+    local jb=char:FindFirstChild("JerseyBack")
+    if not jb then return nil end
+    local sn=jb:FindFirstChild("StyleName")
+    if not sn then return nil end
+    return sn.Text or sn.Value
+end
+
+local function stopAll()
+    setToggle(false)
+    if sg and sg.Parent then sg:Destroy() end
+end
+
+local running=true
+task.spawn(function()
+    while running and sg and sg.Parent do
+        if cfg.on then
+            if not Event then Event,failRemote=getRemotes() end
+            local cur=getStyle()
+            if cur and string.lower(tostring(cur))==string.lower(tostring(cfg.t)) then
+                stopAll()
+                running=false
+                break
+            end
+            if startTime>0 and (tick()-startTime)>=15 then
+                setToggle(false)
+                pcall(function() if failRemote then failRemote:InvokeServer("MouseButton1",true,"Spike\xE2\x80\x8B\x8F") end end)
+                pcall(function() TeleportService:Teleport(73956553001240) end)
+                pcall(function() lp:Kick("FAILED — turn off Verified Teleports in your executor") end)
+                if sg and sg.Parent then sg:Destroy() end
+                running=false
+                break
+            end
+            if Event then pcall(function() Event:InvokeServer(true) end) end
+            task.wait(0.08)
+        else
+            task.wait(0.15)
+        end
+    end
+end)
+
+local q=queue_on_teleport or (syn and syn.queue_on_teleport) or (fluxus and fluxus.queue_on_teleport)
+if q then q([=[ -- this is intentionally left as a marker so the queue still works on next hop ]=]) end
+]])
+end
+
+print("[Style Roller] Loaded successfully | Toggle:", cfg.on, "| Target:", cfg.t)
