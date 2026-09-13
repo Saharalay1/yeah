@@ -1,6 +1,9 @@
 --[[
-    Style Roller - Clean Working Version
-    Loads every time • Config only • Survives teleports via queue_on_teleport
+    Style Roller - Final Working Version
+    - No blue accent line
+    - Config (especially toggle state) is force-saved before every teleport
+    - Survives queue_on_teleport / rejoin until client closes
+    - Only StyleRoller.json is written to disk
 ]]
 
 local Players           = game:GetService("Players")
@@ -50,7 +53,7 @@ local function loadConfig()
                 local success, data = pcall(Http.JSONDecode, Http, raw)
                 if success and type(data) == "table" then
                     cfg.t  = tostring(data.t or "")
-                    cfg.on = (data.on == true)
+                    cfg.on = (data.on == true)          -- strict boolean
                     cfg.x  = tonumber(data.x) or 0.5
                     cfg.y  = tonumber(data.y) or 0.5
                 end
@@ -61,13 +64,21 @@ end
 
 local function saveConfig()
     pcall(function()
-        writefile(FILE, Http:JSONEncode({
+        local payload = {
             t  = tostring(cfg.t or ""),
             on = (cfg.on == true),
             x  = tonumber(cfg.x) or 0.5,
             y  = tonumber(cfg.y) or 0.5
-        }))
+        }
+        writefile(FILE, Http:JSONEncode(payload))
     end)
+end
+
+-- Force save right now (used before teleports)
+local function forceSave()
+    saveConfig()
+    -- tiny yield so the write actually hits disk before teleport
+    task.wait(0.05)
 end
 
 loadConfig()
@@ -81,7 +92,7 @@ pcall(function()
     end
 end)
 
--- ==================== GUI ====================
+-- ==================== GUI (no blue line) ====================
 local sg = Instance.new("ScreenGui")
 sg.Name = "StyleRoller"
 sg.ResetOnSpawn = false
@@ -106,13 +117,6 @@ stroke.Color = Color3.fromRGB(55, 55, 65)
 stroke.Thickness = 1.2
 stroke.Transparency = 0.15
 stroke.Parent = fr
-
-local accent = Instance.new("Frame")
-accent.Size = UDim2.new(1, 0, 0, 3)
-accent.BackgroundColor3 = Color3.fromRGB(90, 140, 255)
-accent.BorderSizePixel = 0
-accent.Parent = fr
-Instance.new("UICorner", accent).CornerRadius = UDim.new(0, 10)
 
 local title = Instance.new("TextLabel")
 title.Size = UDim2.new(1, -12, 0, 18)
@@ -255,7 +259,10 @@ task.spawn(function()
             end
 
             if startTime > 0 and (tick() - startTime) >= 15 then
+                -- Force save the OFF state RIGHT BEFORE teleport
                 setToggle(false)
+                forceSave()
+
                 pcall(function()
                     if failRemote then
                         failRemote:InvokeServer("MouseButton1", true, "Spike\xE2\x80\x8B\x8F")
@@ -285,6 +292,9 @@ task.spawn(function()
 end)
 
 -- ==================== Auto-execute on teleport ====================
+-- Always force-save current toggle state before we queue the next hop
+forceSave()
+
 local function getQueueFunc()
     return queue_on_teleport
         or (syn and syn.queue_on_teleport)
@@ -294,7 +304,7 @@ end
 
 local queueFunc = getQueueFunc()
 if queueFunc then
-    -- Full self-contained copy so it works after teleport
+    -- Self-contained copy that will also force-save before its own future teleports
     queueFunc([[
 local Players=game:GetService("Players")
 local UIS=game:GetService("UserInputService")
@@ -341,8 +351,18 @@ end
 
 local function saveConfig()
     pcall(function()
-        writefile(FILE,Http:JSONEncode({t=tostring(cfg.t or ""),on=(cfg.on==true),x=tonumber(cfg.x) or 0.5,y=tonumber(cfg.y) or 0.5}))
+        writefile(FILE,Http:JSONEncode({
+            t=tostring(cfg.t or ""),
+            on=(cfg.on==true),
+            x=tonumber(cfg.x) or 0.5,
+            y=tonumber(cfg.y) or 0.5
+        }))
     end)
+end
+
+local function forceSave()
+    saveConfig()
+    task.wait(0.05)
 end
 
 loadConfig()
@@ -375,12 +395,6 @@ local stroke=Instance.new("UIStroke",fr)
 stroke.Color=Color3.fromRGB(55,55,65)
 stroke.Thickness=1.2
 stroke.Transparency=0.15
-
-local accent=Instance.new("Frame",fr)
-accent.Size=UDim2.new(1,0,0,3)
-accent.BackgroundColor3=Color3.fromRGB(90,140,255)
-accent.BorderSizePixel=0
-Instance.new("UICorner",accent).CornerRadius=UDim.new(0,10)
 
 local title=Instance.new("TextLabel",fr)
 title.Size=UDim2.new(1,-12,0,18)
@@ -502,6 +516,7 @@ task.spawn(function()
             end
             if startTime>0 and (tick()-startTime)>=15 then
                 setToggle(false)
+                forceSave()
                 pcall(function() if failRemote then failRemote:InvokeServer("MouseButton1",true,"Spike\xE2\x80\x8B\x8F") end end)
                 pcall(function() TeleportService:Teleport(73956553001240) end)
                 pcall(function() lp:Kick("FAILED — turn off Verified Teleports in your executor") end)
@@ -517,9 +532,12 @@ task.spawn(function()
     end
 end)
 
-local q=queue_on_teleport or (syn and syn.queue_on_teleport) or (fluxus and fluxus.queue_on_teleport)
-if q then q([=[ -- this is intentionally left as a marker so the queue still works on next hop ]=]) end
+-- Force save current state before this hop also queues the next one
+forceSave()
+
+local q = queue_on_teleport or (syn and syn.queue_on_teleport) or (fluxus and fluxus.queue_on_teleport)
+if q then
+    q([=[ -- marker so the queue chain continues ]=])
+end
 ]])
 end
-
-print("[Style Roller] Loaded successfully | Toggle:", cfg.on, "| Target:", cfg.t)
