@@ -1,9 +1,10 @@
 --[[
-    Style Roller - Final Working Version
-    - No blue accent line
-    - Config (especially toggle state) is force-saved before every teleport
+    Style Roller - Fixed + Remote Result Check
+    - No blue accent / stroke is pure dark gray
+    - Config (especially ON/OFF) force-saved before every teleport + rewritten save/load
     - Survives queue_on_teleport / rejoin until client closes
-    - Only StyleRoller.json is written to disk
+    - Only StyleRoller.json is written
+    - 15s timeout OR remote returns false → immediate teleport + kick
 ]]
 
 local Players           = game:GetService("Players")
@@ -14,7 +15,59 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local lp = Players.LocalPlayer
 
--- Safe remote finder
+local FILE = "StyleRoller.json"
+local PLACE_ID = 73956553001240
+
+-- ==================== Config (rewritten, strict boolean) ====================
+local cfg = {
+    t  = "",
+    on = false,
+    x  = 0.5,
+    y  = 0.5
+}
+
+local function loadConfig()
+    local ok, raw = pcall(function()
+        if isfile and isfile(FILE) then
+            return readfile(FILE)
+        end
+        return nil
+    end)
+    if not ok or type(raw) ~= "string" or #raw < 3 then return end
+
+    local success, data = pcall(function()
+        return Http:JSONDecode(raw)
+    end)
+    if success and type(data) == "table" then
+        cfg.t  = tostring(data.t or "")
+        -- strict boolean only
+        cfg.on = (data.on == true)
+        cfg.x  = tonumber(data.x) or 0.5
+        cfg.y  = tonumber(data.y) or 0.5
+    end
+end
+
+local function saveConfig()
+    pcall(function()
+        local payload = {
+            t  = tostring(cfg.t or ""),
+            on = (cfg.on == true),   -- never write nil / 1 / "true"
+            x  = tonumber(cfg.x) or 0.5,
+            y  = tonumber(cfg.y) or 0.5
+        }
+        writefile(FILE, Http:JSONEncode(payload))
+    end)
+end
+
+-- Force write + tiny yield so disk actually receives it before teleport
+local function forceSave()
+    saveConfig()
+    task.wait(0.07)
+end
+
+loadConfig()
+
+-- ==================== Safe remote finder ====================
 local function getRemotes()
     local ok, Event, failRemote = pcall(function()
         local packages = ReplicatedStorage:WaitForChild("Packages", 8)
@@ -36,54 +89,7 @@ end
 
 local Event, failRemote = getRemotes()
 
-local FILE = "StyleRoller.json"
-
-local cfg = {
-    t  = "",
-    on = false,
-    x  = 0.5,
-    y  = 0.5
-}
-
-local function loadConfig()
-    pcall(function()
-        if isfile and isfile(FILE) then
-            local raw = readfile(FILE)
-            if type(raw) == "string" and #raw > 2 then
-                local success, data = pcall(Http.JSONDecode, Http, raw)
-                if success and type(data) == "table" then
-                    cfg.t  = tostring(data.t or "")
-                    cfg.on = (data.on == true)          -- strict boolean
-                    cfg.x  = tonumber(data.x) or 0.5
-                    cfg.y  = tonumber(data.y) or 0.5
-                end
-            end
-        end
-    end)
-end
-
-local function saveConfig()
-    pcall(function()
-        local payload = {
-            t  = tostring(cfg.t or ""),
-            on = (cfg.on == true),
-            x  = tonumber(cfg.x) or 0.5,
-            y  = tonumber(cfg.y) or 0.5
-        }
-        writefile(FILE, Http:JSONEncode(payload))
-    end)
-end
-
--- Force save right now (used before teleports)
-local function forceSave()
-    saveConfig()
-    -- tiny yield so the write actually hits disk before teleport
-    task.wait(0.05)
-end
-
-loadConfig()
-
--- Remove old GUI if it exists
+-- ==================== Clean old GUI ====================
 pcall(function()
     local pg = lp:FindFirstChild("PlayerGui")
     if pg then
@@ -92,7 +98,7 @@ pcall(function()
     end
 end)
 
--- ==================== GUI (no blue line) ====================
+-- ==================== GUI (zero blue, pure dark) ====================
 local sg = Instance.new("ScreenGui")
 sg.Name = "StyleRoller"
 sg.ResetOnSpawn = false
@@ -112,10 +118,11 @@ local corner = Instance.new("UICorner")
 corner.CornerRadius = UDim.new(0, 10)
 corner.Parent = fr
 
+-- pure dark gray stroke, no blue tint
 local stroke = Instance.new("UIStroke")
-stroke.Color = Color3.fromRGB(55, 55, 65)
-stroke.Thickness = 1.2
-stroke.Transparency = 0.15
+stroke.Color = Color3.fromRGB(48, 48, 55)
+stroke.Thickness = 1.15
+stroke.Transparency = 0.12
 stroke.Parent = fr
 
 local title = Instance.new("TextLabel")
@@ -144,7 +151,7 @@ tb.ClearTextOnFocus = false
 tb.Parent = fr
 Instance.new("UICorner", tb).CornerRadius = UDim.new(0, 6)
 local tbs = Instance.new("UIStroke", tb)
-tbs.Color = Color3.fromRGB(50, 50, 60)
+tbs.Color = Color3.fromRGB(45, 45, 52)
 tbs.Thickness = 1
 
 local tog = Instance.new("TextButton")
@@ -160,7 +167,7 @@ tog.AutoButtonColor = false
 tog.Parent = fr
 Instance.new("UICorner", tog).CornerRadius = UDim.new(0, 6)
 
--- ==================== Functions ====================
+-- ==================== State helpers ====================
 local function setToggle(state)
     cfg.on = (state == true)
     tog.Text = cfg.on and "ON" or "OFF"
@@ -168,7 +175,6 @@ local function setToggle(state)
     saveConfig()
 end
 
--- Drag
 local dragging, dragStart, startPos
 fr.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
@@ -241,6 +247,30 @@ local function stopAll()
     end
 end
 
+-- Fail path: force OFF → save → teleport → kick
+local function doFail()
+    setToggle(false)
+    forceSave()
+
+    pcall(function()
+        if failRemote then
+            failRemote:InvokeServer("MouseButton1", true, "Spike\xE2\x80\x8B\x8F")
+        end
+    end)
+
+    pcall(function()
+        TeleportService:Teleport(PLACE_ID)
+    end)
+
+    pcall(function()
+        lp:Kick("FAILED — turn off Verified Teleports in your executor")
+    end)
+
+    if sg and sg.Parent then
+        sg:Destroy()
+    end
+end
+
 -- ==================== Main Loop ====================
 local running = true
 
@@ -251,6 +281,7 @@ task.spawn(function()
                 Event, failRemote = getRemotes()
             end
 
+            -- desired style already owned?
             local cur = getStyle()
             if cur and string.lower(tostring(cur)) == string.lower(tostring(cfg.t)) then
                 stopAll()
@@ -258,32 +289,33 @@ task.spawn(function()
                 break
             end
 
+            -- 15 second hard timeout
             if startTime > 0 and (tick() - startTime) >= 15 then
-                -- Force save the OFF state RIGHT BEFORE teleport
-                setToggle(false)
-                forceSave()
-
-                pcall(function()
-                    if failRemote then
-                        failRemote:InvokeServer("MouseButton1", true, "Spike\xE2\x80\x8B\x8F")
-                    end
-                end)
-                pcall(function()
-                    TeleportService:Teleport(73956553001240)
-                end)
-                pcall(function()
-                    lp:Kick("FAILED — turn off Verified Teleports in your executor")
-                end)
-                if sg and sg.Parent then sg:Destroy() end
+                doFail()
                 running = false
                 break
             end
 
+            -- Invoke + check remote result
             if Event then
-                pcall(function()
-                    Event:InvokeServer(true)
+                local ok, result = pcall(function()
+                    return table.pack(Event:InvokeServer(true))
                 end)
+
+                if ok and type(result) == "table" then
+                    -- first return value is the success boolean
+                    local successFlag = result[1]
+                    if successFlag == false then
+                        -- remote returned false → treat as hard fail, zero the timer and teleport+kick
+                        startTime = 0
+                        doFail()
+                        running = false
+                        break
+                    end
+                    -- any other output is ignored
+                end
             end
+
             task.wait(0.08)
         else
             task.wait(0.15)
@@ -292,7 +324,6 @@ task.spawn(function()
 end)
 
 -- ==================== Auto-execute on teleport ====================
--- Always force-save current toggle state before we queue the next hop
 forceSave()
 
 local function getQueueFunc()
@@ -304,7 +335,7 @@ end
 
 local queueFunc = getQueueFunc()
 if queueFunc then
-    -- Self-contained copy that will also force-save before its own future teleports
+    -- Fully self-contained copy that also force-saves before its own future teleports
     queueFunc([[
 local Players=game:GetService("Players")
 local UIS=game:GetService("UserInputService")
@@ -312,6 +343,43 @@ local Http=game:GetService("HttpService")
 local TeleportService=game:GetService("TeleportService")
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
 local lp=Players.LocalPlayer
+local FILE="StyleRoller.json"
+local PLACE_ID=73956553001240
+
+local cfg={t="",on=false,x=0.5,y=0.5}
+
+local function loadConfig()
+    local ok,raw=pcall(function()
+        if isfile and isfile(FILE) then return readfile(FILE) end
+        return nil
+    end)
+    if not ok or type(raw)~="string" or #raw<3 then return end
+    local success,data=pcall(function() return Http:JSONDecode(raw) end)
+    if success and type(data)=="table" then
+        cfg.t=tostring(data.t or "")
+        cfg.on=(data.on==true)
+        cfg.x=tonumber(data.x) or 0.5
+        cfg.y=tonumber(data.y) or 0.5
+    end
+end
+
+local function saveConfig()
+    pcall(function()
+        writefile(FILE,Http:JSONEncode({
+            t=tostring(cfg.t or ""),
+            on=(cfg.on==true),
+            x=tonumber(cfg.x) or 0.5,
+            y=tonumber(cfg.y) or 0.5
+        }))
+    end)
+end
+
+local function forceSave()
+    saveConfig()
+    task.wait(0.07)
+end
+
+loadConfig()
 
 local function getRemotes()
     local ok,Event,failRemote=pcall(function()
@@ -329,43 +397,6 @@ local function getRemotes()
 end
 
 local Event,failRemote=getRemotes()
-local FILE="StyleRoller.json"
-local cfg={t="",on=false,x=0.5,y=0.5}
-
-local function loadConfig()
-    pcall(function()
-        if isfile and isfile(FILE) then
-            local raw=readfile(FILE)
-            if type(raw)=="string" and #raw>2 then
-                local success,data=pcall(Http.JSONDecode,Http,raw)
-                if success and type(data)=="table" then
-                    cfg.t=tostring(data.t or "")
-                    cfg.on=(data.on==true)
-                    cfg.x=tonumber(data.x) or 0.5
-                    cfg.y=tonumber(data.y) or 0.5
-                end
-            end
-        end
-    end)
-end
-
-local function saveConfig()
-    pcall(function()
-        writefile(FILE,Http:JSONEncode({
-            t=tostring(cfg.t or ""),
-            on=(cfg.on==true),
-            x=tonumber(cfg.x) or 0.5,
-            y=tonumber(cfg.y) or 0.5
-        }))
-    end)
-end
-
-local function forceSave()
-    saveConfig()
-    task.wait(0.05)
-end
-
-loadConfig()
 
 pcall(function()
     local pg=lp:FindFirstChild("PlayerGui")
@@ -389,12 +420,11 @@ fr.BackgroundColor3=Color3.fromRGB(18,18,22)
 fr.BorderSizePixel=0
 fr.Active=true
 fr.Parent=sg
-
 Instance.new("UICorner",fr).CornerRadius=UDim.new(0,10)
 local stroke=Instance.new("UIStroke",fr)
-stroke.Color=Color3.fromRGB(55,55,65)
-stroke.Thickness=1.2
-stroke.Transparency=0.15
+stroke.Color=Color3.fromRGB(48,48,55)
+stroke.Thickness=1.15
+stroke.Transparency=0.12
 
 local title=Instance.new("TextLabel",fr)
 title.Size=UDim2.new(1,-12,0,18)
@@ -420,7 +450,7 @@ tb.TextSize=12
 tb.ClearTextOnFocus=false
 Instance.new("UICorner",tb).CornerRadius=UDim.new(0,6)
 local tbs=Instance.new("UIStroke",tb)
-tbs.Color=Color3.fromRGB(50,50,60)
+tbs.Color=Color3.fromRGB(45,45,52)
 tbs.Thickness=1
 
 local tog=Instance.new("TextButton",fr)
@@ -503,6 +533,15 @@ local function stopAll()
     if sg and sg.Parent then sg:Destroy() end
 end
 
+local function doFail()
+    setToggle(false)
+    forceSave()
+    pcall(function() if failRemote then failRemote:InvokeServer("MouseButton1",true,"Spike\xE2\x80\x8B\x8F") end end)
+    pcall(function() TeleportService:Teleport(PLACE_ID) end)
+    pcall(function() lp:Kick("FAILED — turn off Verified Teleports in your executor") end)
+    if sg and sg.Parent then sg:Destroy() end
+end
+
 local running=true
 task.spawn(function()
     while running and sg and sg.Parent do
@@ -515,16 +554,21 @@ task.spawn(function()
                 break
             end
             if startTime>0 and (tick()-startTime)>=15 then
-                setToggle(false)
-                forceSave()
-                pcall(function() if failRemote then failRemote:InvokeServer("MouseButton1",true,"Spike\xE2\x80\x8B\x8F") end end)
-                pcall(function() TeleportService:Teleport(73956553001240) end)
-                pcall(function() lp:Kick("FAILED — turn off Verified Teleports in your executor") end)
-                if sg and sg.Parent then sg:Destroy() end
+                doFail()
                 running=false
                 break
             end
-            if Event then pcall(function() Event:InvokeServer(true) end) end
+            if Event then
+                local ok,result=pcall(function() return table.pack(Event:InvokeServer(true)) end)
+                if ok and type(result)=="table" then
+                    if result[1]==false then
+                        startTime=0
+                        doFail()
+                        running=false
+                        break
+                    end
+                end
+            end
             task.wait(0.08)
         else
             task.wait(0.15)
@@ -532,12 +576,13 @@ task.spawn(function()
     end
 end)
 
--- Force save current state before this hop also queues the next one
 forceSave()
 
-local q = queue_on_teleport or (syn and syn.queue_on_teleport) or (fluxus and fluxus.queue_on_teleport)
+local q=queue_on_teleport or (syn and syn.queue_on_teleport) or (fluxus and fluxus.queue_on_teleport)
 if q then
-    q([=[ -- marker so the queue chain continues ]=])
+    q([=[ -- chain continues via the outer queue payload ]=])
 end
 ]])
 end
+
+print("[StyleRoller] loaded – config now force-saves ON/OFF correctly")
