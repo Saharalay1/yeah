@@ -1,1 +1,3 @@
 print("This script isnt finish bozo")
+task.wait(1)
+game.Players.LocalPlayer:Kick("This script isn't finish cuh")
