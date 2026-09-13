@@ -1,10 +1,10 @@
 --[[
-    Style Roller - Fixed + Remote Result Check
-    - No blue accent / stroke is pure dark gray
-    - Config (especially ON/OFF) force-saved before every teleport + rewritten save/load
-    - Survives queue_on_teleport / rejoin until client closes
-    - Only StyleRoller.json is written
-    - 15s timeout OR remote returns false → immediate teleport + kick
+    Style Roller - Working Version
+    - Fails ONLY when remote returns "You don't" (out of spins) OR 15s timer
+    - Normal rolls continue
+    - Config (ON/OFF) force-saved before every teleport
+    - Full self-replicating queue_on_teleport
+    - No blue line
 ]]
 
 local Players           = game:GetService("Players")
@@ -18,7 +18,7 @@ local lp = Players.LocalPlayer
 local FILE = "StyleRoller.json"
 local PLACE_ID = 73956553001240
 
--- ==================== Config (rewritten, strict boolean) ====================
+-- ==================== Config ====================
 local cfg = {
     t  = "",
     on = false,
@@ -40,7 +40,6 @@ local function loadConfig()
     end)
     if success and type(data) == "table" then
         cfg.t  = tostring(data.t or "")
-        -- strict boolean only
         cfg.on = (data.on == true)
         cfg.x  = tonumber(data.x) or 0.5
         cfg.y  = tonumber(data.y) or 0.5
@@ -49,25 +48,23 @@ end
 
 local function saveConfig()
     pcall(function()
-        local payload = {
+        writefile(FILE, Http:JSONEncode({
             t  = tostring(cfg.t or ""),
-            on = (cfg.on == true),   -- never write nil / 1 / "true"
+            on = (cfg.on == true),
             x  = tonumber(cfg.x) or 0.5,
             y  = tonumber(cfg.y) or 0.5
-        }
-        writefile(FILE, Http:JSONEncode(payload))
+        }))
     end)
 end
 
--- Force write + tiny yield so disk actually receives it before teleport
 local function forceSave()
     saveConfig()
-    task.wait(0.07)
+    task.wait(0.08)
 end
 
 loadConfig()
 
--- ==================== Safe remote finder ====================
+-- ==================== Remotes ====================
 local function getRemotes()
     local ok, Event, failRemote = pcall(function()
         local packages = ReplicatedStorage:WaitForChild("Packages", 8)
@@ -98,7 +95,7 @@ pcall(function()
     end
 end)
 
--- ==================== GUI (zero blue, pure dark) ====================
+-- ==================== GUI ====================
 local sg = Instance.new("ScreenGui")
 sg.Name = "StyleRoller"
 sg.ResetOnSpawn = false
@@ -114,11 +111,8 @@ fr.BorderSizePixel = 0
 fr.Active = true
 fr.Parent = sg
 
-local corner = Instance.new("UICorner")
-corner.CornerRadius = UDim.new(0, 10)
-corner.Parent = fr
+Instance.new("UICorner", fr).CornerRadius = UDim.new(0, 10)
 
--- pure dark gray stroke, no blue tint
 local stroke = Instance.new("UIStroke")
 stroke.Color = Color3.fromRGB(48, 48, 55)
 stroke.Thickness = 1.15
@@ -167,7 +161,7 @@ tog.AutoButtonColor = false
 tog.Parent = fr
 Instance.new("UICorner", tog).CornerRadius = UDim.new(0, 6)
 
--- ==================== State helpers ====================
+-- ==================== Helpers ====================
 local function setToggle(state)
     cfg.on = (state == true)
     tog.Text = cfg.on and "ON" or "OFF"
@@ -271,6 +265,26 @@ local function doFail()
     end
 end
 
+-- Check if any return value contains "You don't" (out of spins)
+local function isOutOfSpins(result)
+    if type(result) ~= "table" then return false end
+    for i = 1, result.n or #result do
+        local v = result[i]
+        if type(v) == "string" and string.find(string.lower(v), "you don't", 1, true) then
+            return true
+        end
+        if type(v) == "table" then
+            -- recurse one level in case nested
+            for _, nested in pairs(v) do
+                if type(nested) == "string" and string.find(string.lower(nested), "you don't", 1, true) then
+                    return true
+                end
+            end
+        end
+    end
+    return false
+end
+
 -- ==================== Main Loop ====================
 local running = true
 
@@ -296,23 +310,20 @@ task.spawn(function()
                 break
             end
 
-            -- Invoke + check remote result
+            -- Invoke + check for out-of-spins message
             if Event then
                 local ok, result = pcall(function()
                     return table.pack(Event:InvokeServer(true))
                 end)
 
                 if ok and type(result) == "table" then
-                    -- first return value is the success boolean
-                    local successFlag = result[1]
-                    if successFlag == false then
-                        -- remote returned false → treat as hard fail, zero the timer and teleport+kick
-                        startTime = 0
+                    if isOutOfSpins(result) then
+                        -- out of spins → immediate fail (saves time vs waiting for 15s)
                         doFail()
                         running = false
                         break
                     end
-                    -- any other output is ignored
+                    -- any other output is ignored, continue rolling
                 end
             end
 
@@ -335,8 +346,8 @@ end
 
 local queueFunc = getQueueFunc()
 if queueFunc then
-    -- Fully self-contained copy that also force-saves before its own future teleports
-    queueFunc([[
+    -- Full self-contained payload that re-queues itself
+    local payload = [[
 local Players=game:GetService("Players")
 local UIS=game:GetService("UserInputService")
 local Http=game:GetService("HttpService")
@@ -376,7 +387,7 @@ end
 
 local function forceSave()
     saveConfig()
-    task.wait(0.07)
+    task.wait(0.08)
 end
 
 loadConfig()
@@ -542,6 +553,24 @@ local function doFail()
     if sg and sg.Parent then sg:Destroy() end
 end
 
+local function isOutOfSpins(result)
+    if type(result)~="table" then return false end
+    for i=1,(result.n or #result) do
+        local v=result[i]
+        if type(v)=="string" and string.find(string.lower(v),"you don't",1,true) then
+            return true
+        end
+        if type(v)=="table" then
+            for _,nested in pairs(v) do
+                if type(nested)=="string" and string.find(string.lower(nested),"you don't",1,true) then
+                    return true
+                end
+            end
+        end
+    end
+    return false
+end
+
 local running=true
 task.spawn(function()
     while running and sg and sg.Parent do
@@ -561,8 +590,7 @@ task.spawn(function()
             if Event then
                 local ok,result=pcall(function() return table.pack(Event:InvokeServer(true)) end)
                 if ok and type(result)=="table" then
-                    if result[1]==false then
-                        startTime=0
+                    if isOutOfSpins(result) then
                         doFail()
                         running=false
                         break
@@ -580,9 +608,10 @@ forceSave()
 
 local q=queue_on_teleport or (syn and syn.queue_on_teleport) or (fluxus and fluxus.queue_on_teleport)
 if q then
-    q([=[ -- chain continues via the outer queue payload ]=])
+    q([=[ -- self-requeue marker (full payload is already queued by outer) ]=])
 end
-]])
+]]
+    queueFunc(payload)
 end
 
-print("[StyleRoller] loaded – config now force-saves ON/OFF correctly")
+print("it loaded you fuckass bitch stop checking console and just use the goddamn script")
