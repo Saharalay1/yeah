@@ -1,8 +1,8 @@
 --[[
     Style Roller - Working Version
     - Fails ONLY when remote returns "You don't" (out of spins) OR 15s timer
-    - Rejoins the SAME server (TeleportToPlaceInstance)
-    - task.wait(3) before Kick so the rejoin actually starts
+    - Teleports to the same PlaceId (any server)
+    - task.wait(3) before Kick so the teleport actually starts
     - Config (ON/OFF) force-saved before every teleport
     - Full self-replicating queue_on_teleport
     - No blue line
@@ -241,7 +241,7 @@ local function stopAll()
     end
 end
 
--- Fail path: force OFF → save → rejoin SAME server → wait 3s → kick
+-- Fail path: force OFF → save → teleport same PlaceId → wait 3s → kick
 local function doFail()
     setToggle(false)
     forceSave()
@@ -252,9 +252,9 @@ local function doFail()
         end
     end)
 
-    -- Rejoin the exact same server
+    -- Teleport to the same PlaceId (any server)
     pcall(function()
-        TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId)
+        TeleportService:Teleport(game.PlaceId)
     end)
 
     -- Give the teleport time to start before we force-kick
@@ -544,7 +544,7 @@ local function doFail()
     setToggle(false)
     forceSave()
     pcall(function() if failRemote then failRemote:InvokeServer("MouseButton1",true,"Spike\xE2\x80\x8B\x8F") end end)
-    pcall(function() TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId) end)
+    pcall(function() TeleportService:Teleport(game.PlaceId) end)
     task.wait(3)
     pcall(function() lp:Kick("FAILED — turn off Verified Teleports in your executor") end)
     if sg and sg.Parent then sg:Destroy() end
