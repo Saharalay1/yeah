@@ -1,1 +1,21 @@
+local workspace = game:GetService("Workspace")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local hrp = character:WaitForChild("HumanoidRootPart")
 
+local function block()
+  local block = Instance.new("Part")
+  block.Name = "BlockPart"
+  block.Transparency = 0.2
+  block.Anchored = true
+  block.Color = Color3.fromRGB(0, 0, 0)
+  block.Parent = workspace
+  block.Size = Vector3.new(10, 0.2, 10)
+  block.Position = hrp.Position + Vector3.new(0, -3, 0)
+  print("block made")
+end
+
+task.wait(1)
+
+block()
