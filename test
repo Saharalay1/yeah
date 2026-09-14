@@ -1,4 +1,9 @@
+local Window = xUI:CreateWindow({
+    Title = "FemHub",
+})
+
 local Main = Window:CreateTab("Main")
+
 Main:AddToggle({
     Text = "Test Toggle",
     Default = false,
