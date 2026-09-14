@@ -1,27 +1,3 @@
-local workspace = game:GetService("Workspace")
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local hrp = character:WaitForChild("HumanoidRootPart")
-local block
-
-local function make() 
-    block = Instance.new("Part")
-    block.Name = "BlockPart"
-    block.Transparency = 0.2
-    block.Anchored = true
-    block.Color = Color3.fromRGB(0, 0, 0)
-    block.Parent = workspace
-    block.Size = Vector3.new(10, 0.2, 10)
-    block.Position = hrp.Position + Vector3.new(0, -3, 0)
-end
-
-make()
-local platform = true
-
-while platform do
-        if block.Position ~= hrp.Position + Vector3.new(0, -3, 0) then 
-        block.Position = hrp.Position + Vector3.new(0, -3, 0)
-      end 
-   task.wait()
-end
+local window = xUI:CreateWindow({
+    Title = "Femboy Hub",
+})
