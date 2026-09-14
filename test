@@ -1,11 +1,11 @@
 local Window = xUI:CreateWindow({
-    Title = "FemHub",
+    Title = "Femboy HUb",
 })
 
-local Main = Window:CreateTab("Main")
+local tab1 = Window:CreateTab("Tab1")
 
-Main:AddToggle({
-    Text = "Test Toggle",
+tab1:AddToggle({
+    Text = "le toggle",
     Default = false,
     Callback = function(state)
         print("Toggle:", state)
