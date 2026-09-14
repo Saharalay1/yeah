@@ -1,3 +1,8 @@
-local window = xUI:CreateWindow({
-    Title = "Femboy Hub",
+local Main = Window:CreateTab("Main")
+Main:AddToggle({
+    Text = "Test Toggle",
+    Default = false,
+    Callback = function(state)
+        print("Toggle:", state)
+    end
 })
