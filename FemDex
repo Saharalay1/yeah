@@ -114,8 +114,8 @@ local function main()
 
 	-- StarterGui.ScreenGui
 	window = Lib.Window.new()
-	window:SetTitle("Console · Femboy")
-	window:Resize(500,400)
+	window:SetTitle("Console")
+	window:Resize(360,290)
 	Console.Window = window
 
 	-- StarterGui.ScreenGui.Console
@@ -123,7 +123,7 @@ local function main()
 	ConsoleFrame["BorderSizePixel"] = 0;
 	ConsoleFrame["AutoButtonColor"] = false;
 	ConsoleFrame["BackgroundTransparency"] = 1;
-	ConsoleFrame["BackgroundColor3"] = Color3.fromRGB(47, 47, 47);
+	ConsoleFrame["BackgroundColor3"] = Color3.fromRGB(12, 10, 18);
 	ConsoleFrame["Selectable"] = false;
 	ConsoleFrame["Size"] = UDim2.new(1,0,1,0);
 	ConsoleFrame["BorderColor3"] = Color3.fromRGB(0, 0, 0);
@@ -135,7 +135,7 @@ local function main()
 	G2L["3"] = Lib.Frame.new().Gui--Instance.new("Frame", ConsoleFrame);
 	G2L["3"].Parent = ConsoleFrame
 	G2L["3"]["BorderSizePixel"] = 0;
-	G2L["3"]["BackgroundColor3"] = Color3.fromRGB(37, 37, 37);
+	G2L["3"]["BackgroundColor3"] = Color3.fromRGB(18, 14, 28);
 	G2L["3"]["AnchorPoint"] = Vector2.new(0.5, 1);
 	G2L["3"]["ClipsDescendants"] = true;
 	G2L["3"]["Size"] = UDim2.new(1, -8, 0, 22);
@@ -146,7 +146,8 @@ local function main()
 
 	-- StarterGui.ScreenGui.Console.CommandLine.UIStroke
 	G2L["4"] = Instance.new("UIStroke", G2L["3"]);
-	G2L["4"]["Transparency"] = 0.65;
+	G2L["4"]["Color"] = Color3.fromRGB(140, 60, 255);
+	G2L["4"]["Transparency"] = 0.35;
 	G2L["4"]["Thickness"] = 1.25;
 
 
@@ -163,7 +164,7 @@ local function main()
 	G2L["5"]["BottomImage"] = [[rbxasset://textures/ui/Scroll/scroll-middle.png]];
 	G2L["5"]["AutomaticCanvasSize"] = Enum.AutomaticSize.X;
 	G2L["5"]["Size"] = UDim2.new(1, 0, 1, 0);
-	G2L["5"]["ScrollBarImageColor3"] = Color3.fromRGB(57, 57, 57);
+	G2L["5"]["ScrollBarImageColor3"] = Color3.fromRGB(40, 30, 55);
 	G2L["5"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["5"]["ScrollBarThickness"] = 2;
 	G2L["5"]["BackgroundTransparency"] = 1;
@@ -172,10 +173,10 @@ local function main()
 	G2L["6"] = Instance.new("TextBox", G2L["5"]);
 	G2L["6"]["CursorPosition"] = -1;
 	G2L["6"]["TextXAlignment"] = Enum.TextXAlignment.Left;
-	G2L["6"]["PlaceholderColor3"] = Color3.fromRGB(211, 211, 211);
+	G2L["6"]["PlaceholderColor3"] = Color3.fromRGB(220, 200, 255);
 	G2L["6"]["BorderSizePixel"] = 0;
 	G2L["6"]["TextSize"] = 13;
-	G2L["6"]["TextColor3"] = Color3.fromRGB(211, 211, 211);
+	G2L["6"]["TextColor3"] = Color3.fromRGB(220, 200, 255);
 	G2L["6"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 	G2L["6"]["FontFace"] = Font.new([[rbxasset://fonts/families/Inconsolata.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
 	G2L["6"]["AutomaticSize"] = Enum.AutomaticSize.X;
@@ -185,6 +186,7 @@ local function main()
 	G2L["6"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["6"]["Text"] = [[]];
 	G2L["6"]["BackgroundTransparency"] = 1;
+	G2L["6"]["TextTransparency"] = 1;
 
 
 	-- StarterGui.ScreenGui.Console.CommandLine.ScrollingFrame.TextBox.UIPadding
@@ -218,7 +220,7 @@ local function main()
 
 	G2L["backgroundOutput"] = Instance.new("Frame", ConsoleFrame);
 	G2L["backgroundOutput"]["BorderSizePixel"] = 0;
-	G2L["backgroundOutput"]["BackgroundColor3"] = Color3.fromRGB(36, 36, 36);
+	G2L["backgroundOutput"]["BackgroundColor3"] = Color3.fromRGB(14, 11, 22);
 	G2L["backgroundOutput"]["Name"] = [[BackgroundOutput]];
 	G2L["backgroundOutput"]["AnchorPoint"] = Vector2.new(0, 0);
 	G2L["backgroundOutput"]["Size"] = UDim2.new(1, -8, 1, -55);
@@ -239,7 +241,7 @@ local function main()
 	G2L["a"]["BorderSizePixel"] = 0;
 	G2L["a"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
 	G2L["a"]["TopImage"] = '';
-	G2L["a"]["BackgroundColor3"] = Color3.fromRGB(36, 36, 36);
+	G2L["a"]["BackgroundColor3"] = Color3.fromRGB(12, 10, 18);
 	G2L["a"].BackgroundTransparency = 1
 	G2L["a"]["Name"] = [[Output]];
 	G2L["a"]["ScrollBarImageTransparency"] = 0;
@@ -249,7 +251,7 @@ local function main()
 	G2L["a"]["Size"] = UDim2.new(1, -8, 1, -55);
 	G2L["a"]["Position"] = UDim2.new(0, 4, 0, 23);
 	G2L["a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-	G2L["a"].ScrollBarImageColor3 = Color3.fromRGB(70, 70, 70)
+	G2L["a"].ScrollBarImageColor3 = Color3.fromRGB(40, 30, 55)
 	G2L["a"]["ScrollBarThickness"] = 16;
 	G2L["a"]["ZIndex"] = 1;
 
@@ -270,7 +272,8 @@ local function main()
 	G2L["c"] = Instance.new("UIStroke", G2L["a"]);
 	G2L["c"]["Transparency"] = 0.7;
 	G2L["c"]["Thickness"] = 1.25;
-	G2L["c"]["Color"] = Color3.fromRGB(12, 12, 12);
+	G2L["c"]["Color"] = Color3.fromRGB(140, 60, 255);
+	G2L["c"]["Transparency"] = 0.4;
 
 
 	-- StarterGui.ScreenGui.Console.Output.OutputTextSize
@@ -293,7 +296,7 @@ local function main()
 	-- StarterGui.ScreenGui.Console.TextSizeBox
 	G2L["10"] = Instance.new("Frame", ConsoleFrame);
 	G2L["10"]["BorderSizePixel"] = 0;
-	G2L["10"]["BackgroundColor3"] = Color3.fromRGB(37, 37, 37);
+	G2L["10"]["BackgroundColor3"] = Color3.fromRGB(18, 14, 28);
 	G2L["10"]["ClipsDescendants"] = true;
 	G2L["10"]["Size"] = UDim2.new(0, 37, 0, 15);
 	G2L["10"]["Position"] = UDim2.new(0, 4, 0, 4);
@@ -307,7 +310,7 @@ local function main()
 	G2L["11"]["BorderSizePixel"] = 0;
 	G2L["11"]["TextWrapped"] = true;
 	G2L["11"]["TextSize"] = 15;
-	G2L["11"]["TextColor3"] = Color3.fromRGB(211, 211, 211);
+	G2L["11"]["TextColor3"] = Color3.fromRGB(220, 200, 255);
 	G2L["11"]["TextScaled"] = true;
 	G2L["11"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 	G2L["11"]["FontFace"] = Font.new([[rbxasset://fonts/families/Inconsolata.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
@@ -328,18 +331,45 @@ local function main()
 
 	-- StarterGui.ScreenGui.Console.TextSizeBox.UIStroke
 	G2L["13"] = Instance.new("UIStroke", G2L["10"]);
-	G2L["13"]["Transparency"] = 0.65;
+	G2L["13"]["Color"] = Color3.fromRGB(140, 60, 255);
+	G2L["13"]["Transparency"] = 0.35;
 	G2L["13"]["Thickness"] = 1.25;
 
 
 	-- StarterGui.ScreenGui.Console.Clear
 	G2L["14"] = Instance.new("ImageButton", ConsoleFrame);
 	G2L["14"]["BorderSizePixel"] = 0;
-	G2L["14"]["BackgroundColor3"] = Color3.fromRGB(57, 57, 57);
+	G2L["14"]["BackgroundColor3"] = Color3.fromRGB(30, 25, 40);
 	G2L["14"]["Size"] = UDim2.new(0, 37, 0, 15);
 	G2L["14"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["14"]["Name"] = [[Clear]];
 	G2L["14"]["Position"] = UDim2.new(1, -42, 0, 4);
+	do
+		local c = Instance.new("UICorner")
+		c.CornerRadius = UDim.new(0, 4)
+		c.Parent = G2L["14"]
+		local s = Instance.new("UIStroke")
+		s.Color = Color3.fromRGB(140, 60, 255)
+		s.Thickness = 1
+		s.Transparency = 0.4
+		s.Parent = G2L["14"]
+	end
+	do
+		local c = Instance.new("UICorner")
+		c.CornerRadius = UDim.new(0, 4)
+		c.Parent = G2L["10"]
+	end
+	do
+		local s = Instance.new("UIStroke")
+		s.Color = Color3.fromRGB(140, 60, 255)
+		s.Thickness = 1
+		s.Transparency = 0.35
+		s.Parent = G2L["backgroundOutput"]
+		local c = Instance.new("UICorner")
+		c.CornerRadius = UDim.new(0, 6)
+		c.Parent = G2L["backgroundOutput"]
+	end
+
 
 
 	-- StarterGui.ScreenGui.Console.Clear.TextLabel
@@ -351,7 +381,7 @@ local function main()
 	G2L["15"]["TextScaled"] = true;
 	G2L["15"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 	G2L["15"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
-	G2L["15"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+	G2L["15"]["TextColor3"] = Color3.fromRGB(220, 200, 255);
 	G2L["15"]["BackgroundTransparency"] = 1;
 	G2L["15"]["Size"] = UDim2.new(1, 0, 1, 0);
 	G2L["15"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
@@ -364,6 +394,31 @@ local function main()
 	G2L["16"]["PaddingBottom"] = UDim.new(0, 1);
 
 
+	
+	G2L["infoBtn"] = Instance.new("ImageButton", ConsoleFrame);
+	G2L["infoBtn"]["BorderSizePixel"] = 0;
+	G2L["infoBtn"]["BackgroundColor3"] = Color3.fromRGB(30, 25, 40);
+	G2L["infoBtn"]["Size"] = UDim2.new(0, 48, 0, 15);
+	G2L["infoBtn"]["Name"] = [[EnvInfo]];
+	G2L["infoBtn"]["Position"] = UDim2.new(1, -96, 0, 4);
+	do
+		local c = Instance.new("UICorner")
+		c.CornerRadius = UDim.new(0, 4)
+		c.Parent = G2L["infoBtn"]
+		local s = Instance.new("UIStroke")
+		s.Color = Color3.fromRGB(140, 60, 255)
+		s.Thickness = 1
+		s.Transparency = 0.4
+		s.Parent = G2L["infoBtn"]
+	end
+	G2L["infoLbl"] = Instance.new("TextLabel", G2L["infoBtn"]);
+	G2L["infoLbl"]["BackgroundTransparency"] = 1;
+	G2L["infoLbl"]["Size"] = UDim2.new(1, 0, 1, 0);
+	G2L["infoLbl"]["Text"] = [[Info]];
+	G2L["infoLbl"]["TextColor3"] = Color3.fromRGB(220, 200, 255);
+	G2L["infoLbl"]["TextScaled"] = true;
+	G2L["infoLbl"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+
 	-- StarterGui.ScreenGui.Console.OutputTemplate
 	G2L["17"] = Instance.new("TextBox", ConsoleFrame);
 	G2L["17"]["Visible"] = false;
@@ -374,7 +429,7 @@ local function main()
 	G2L["17"]["TextEditable"] = false;
 	G2L["17"]["TextWrapped"] = true;
 	G2L["17"]["TextSize"] = 15;
-	G2L["17"]["TextColor3"] = Color3.fromRGB(171, 171, 171);
+	G2L["17"]["TextColor3"] = Color3.fromRGB(190, 175, 220);
 	G2L["17"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 	G2L["17"]["RichText"] = true;
 	G2L["17"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
@@ -397,11 +452,22 @@ local function main()
 	-- StarterGui.ScreenGui.Console.CtrlScroll
 	G2L["19"] = Instance.new("ImageButton", ConsoleFrame);
 	G2L["19"]["BorderSizePixel"] = 0;
-	G2L["19"]["BackgroundColor3"] = Color3.fromRGB(57, 57, 57);
+	G2L["19"]["BackgroundColor3"] = Color3.fromRGB(40, 30, 55);
 	G2L["19"]["Size"] = UDim2.new(0, 60, 0, 15);
 	G2L["19"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["19"]["Name"] = [[CtrlScroll]];
 	G2L["19"]["Position"] = UDim2.new(0, 46, 0, 4);
+	do
+		local c = Instance.new("UICorner")
+		c.CornerRadius = UDim.new(0, 4)
+		c.Parent = G2L["19"]
+		local s = Instance.new("UIStroke")
+		s.Color = Color3.fromRGB(140, 60, 255)
+		s.Thickness = 1
+		s.Transparency = 0.45
+		s.Parent = G2L["19"]
+	end
+
 
 
 	-- StarterGui.ScreenGui.Console.CtrlScroll.TextLabel
@@ -413,7 +479,7 @@ local function main()
 	G2L["1a"]["TextScaled"] = true;
 	G2L["1a"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 	G2L["1a"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
-	G2L["1a"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+	G2L["1a"]["TextColor3"] = Color3.fromRGB(220, 200, 255);
 	G2L["1a"]["BackgroundTransparency"] = 1;
 	G2L["1a"]["Size"] = UDim2.new(1, 0, 1, 0);
 	G2L["1a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
@@ -428,12 +494,22 @@ local function main()
 	-- StarterGui.ScreenGui.Console.AutoScroll
 	G2L["20"] = Instance.new("ImageButton", ConsoleFrame);
 	G2L["20"]["BorderSizePixel"] = 0;
-	G2L["20"]["BackgroundColor3"] = Color3.fromRGB(57, 57, 57);
+	G2L["20"]["BackgroundColor3"] = Color3.fromRGB(40, 30, 55);
 	G2L["20"]["Size"] = UDim2.new(0, 60, 0, 15);
 	G2L["20"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["20"]["Name"] = [[AutoScroll]];
 	G2L["20"]["Position"] = UDim2.new(0, 110, 0, 4);
-
+	G2L["20"]["BackgroundColor3"] = Color3.fromRGB(30, 25, 40);
+	do
+		local c = Instance.new("UICorner")
+		c.CornerRadius = UDim.new(0, 4)
+		c.Parent = G2L["20"]
+		local s = Instance.new("UIStroke")
+		s.Color = Color3.fromRGB(140, 60, 255)
+		s.Thickness = 1
+		s.Transparency = 0.45
+		s.Parent = G2L["20"]
+	end
 
 	-- StarterGui.ScreenGui.Console.AutoScroll.TextLabel
 	G2L["1e"] = Instance.new("TextLabel", G2L["20"]);
@@ -444,7 +520,7 @@ local function main()
 	G2L["1e"]["TextScaled"] = true;
 	G2L["1e"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 	G2L["1e"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
-	G2L["1e"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+	G2L["1e"]["TextColor3"] = Color3.fromRGB(220, 200, 255);
 	G2L["1e"]["BackgroundTransparency"] = 1;
 	G2L["1e"]["Size"] = UDim2.new(1, 0, 1, 0);
 	G2L["1e"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
@@ -694,16 +770,16 @@ local function main()
 		-- MOUSE STUFFS
 
 		if CtrlScroll == true then
-			Console.CtrlScroll.BackgroundColor3 = Color3.fromRGB(11, 90, 175)
+			Console.CtrlScroll.BackgroundColor3 = Color3.fromRGB(140, 60, 255)
 		elseif CtrlScroll == false then
-			Console.CtrlScroll.BackgroundColor3 = Color3.fromRGB(56, 56, 56)
+			Console.CtrlScroll.BackgroundColor3 = Color3.fromRGB(30, 25, 40)
 		end
 		Console.CtrlScroll.MouseButton1Click:Connect(function()
 			CtrlScroll = not CtrlScroll
 			if CtrlScroll == true then
-				Console.CtrlScroll.BackgroundColor3 = Color3.fromRGB(11, 90, 175)
+				Console.CtrlScroll.BackgroundColor3 = Color3.fromRGB(140, 60, 255)
 			elseif CtrlScroll == false then
-				Console.CtrlScroll.BackgroundColor3 = Color3.fromRGB(56, 56, 56)
+				Console.CtrlScroll.BackgroundColor3 = Color3.fromRGB(30, 25, 40)
 			end
 		end)
 
@@ -724,17 +800,17 @@ local function main()
 		end)
 
 		if AutoScroll == true then
-			Console.AutoScroll.BackgroundColor3 = Color3.fromRGB(11, 90, 175)
+			Console.AutoScroll.BackgroundColor3 = Color3.fromRGB(140, 60, 255)
 		elseif AutoScroll == false then
-			Console.AutoScroll.BackgroundColor3 = Color3.fromRGB(56, 56, 56)
+			Console.AutoScroll.BackgroundColor3 = Color3.fromRGB(30, 25, 40)
 		end
 		Console.AutoScroll.MouseButton1Click:Connect(function()
 			AutoScroll = not AutoScroll
 			if AutoScroll == true then
-				Console.AutoScroll.BackgroundColor3 = Color3.fromRGB(11, 90, 175)
+				Console.AutoScroll.BackgroundColor3 = Color3.fromRGB(140, 60, 255)
 				Console.Output.CanvasPosition = Vector2.new(0, 9e9)
 			elseif AutoScroll == false then
-				Console.AutoScroll.BackgroundColor3 = Color3.fromRGB(56, 56, 56)
+				Console.AutoScroll.BackgroundColor3 = Color3.fromRGB(30, 25, 40)
 			end
 		end)
 
@@ -840,6 +916,25 @@ local function main()
 			if focussedOutput then
 				focussedOutput:ReleaseFocus()
 			end
+		end)
+
+		pcall(function()
+			Console.EnvInfo.MouseButton1Click:Connect(function()
+				local exName, exVer = "unknown", "unknown"
+				pcall(function()
+					if identifyexecutor then
+						local a,b = identifyexecutor()
+						exName, exVer = tostring(a), tostring(b or "")
+					elseif getexecutorname then
+						exName = tostring(getexecutorname())
+					end
+				end)
+				local ver = tostring(game.PlaceVersion)
+				local rid = tostring(version and version() or "n/a")
+				print("[Femdex] Executor:", exName, exVer)
+				print("[Femdex] Roblox version():", rid)
+				print("[Femdex] PlaceId:", game.PlaceId, "PlaceVersion:", ver)
+			end)
 		end)
 
 		Console.CommandLine.ScrollingFrame.TextBox:GetPropertyChangedSignal("Text"):Connect(function()
@@ -1146,7 +1241,7 @@ local function main()
 	Explorer.GuiElems = {}
 
 	Explorer.InitRenameBox = function()
-		renameBox = create({{1,"TextBox",{BackgroundColor3=Color3.new(0.17647059261799,0.17647059261799,0.17647059261799),BorderColor3=Color3.new(0.062745101749897,0.51764708757401,1),BorderMode=2,ClearTextOnFocus=false,Font=3,Name="RenameBox",PlaceholderColor3=Color3.new(0.69803923368454,0.69803923368454,0.69803923368454),Position=UDim2.new(0,26,0,2),Size=UDim2.new(0,200,0,16),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,TextXAlignment=0,Visible=false,ZIndex=2}}})
+		renameBox = create({{1,"TextBox",{BackgroundColor3=Color3.fromRGB(18,14,28),BorderColor3=Color3.new(0.062745101749897,0.51764708757401,1),BorderMode=2,ClearTextOnFocus=false,Font=3,Name="RenameBox",PlaceholderColor3=Color3.new(0.69803923368454,0.69803923368454,0.69803923368454),Position=UDim2.new(0,26,0,2),Size=UDim2.new(0,200,0,16),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,TextXAlignment=0,Visible=false,ZIndex=2}}})
 
 		renameBox.Parent = Explorer.Window.GuiElems.Content.List
 
@@ -3082,7 +3177,7 @@ return search]==]
 		entryTemplate = create({
 			{1,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0,0,0),BackgroundTransparency=1,BorderColor3=Color3.new(0,0,0),Font=3,Name="Entry",Position=UDim2.new(0,1,0,1),Size=UDim2.new(0,250,0,20),Text="",TextSize=14,}},
 			{2,"Frame",{BackgroundColor3=Color3.new(0.04313725605607,0.35294118523598,0.68627452850342),BackgroundTransparency=1,BorderColor3=Color3.new(0.33725491166115,0.49019610881805,0.73725491762161),BorderSizePixel=0,Name="Indent",Parent={1},Position=UDim2.new(0,20,0,0),Size=UDim2.new(1,-20,1,0),}},
-			{3,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="EntryName",Parent={2},Position=UDim2.new(0,26,0,0),Size=UDim2.new(1,-26,1,0),Text="Workspace",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=0,}},
+			{3,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="EntryName",Parent={2},Position=UDim2.new(0,26,0,0),Size=UDim2.new(1,-26,1,0),Text="Workspace",TextColor3=Color3.fromRGB(220,200,255),TextSize=12,Font=Enum.Font.Gotham,TextXAlignment=0,}},
 			{4,"TextButton",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,ClipsDescendants=true,Font=3,Name="Expand",Parent={2},Position=UDim2.new(0,-20,0,0),Size=UDim2.new(0,20,0,20),Text="",TextSize=14,}},
 			{5,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Image="rbxassetid://5642383285",ImageRectOffset=Vector2.new(144,16),ImageRectSize=Vector2.new(16,16),Name="Icon",Parent={4},Position=UDim2.new(0,2,0,2),ScaleType=4,Size=UDim2.new(0,16,0,16),}},
 			{6,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,ImageRectOffset=Vector2.new(304,0),ImageRectSize=Vector2.new(16,16),Name="Icon",Parent={2},Position=UDim2.new(0,4,0,2),ScaleType=4,Size=UDim2.new(0,16,0,16),}},
@@ -3347,17 +3442,17 @@ return search]==]
 
 		local explorerItems = create({
 			{1,"Folder",{Name="ExplorerItems",}},
-			{2,"Frame",{BackgroundColor3=Color3.new(0.20392157137394,0.20392157137394,0.20392157137394),BorderSizePixel=0,Name="ToolBar",Parent={1},Size=UDim2.new(1,0,0,22),}},
-			{3,"Frame",{BackgroundColor3=Color3.new(0.14901961386204,0.14901961386204,0.14901961386204),BorderColor3=Color3.new(0.1176470592618,0.1176470592618,0.1176470592618),BorderSizePixel=0,Name="SearchFrame",Parent={2},Position=UDim2.new(0,3,0,1),Size=UDim2.new(1,-6,0,18),}},
-			{4,"TextBox",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,ClearTextOnFocus=false,Font=3,Name="SearchBox",Parent={3},PlaceholderColor3=Color3.new(0.39215689897537,0.39215689897537,0.39215689897537),PlaceholderText="Search workspace",Position=UDim2.new(0,4,0,0),Size=UDim2.new(1,-24,0,18),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,TextXAlignment=0,}},
+			{2,"Frame",{BackgroundColor3=Color3.fromRGB(18,14,28),BorderSizePixel=0,Name="ToolBar",Parent={1},Size=UDim2.new(1,0,0,22),}},
+			{3,"Frame",{BackgroundColor3=Color3.fromRGB(22,16,34),BorderColor3=Color3.fromRGB(40,30,55),BorderSizePixel=0,Name="SearchFrame",Parent={2},Position=UDim2.new(0,3,0,1),Size=UDim2.new(1,-6,0,18),}},
+			{4,"TextBox",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,ClearTextOnFocus=false,Font=3,Name="SearchBox",Parent={3},PlaceholderColor3=Color3.fromRGB(140,120,180),PlaceholderText="Search workspace",Font=Enum.Font.Gotham,Position=UDim2.new(0,4,0,0),Size=UDim2.new(1,-24,0,18),Text="",TextColor3=Color3.fromRGB(220,200,255),TextSize=13,TextXAlignment=0,}},
 			{5,"UICorner",{CornerRadius=UDim.new(0,2),Parent={3},}},
-			{6,"UIStroke",{Thickness=1.4,Parent={3},Color=Color3.fromRGB(42,42,42)}},
-			{7,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.12549020349979,0.12549020349979,0.12549020349979),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="Reset",Parent={3},Position=UDim2.new(1,-17,0,1),Size=UDim2.new(0,16,0,16),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,}},
-			{8,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Image="rbxassetid://5034718129",ImageColor3=Color3.new(0.39215686917305,0.39215686917305,0.39215686917305),Parent={7},Size=UDim2.new(0,16,0,16),}},
-			{9,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.12549020349979,0.12549020349979,0.12549020349979),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="Refresh",Parent={2},Position=UDim2.new(1,-20,0,1),Size=UDim2.new(0,18,0,18),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,Visible=false,}},
+			{6,"UIStroke",{Thickness=1.4,Parent={3},Color=Color3.fromRGB(140,60,255)}},
+			{7,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(18,14,28),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="Reset",Parent={3},Position=UDim2.new(1,-17,0,1),Size=UDim2.new(0,16,0,16),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,}},
+			{8,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Image="rbxassetid://5034718129",ImageColor3=Color3.fromRGB(160,140,200),Parent={7},Size=UDim2.new(0,16,0,16),}},
+			{9,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(18,14,28),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="Refresh",Parent={2},Position=UDim2.new(1,-20,0,1),Size=UDim2.new(0,18,0,18),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,Visible=false,}},
 			{10,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Image="rbxassetid://5642310344",Parent={9},Position=UDim2.new(0,3,0,3),Size=UDim2.new(0,12,0,12),}},
-			{11,"Frame",{BackgroundColor3=Color3.new(0.15686275064945,0.15686275064945,0.15686275064945),BorderSizePixel=0,Name="ScrollCorner",Parent={1},Position=UDim2.new(1,-16,1,-16),Size=UDim2.new(0,16,0,16),Visible=false,}},
-			{12,"Frame",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,ClipsDescendants=true,Name="List",Parent={1},Position=UDim2.new(0,0,0,23),Size=UDim2.new(1,0,1,-23),}}
+			{11,"Frame",{BackgroundColor3=Color3.fromRGB(14,11,22),BorderSizePixel=0,Name="ScrollCorner",Parent={1},Position=UDim2.new(1,-16,1,-16),Size=UDim2.new(0,16,0,16),Visible=false,}},
+			{12,"Frame",{BackgroundColor3=Color3.fromRGB(12,10,18),BackgroundTransparency=0,ClipsDescendants=true,Name="List",Parent={1},Position=UDim2.new(0,0,0,23),Size=UDim2.new(1,0,1,-23),}}
 		})
 
 		toolBar = explorerItems.ToolBar
@@ -3385,8 +3480,13 @@ return search]==]
 
 		local window = Lib.Window.new()
 		Explorer.Window = window
-		window:SetTitle("Explorer · Femboy")
+		window:SetTitle("Explorer")
 		window.GuiElems.Line.Position = UDim2.new(0,0,0,22)
+		pcall(function()
+			window.GuiElems.Line.BackgroundColor3 = Color3.fromRGB(140, 60, 255)
+			toolBar.BackgroundColor3 = Color3.fromRGB(18, 14, 28)
+			treeFrame.BackgroundColor3 = Color3.fromRGB(12, 10, 18)
+		end)
 
 		Explorer.InitEntryTemplate()
 		toolBar.Parent = window.GuiElems.Content
@@ -6035,15 +6135,15 @@ local function main()
 			local gui = create({
 				{1,"ScreenGui",{Name="Window",}},
 				{2,"Frame",{Active=true,BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Name="Main",Parent={1},Position=UDim2.new(0.40000000596046,0,0.40000000596046,0),Size=UDim2.new(0,300,0,300),}},
-				--[[background mod set to 0.05]]	{3,"Frame",{BackgroundColor3=Color3.new(0.17647059261799,0.17647059261799,0.17647059261799),BorderSizePixel=0,Name="Content",Parent={2},Position=UDim2.new(0,0,0,20),Size=UDim2.new(1,0,1,-20),ClipsDescendants=true}},
+				--[[background mod set to 0.05]]	{3,"Frame",{BackgroundColor3=Color3.fromRGB(18,14,28),BorderSizePixel=0,Name="Content",Parent={2},Position=UDim2.new(0,0,0,20),Size=UDim2.new(1,0,1,-20),ClipsDescendants=true}},
 				{4,"Frame",{BackgroundColor3=Color3.fromRGB(33,33,33),BorderSizePixel=0,Name="Line",Parent={3},Size=UDim2.new(1,0,0,1),}},
-				{5,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.20392157137394,0.20392157137394,0.20392157137394),BorderSizePixel=0,Name="TopBar",Parent={2},Size=UDim2.new(1,0,0,20),Text = ""}},
+				{5,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(18,14,28),BorderSizePixel=0,Name="TopBar",Parent={2},Size=UDim2.new(1,0,0,20),Text = ""}},
 				{6,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Title",Parent={5},Position=UDim2.new(0,5,0,0),Size=UDim2.new(1,-10,0,20),Text="Window",TextColor3=Color3.new(1,1,1),TextSize=14,TextXAlignment=0}},
-				{7,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.12549020349979,0.12549020349979,0.12549020349979),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="Close",Parent={5},Position=UDim2.new(1,-18,0,2),Size=UDim2.new(0,16,0,16),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,}},
+				{7,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(18,14,28),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="Close",Parent={5},Position=UDim2.new(1,-18,0,2),Size=UDim2.new(0,16,0,16),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,}},
 				{8,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Image="rbxassetid://5054663650",Parent={7},Position=UDim2.new(0,3,0,3),Size=UDim2.new(0,10,0,10),}},
 				{9,"UICorner",{CornerRadius=UDim.new(0,4),Parent={7},}},
 				--[[lol mod]]	{9,"UICorner",{CornerRadius=UDim.new(0,4),Parent={2},}},
-				{10,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.12549020349979,0.12549020349979,0.12549020349979),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="Minimize",Parent={5},Position=UDim2.new(1,-36,0,2),Size=UDim2.new(0,16,0,16),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,}},
+				{10,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(18,14,28),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="Minimize",Parent={5},Position=UDim2.new(1,-36,0,2),Size=UDim2.new(0,16,0,16),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,}},
 				{11,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Image="rbxassetid://5034768003",Parent={10},Position=UDim2.new(0,3,0,3),Size=UDim2.new(0,10,0,10),}},
 				{12,"UICorner",{CornerRadius=UDim.new(0,4),Parent={10},}},
 				{13,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Image="rbxassetid://1427967925",Name="Outlines",Parent={2},Position=UDim2.new(0,-5,0,-5),ScaleType=1,Size=UDim2.new(1,10,1,10),SliceCenter=Rect.new(6,6,25,25),TileSize=UDim2.new(0,20,0,20),}},
@@ -6816,10 +6916,10 @@ local function main()
 
 			sidesGui = Instance.new("ScreenGui")
 			local leftFrame = create({
-				{1,"Frame",{Active=true,Name="LeftSide",BackgroundColor3=Color3.new(0.17647059261799,0.17647059261799,0.17647059261799),BorderSizePixel=0,}},
-				{2,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.2549019753933,0.2549019753933,0.2549019753933),BorderSizePixel=0,Font=3,Name="Resizer",Parent={1},Size=UDim2.new(0,5,1,0),Text="",TextColor3=Color3.new(0,0,0),TextSize=14,}},
+				{1,"Frame",{Active=true,Name="LeftSide",BackgroundColor3=Color3.fromRGB(18,14,28),BorderSizePixel=0,}},
+				{2,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(30,25,40),BorderSizePixel=0,Font=3,Name="Resizer",Parent={1},Size=UDim2.new(0,5,1,0),Text="",TextColor3=Color3.new(0,0,0),TextSize=14,}},
 				{3,"Frame",{BackgroundColor3=Color3.new(0.14117647707462,0.14117647707462,0.14117647707462),BorderSizePixel=0,Name="Line",Parent={2},Position=UDim2.new(0,0,0,0),Size=UDim2.new(0,1,1,0),}},
-				{4,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.2549019753933,0.2549019753933,0.2549019753933),BorderSizePixel=0,Font=3,Name="WindowResizer",Parent={1},Position=UDim2.new(1,-300,0,0),Size=UDim2.new(1,0,0,4),Text="",TextColor3=Color3.new(0,0,0),TextSize=14,}},
+				{4,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(30,25,40),BorderSizePixel=0,Font=3,Name="WindowResizer",Parent={1},Position=UDim2.new(1,-300,0,0),Size=UDim2.new(1,0,0,4),Text="",TextColor3=Color3.new(0,0,0),TextSize=14,}},
 				{5,"Frame",{BackgroundColor3=Color3.new(0.14117647707462,0.14117647707462,0.14117647707462),BorderSizePixel=0,Name="Line",Parent={4},Size=UDim2.new(1,0,0,1),}},
 			})
 			leftSide.Frame = leftFrame
@@ -6829,10 +6929,10 @@ local function main()
 			leftFrame.Parent = sidesGui
 
 			local rightFrame = create({
-				{1,"Frame",{Active=true,Name="RightSide",BackgroundColor3=Color3.new(0.17647059261799,0.17647059261799,0.17647059261799),BorderSizePixel=0,}},
-				{2,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.2549019753933,0.2549019753933,0.2549019753933),BorderSizePixel=0,Font=3,Name="Resizer",Parent={1},Size=UDim2.new(0,5,1,0),Text="",TextColor3=Color3.new(0,0,0),TextSize=14,}},
+				{1,"Frame",{Active=true,Name="RightSide",BackgroundColor3=Color3.fromRGB(18,14,28),BorderSizePixel=0,}},
+				{2,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(30,25,40),BorderSizePixel=0,Font=3,Name="Resizer",Parent={1},Size=UDim2.new(0,5,1,0),Text="",TextColor3=Color3.new(0,0,0),TextSize=14,}},
 				{3,"Frame",{BackgroundColor3=Color3.new(0.14117647707462,0.14117647707462,0.14117647707462),BorderSizePixel=0,Name="Line",Parent={2},Position=UDim2.new(0,4,0,0),Size=UDim2.new(0,1,1,0),}},
-				{4,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.2549019753933,0.2549019753933,0.2549019753933),BorderSizePixel=0,Font=3,Name="WindowResizer",Parent={1},Position=UDim2.new(1,-300,0,0),Size=UDim2.new(1,0,0,4),Text="",TextColor3=Color3.new(0,0,0),TextSize=14,}},
+				{4,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(30,25,40),BorderSizePixel=0,Font=3,Name="WindowResizer",Parent={1},Position=UDim2.new(1,-300,0,0),Size=UDim2.new(1,0,0,4),Text="",TextColor3=Color3.new(0,0,0),TextSize=14,}},
 				{5,"Frame",{BackgroundColor3=Color3.new(0.14117647707462,0.14117647707462,0.14117647707462),BorderSizePixel=0,Name="Line",Parent={4},Size=UDim2.new(1,0,0,1),}},
 			})
 			rightSide.Frame = rightFrame
@@ -6862,7 +6962,7 @@ local function main()
 			local corner = Instance.new("UICorner",indicator)
 			corner.CornerRadius = UDim.new(0,10)
 
-			local leftToggle = create({{1,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.20392157137394,0.20392157137394,0.20392157137394),BorderColor3=Color3.new(0.14117647707462,0.14117647707462,0.14117647707462),BorderMode=2,Font=10,Name="LeftToggle",Position=UDim2.new(0,0,0,-36),Size=UDim2.new(0,16,0,36),Text="<",TextColor3=Color3.new(1,1,1),TextSize=14,}}})
+			local leftToggle = create({{1,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(18,14,28),BorderColor3=Color3.new(0.14117647707462,0.14117647707462,0.14117647707462),BorderMode=2,Font=10,Name="LeftToggle",Position=UDim2.new(0,0,0,-36),Size=UDim2.new(0,16,0,36),Text="<",TextColor3=Color3.new(1,1,1),TextSize=14,}}})
 			local rightToggle = leftToggle:Clone()
 			rightToggle.Name = "RightToggle"
 			rightToggle.Position = UDim2.new(1,-16,0,-36)
@@ -6937,22 +7037,22 @@ local function main()
 				{1,"ScreenGui",{DisplayOrder=1000000,Name="Context",ZIndexBehavior=1,}},
 				{2,"Frame",{Active=true,BackgroundColor3=Color3.new(0.14117647707462,0.14117647707462,0.14117647707462),BorderColor3=Color3.new(0.14117647707462,0.14117647707462,0.14117647707462),Name="Main",Parent={1},Position=UDim2.new(0.5,-100,0.5,-150),Size=UDim2.new(0,200,0,100),}},
 				{3,"UICorner",{CornerRadius=UDim.new(0,4),Parent={2},}},
-				{4,"Frame",{BackgroundColor3=Color3.new(0.17647059261799,0.17647059261799,0.17647059261799),Name="Container",Parent={2},Position=UDim2.new(0,1,0,1),Size=UDim2.new(1,-2,1,-2),}},
+				{4,"Frame",{BackgroundColor3=Color3.fromRGB(18,14,28),Name="Container",Parent={2},Position=UDim2.new(0,1,0,1),Size=UDim2.new(1,-2,1,-2),}},
 				{5,"UICorner",{CornerRadius=UDim.new(0,4),Parent={4},}},
-				{6,"ScrollingFrame",{Active=true,BackgroundColor3=Color3.new(0.20392157137394,0.20392157137394,0.20392157137394),BackgroundTransparency=1,BorderSizePixel=0,CanvasSize=UDim2.new(0,0,0,0),Name="List",Parent={4},Position=UDim2.new(0,2,0,2),ScrollBarImageColor3=Color3.new(0,0,0),ScrollBarThickness=4,Size=UDim2.new(1,-4,1,-4),VerticalScrollBarInset=1,}},
+				{6,"ScrollingFrame",{Active=true,BackgroundColor3=Color3.fromRGB(18,14,28),BackgroundTransparency=1,BorderSizePixel=0,CanvasSize=UDim2.new(0,0,0,0),Name="List",Parent={4},Position=UDim2.new(0,2,0,2),ScrollBarImageColor3=Color3.new(0,0,0),ScrollBarThickness=4,Size=UDim2.new(1,-4,1,-4),VerticalScrollBarInset=1,}},
 				{7,"UIListLayout",{Parent={6},SortOrder=2,}},
-				{8,"Frame",{BackgroundColor3=Color3.new(0.20392157137394,0.20392157137394,0.20392157137394),BorderSizePixel=0,Name="SearchFrame",Parent={4},Size=UDim2.new(1,0,0,24),Visible=false,}},
-				{9,"Frame",{BackgroundColor3=Color3.new(0.14901961386204,0.14901961386204,0.14901961386204),BorderColor3=Color3.new(0.1176470592618,0.1176470592618,0.1176470592618),BorderSizePixel=0,Name="SearchContainer",Parent={8},Position=UDim2.new(0,3,0,3),Size=UDim2.new(1,-6,0,18),}},
-				{10,"TextBox",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="SearchBox",Parent={9},PlaceholderColor3=Color3.new(0.39215689897537,0.39215689897537,0.39215689897537),PlaceholderText="Search",Position=UDim2.new(0,4,0,0),Size=UDim2.new(1,-8,0,18),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,TextXAlignment=0,}},
+				{8,"Frame",{BackgroundColor3=Color3.fromRGB(18,14,28),BorderSizePixel=0,Name="SearchFrame",Parent={4},Size=UDim2.new(1,0,0,24),Visible=false,}},
+				{9,"Frame",{BackgroundColor3=Color3.fromRGB(22,16,34),BorderColor3=Color3.fromRGB(18,14,28),BorderSizePixel=0,Name="SearchContainer",Parent={8},Position=UDim2.new(0,3,0,3),Size=UDim2.new(1,-6,0,18),}},
+				{10,"TextBox",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="SearchBox",Parent={9},PlaceholderColor3=Color3.fromRGB(140,120,180),PlaceholderText="Search",Position=UDim2.new(0,4,0,0),Size=UDim2.new(1,-8,0,18),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,TextXAlignment=0,}},
 				{11,"UICorner",{CornerRadius=UDim.new(0,2),Parent={9},}},
 				{12,"Frame",{BackgroundColor3=Color3.new(0.14117647707462,0.14117647707462,0.14117647707462),BorderSizePixel=0,Name="Line",Parent={8},Position=UDim2.new(0,0,1,0),Size=UDim2.new(1,0,0,1),}},
-				{13,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.20392157137394,0.20392157137394,0.20392157137394),BackgroundTransparency=1,BorderColor3=Color3.new(0.33725491166115,0.49019610881805,0.73725491762161),BorderSizePixel=0,Font=3,Name="Entry",Parent={1},Size=UDim2.new(1,0,0,22),Text="",TextSize=14,Visible=false,}},
-				{14,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="EntryName",Parent={13},Position=UDim2.new(0,24,0,0),Size=UDim2.new(1,-24,1,0),Text="Duplicate",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=0,}},
+				{13,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(18,14,28),BackgroundTransparency=1,BorderColor3=Color3.new(0.33725491166115,0.49019610881805,0.73725491762161),BorderSizePixel=0,Font=3,Name="Entry",Parent={1},Size=UDim2.new(1,0,0,22),Text="",TextSize=14,Visible=false,}},
+				{14,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="EntryName",Parent={13},Position=UDim2.new(0,24,0,0),Size=UDim2.new(1,-24,1,0),Text="Duplicate",TextColor3=Color3.fromRGB(220,200,255),TextSize=14,TextXAlignment=0,}},
 				{15,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Shortcut",Parent={13},Position=UDim2.new(0,24,0,0),Size=UDim2.new(1,-30,1,0),Text="Ctrl+D",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=1,}},
 				{16,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,ImageRectOffset=Vector2.new(304,0),ImageRectSize=Vector2.new(16,16),Name="Icon",Parent={13},Position=UDim2.new(0,2,0,3),ScaleType=4,Size=UDim2.new(0,16,0,16),}},
 				{17,"UICorner",{CornerRadius=UDim.new(0,4),Parent={13},}},
-				{18,"Frame",{BackgroundColor3=Color3.new(0.21568629145622,0.21568629145622,0.21568629145622),BackgroundTransparency=1,BorderSizePixel=0,Name="Divider",Parent={1},Position=UDim2.new(0,0,0,20),Size=UDim2.new(1,0,0,7),Visible=false,}},
-				{19,"Frame",{BackgroundColor3=Color3.new(0.20392157137394,0.20392157137394,0.20392157137394),BorderSizePixel=0,Name="Line",Parent={18},Position=UDim2.new(0,0,0.5,0),Size=UDim2.new(1,0,0,1),}},
+				{18,"Frame",{BackgroundColor3=Color3.fromRGB(22,16,34),BackgroundTransparency=1,BorderSizePixel=0,Name="Divider",Parent={1},Position=UDim2.new(0,0,0,20),Size=UDim2.new(1,0,0,7),Visible=false,}},
+				{19,"Frame",{BackgroundColor3=Color3.fromRGB(18,14,28),BorderSizePixel=0,Name="Line",Parent={18},Position=UDim2.new(0,0,0.5,0),Size=UDim2.new(1,0,0,1),}},
 				{20,"TextLabel",{AnchorPoint=Vector2.new(0,0.5),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="DividerName",Parent={18},Position=UDim2.new(0,2,0.5,0),Size=UDim2.new(1,-4,1,0),Text="Objects",TextColor3=Color3.new(1,1,1),TextSize=14,TextTransparency=0.60000002384186,TextXAlignment=0,Visible=false,}}
 			})
 
@@ -7661,7 +7761,7 @@ local function main()
 			elems.LineNumbersLabel = lineNumbersLabel
 			elems.Cursor = cursor
 			elems.EditBox = editBox
-			elems.ScrollCorner = create({{1,"Frame",{BackgroundColor3=Color3.new(0.15686275064945,0.15686275064945,0.15686275064945),BorderSizePixel=0,Name="ScrollCorner",Position=UDim2.new(1,-16,1,-16),Size=UDim2.new(0,16,0,16),Visible=false,}}})
+			elems.ScrollCorner = create({{1,"Frame",{BackgroundColor3=Color3.fromRGB(14,11,22),BorderSizePixel=0,Name="ScrollCorner",Position=UDim2.new(1,-16,1,-16),Size=UDim2.new(0,16,0,16),Visible=false,}}})
 
 			elems.ScrollCorner.Parent = frame
 			linesFrame.InputBegan:Connect(function(input)
@@ -8958,8 +9058,8 @@ local function main()
 		local function createGui(self)
 			local gui = create({
 				{1,"ScreenGui",{Name="BrickColor",}},
-				{2,"Frame",{Active=true,BackgroundColor3=Color3.new(0.17647059261799,0.17647059261799,0.17647059261799),BorderColor3=Color3.new(0.1294117718935,0.1294117718935,0.1294117718935),Parent={1},Position=UDim2.new(0.40000000596046,0,0.40000000596046,0),Size=UDim2.new(0,337,0,380),}},
-				{3,"TextButton",{BackgroundColor3=Color3.new(0.2352941185236,0.2352941185236,0.2352941185236),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),BorderSizePixel=0,Font=3,Name="MoreColors",Parent={2},Position=UDim2.new(0,5,1,-30),Size=UDim2.new(1,-10,0,25),Text="More Colors",TextColor3=Color3.new(1,1,1),TextSize=14,}},
+				{2,"Frame",{Active=true,BackgroundColor3=Color3.fromRGB(18,14,28),BorderColor3=Color3.fromRGB(14,11,22),Parent={1},Position=UDim2.new(0.40000000596046,0,0.40000000596046,0),Size=UDim2.new(0,337,0,380),}},
+				{3,"TextButton",{BackgroundColor3=Color3.fromRGB(30,25,40),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),BorderSizePixel=0,Font=3,Name="MoreColors",Parent={2},Position=UDim2.new(0,5,1,-30),Size=UDim2.new(1,-10,0,25),Text="More Colors",TextColor3=Color3.new(1,1,1),TextSize=14,}},
 				{4,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Image="rbxassetid://1281023007",ImageColor3=Color3.new(0.33333334326744,0.33333334326744,0.49803924560547),Name="Hex",Parent={2},Size=UDim2.new(0,35,0,35),Visible=false,}},
 			})
 			local colorFrame = gui.Frame
@@ -9076,10 +9176,10 @@ local function main()
 			newMt.OnPreview = Lib.Signal.new()
 
 			local guiContents = create({
-				{1,"Frame",{BackgroundColor3=Color3.new(0.17647059261799,0.17647059261799,0.17647059261799),BorderSizePixel=0,ClipsDescendants=true,Name="Content",Position=UDim2.new(0,0,0,20),Size=UDim2.new(1,0,1,-20),}},
+				{1,"Frame",{BackgroundColor3=Color3.fromRGB(18,14,28),BorderSizePixel=0,ClipsDescendants=true,Name="Content",Position=UDim2.new(0,0,0,20),Size=UDim2.new(1,0,1,-20),}},
 				{2,"Frame",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Name="BasicColors",Parent={1},Position=UDim2.new(0,5,0,5),Size=UDim2.new(0,180,0,200),}},
 				{3,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Title",Parent={2},Position=UDim2.new(0,0,0,-5),Size=UDim2.new(1,0,0,26),Text="Basic Colors",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=0,}},
-				{4,"Frame",{BackgroundColor3=Color3.new(0.14901961386204,0.14901961386204,0.14901961386204),BorderColor3=Color3.new(0.12549020349979,0.12549020349979,0.12549020349979),Name="Blue",Parent={1},Position=UDim2.new(1,-63,0,255),Size=UDim2.new(0,52,0,16),}},
+				{4,"Frame",{BackgroundColor3=Color3.fromRGB(22,16,34),BorderColor3=Color3.fromRGB(18,14,28),Name="Blue",Parent={1},Position=UDim2.new(1,-63,0,255),Size=UDim2.new(0,52,0,16),}},
 				{5,"TextBox",{BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=1,BorderColor3=Color3.new(0.37647062540054,0.37647062540054,0.37647062540054),Font=3,Name="Input",Parent={4},Position=UDim2.new(0,2,0,0),Size=UDim2.new(0,50,0,16),Text="0",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=0,}},
 				{6,"Frame",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Name="ArrowFrame",Parent={5},Position=UDim2.new(1,-16,0,0),Size=UDim2.new(0,16,1,0),}},
 				{7,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="Up",Parent={6},Size=UDim2.new(1,0,0,8),Text="",TextSize=14,}},
@@ -9100,7 +9200,7 @@ local function main()
 				{22,"Frame",{BackgroundColor3=Color3.new(0,0,0),BorderSizePixel=0,Name="Line",Parent={20},Position=UDim2.new(0,0,0,9),Size=UDim2.new(0,20,0,2),}},
 				{23,"Frame",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Name="CustomColors",Parent={1},Position=UDim2.new(0,5,0,210),Size=UDim2.new(0,180,0,90),}},
 				{24,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Title",Parent={23},Size=UDim2.new(1,0,0,20),Text="Custom Colors (RC = Set)",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=0,}},
-				{25,"Frame",{BackgroundColor3=Color3.new(0.14901961386204,0.14901961386204,0.14901961386204),BorderColor3=Color3.new(0.12549020349979,0.12549020349979,0.12549020349979),Name="Green",Parent={1},Position=UDim2.new(1,-63,0,233),Size=UDim2.new(0,52,0,16),}},
+				{25,"Frame",{BackgroundColor3=Color3.fromRGB(22,16,34),BorderColor3=Color3.fromRGB(18,14,28),Name="Green",Parent={1},Position=UDim2.new(1,-63,0,233),Size=UDim2.new(0,52,0,16),}},
 				{26,"TextBox",{BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=1,BorderColor3=Color3.new(0.37647062540054,0.37647062540054,0.37647062540054),Font=3,Name="Input",Parent={25},Position=UDim2.new(0,2,0,0),Size=UDim2.new(0,50,0,16),Text="0",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=0,}},
 				{27,"Frame",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Name="ArrowFrame",Parent={26},Position=UDim2.new(1,-16,0,0),Size=UDim2.new(0,16,1,0),}},
 				{28,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="Up",Parent={27},Size=UDim2.new(1,0,0,8),Text="",TextSize=14,}},
@@ -9114,7 +9214,7 @@ local function main()
 				{36,"Frame",{BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BorderSizePixel=0,Parent={34},Position=UDim2.new(0,7,0,4),Size=UDim2.new(0,3,0,1),}},
 				{37,"Frame",{BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BorderSizePixel=0,Parent={34},Position=UDim2.new(0,6,0,3),Size=UDim2.new(0,5,0,1),}},
 				{38,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Title",Parent={25},Position=UDim2.new(0,-40,0,0),Size=UDim2.new(0,34,1,0),Text="Green:",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=1,}},
-				{39,"Frame",{BackgroundColor3=Color3.new(0.14901961386204,0.14901961386204,0.14901961386204),BorderColor3=Color3.new(0.12549020349979,0.12549020349979,0.12549020349979),Name="Hue",Parent={1},Position=UDim2.new(1,-180,0,211),Size=UDim2.new(0,52,0,16),}},
+				{39,"Frame",{BackgroundColor3=Color3.fromRGB(22,16,34),BorderColor3=Color3.fromRGB(18,14,28),Name="Hue",Parent={1},Position=UDim2.new(1,-180,0,211),Size=UDim2.new(0,52,0,16),}},
 				{40,"TextBox",{BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=1,BorderColor3=Color3.new(0.37647062540054,0.37647062540054,0.37647062540054),Font=3,Name="Input",Parent={39},Position=UDim2.new(0,2,0,0),Size=UDim2.new(0,50,0,16),Text="0",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=0,}},
 				{41,"Frame",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Name="ArrowFrame",Parent={40},Position=UDim2.new(1,-16,0,0),Size=UDim2.new(0,16,1,0),}},
 				{42,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="Up",Parent={41},Size=UDim2.new(1,0,0,8),Text="",TextSize=14,}},
@@ -9129,7 +9229,7 @@ local function main()
 				{51,"Frame",{BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BorderSizePixel=0,Parent={48},Position=UDim2.new(0,6,0,3),Size=UDim2.new(0,5,0,1),}},
 				{52,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Title",Parent={39},Position=UDim2.new(0,-40,0,0),Size=UDim2.new(0,34,1,0),Text="Hue:",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=1,}},
 				{53,"Frame",{BackgroundColor3=Color3.new(1,1,1),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),Name="Preview",Parent={1},Position=UDim2.new(1,-260,0,211),Size=UDim2.new(0,35,1,-245),}},
-				{54,"Frame",{BackgroundColor3=Color3.new(0.14901961386204,0.14901961386204,0.14901961386204),BorderColor3=Color3.new(0.12549020349979,0.12549020349979,0.12549020349979),Name="Red",Parent={1},Position=UDim2.new(1,-63,0,211),Size=UDim2.new(0,52,0,16),}},
+				{54,"Frame",{BackgroundColor3=Color3.fromRGB(22,16,34),BorderColor3=Color3.fromRGB(18,14,28),Name="Red",Parent={1},Position=UDim2.new(1,-63,0,211),Size=UDim2.new(0,52,0,16),}},
 				{55,"TextBox",{BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=1,BorderColor3=Color3.new(0.37647062540054,0.37647062540054,0.37647062540054),Font=3,Name="Input",Parent={54},Position=UDim2.new(0,2,0,0),Size=UDim2.new(0,50,0,16),Text="0",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=0,}},
 				{56,"Frame",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Name="ArrowFrame",Parent={55},Position=UDim2.new(1,-16,0,0),Size=UDim2.new(0,16,1,0),}},
 				{57,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="Up",Parent={56},Size=UDim2.new(1,0,0,8),Text="",TextSize=14,}},
@@ -9143,7 +9243,7 @@ local function main()
 				{65,"Frame",{BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BorderSizePixel=0,Parent={63},Position=UDim2.new(0,7,0,4),Size=UDim2.new(0,3,0,1),}},
 				{66,"Frame",{BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BorderSizePixel=0,Parent={63},Position=UDim2.new(0,6,0,3),Size=UDim2.new(0,5,0,1),}},
 				{67,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Title",Parent={54},Position=UDim2.new(0,-40,0,0),Size=UDim2.new(0,34,1,0),Text="Red:",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=1,}},
-				{68,"Frame",{BackgroundColor3=Color3.new(0.14901961386204,0.14901961386204,0.14901961386204),BorderColor3=Color3.new(0.12549020349979,0.12549020349979,0.12549020349979),Name="Sat",Parent={1},Position=UDim2.new(1,-180,0,233),Size=UDim2.new(0,52,0,16),}},
+				{68,"Frame",{BackgroundColor3=Color3.fromRGB(22,16,34),BorderColor3=Color3.fromRGB(18,14,28),Name="Sat",Parent={1},Position=UDim2.new(1,-180,0,233),Size=UDim2.new(0,52,0,16),}},
 				{69,"TextBox",{BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=1,BorderColor3=Color3.new(0.37647062540054,0.37647062540054,0.37647062540054),Font=3,Name="Input",Parent={68},Position=UDim2.new(0,2,0,0),Size=UDim2.new(0,50,0,16),Text="0",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=0,}},
 				{70,"Frame",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Name="ArrowFrame",Parent={69},Position=UDim2.new(1,-16,0,0),Size=UDim2.new(0,16,1,0),}},
 				{71,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="Up",Parent={70},Size=UDim2.new(1,0,0,8),Text="",TextSize=14,}},
@@ -9157,7 +9257,7 @@ local function main()
 				{79,"Frame",{BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BorderSizePixel=0,Parent={77},Position=UDim2.new(0,7,0,4),Size=UDim2.new(0,3,0,1),}},
 				{80,"Frame",{BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BorderSizePixel=0,Parent={77},Position=UDim2.new(0,6,0,3),Size=UDim2.new(0,5,0,1),}},
 				{81,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Title",Parent={68},Position=UDim2.new(0,-40,0,0),Size=UDim2.new(0,34,1,0),Text="Sat:",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=1,}},
-				{82,"Frame",{BackgroundColor3=Color3.new(0.14901961386204,0.14901961386204,0.14901961386204),BorderColor3=Color3.new(0.12549020349979,0.12549020349979,0.12549020349979),Name="Val",Parent={1},Position=UDim2.new(1,-180,0,255),Size=UDim2.new(0,52,0,16),}},
+				{82,"Frame",{BackgroundColor3=Color3.fromRGB(22,16,34),BorderColor3=Color3.fromRGB(18,14,28),Name="Val",Parent={1},Position=UDim2.new(1,-180,0,255),Size=UDim2.new(0,52,0,16),}},
 				{83,"TextBox",{BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=1,BorderColor3=Color3.new(0.37647062540054,0.37647062540054,0.37647062540054),Font=3,Name="Input",Parent={82},Position=UDim2.new(0,2,0,0),Size=UDim2.new(0,50,0,16),Text="255",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=0,}},
 				{84,"Frame",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Name="ArrowFrame",Parent={83},Position=UDim2.new(1,-16,0,0),Size=UDim2.new(0,16,1,0),}},
 				{85,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="Up",Parent={84},Size=UDim2.new(1,0,0,8),Text="",TextSize=14,}},
@@ -9171,10 +9271,10 @@ local function main()
 				{93,"Frame",{BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BorderSizePixel=0,Parent={91},Position=UDim2.new(0,7,0,4),Size=UDim2.new(0,3,0,1),}},
 				{94,"Frame",{BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BorderSizePixel=0,Parent={91},Position=UDim2.new(0,6,0,3),Size=UDim2.new(0,5,0,1),}},
 				{95,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Title",Parent={82},Position=UDim2.new(0,-40,0,0),Size=UDim2.new(0,34,1,0),Text="Val:",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=1,}},
-				{96,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.2352941185236,0.2352941185236,0.2352941185236),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),Font=3,Name="Cancel",Parent={1},Position=UDim2.new(1,-105,1,-28),Size=UDim2.new(0,100,0,25),Text="Cancel",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,}},
-				{97,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.2352941185236,0.2352941185236,0.2352941185236),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),Font=3,Name="Ok",Parent={1},Position=UDim2.new(1,-210,1,-28),Size=UDim2.new(0,100,0,25),Text="OK",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,}},
+				{96,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(30,25,40),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),Font=3,Name="Cancel",Parent={1},Position=UDim2.new(1,-105,1,-28),Size=UDim2.new(0,100,0,25),Text="Cancel",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,}},
+				{97,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(30,25,40),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),Font=3,Name="Ok",Parent={1},Position=UDim2.new(1,-210,1,-28),Size=UDim2.new(0,100,0,25),Text="OK",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,}},
 				{98,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),Image="rbxassetid://1072518502",Name="ColorStrip",Parent={1},Position=UDim2.new(1,-30,0,5),Size=UDim2.new(0,13,0,200),}},
-				{99,"Frame",{BackgroundColor3=Color3.new(0.3137255012989,0.3137255012989,0.3137255012989),BackgroundTransparency=1,BorderSizePixel=0,Name="ArrowFrame",Parent={1},Position=UDim2.new(1,-16,0,1),Size=UDim2.new(0,5,0,208),}},
+				{99,"Frame",{BackgroundColor3=Color3.fromRGB(40,30,55),BackgroundTransparency=1,BorderSizePixel=0,Name="ArrowFrame",Parent={1},Position=UDim2.new(1,-16,0,1),Size=UDim2.new(0,5,0,208),}},
 				{100,"Frame",{BackgroundTransparency=1,Name="Arrow",Parent={99},Position=UDim2.new(0,-2,0,-4),Size=UDim2.new(0,8,0,16),}},
 				{101,"Frame",{BackgroundColor3=Color3.new(0,0,0),BorderSizePixel=0,Parent={100},Position=UDim2.new(0,2,0,8),Size=UDim2.new(0,1,0,1),}},
 				{102,"Frame",{BackgroundColor3=Color3.new(0,0,0),BorderSizePixel=0,Parent={100},Position=UDim2.new(0,3,0,7),Size=UDim2.new(0,1,0,3),}},
@@ -9519,19 +9619,19 @@ local function main()
 			newMt.OnPreview = Lib.Signal.new()
 
 			local guiContents = create({
-				{1,"Frame",{BackgroundColor3=Color3.new(0.17647059261799,0.17647059261799,0.17647059261799),BorderSizePixel=0,ClipsDescendants=true,Name="Content",Position=UDim2.new(0,0,0,20),Size=UDim2.new(1,0,1,-20),}},
-				{2,"Frame",{BackgroundColor3=Color3.new(0.14901961386204,0.14901961386204,0.14901961386204),BorderColor3=Color3.new(0.12549020349979,0.12549020349979,0.12549020349979),Name="Time",Parent={1},Position=UDim2.new(0,40,0,210),Size=UDim2.new(0,60,0,20),}},
+				{1,"Frame",{BackgroundColor3=Color3.fromRGB(18,14,28),BorderSizePixel=0,ClipsDescendants=true,Name="Content",Position=UDim2.new(0,0,0,20),Size=UDim2.new(1,0,1,-20),}},
+				{2,"Frame",{BackgroundColor3=Color3.fromRGB(22,16,34),BorderColor3=Color3.fromRGB(18,14,28),Name="Time",Parent={1},Position=UDim2.new(0,40,0,210),Size=UDim2.new(0,60,0,20),}},
 				{3,"TextBox",{BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=1,BorderColor3=Color3.new(0.37647062540054,0.37647062540054,0.37647062540054),ClipsDescendants=true,Font=3,Name="Input",Parent={2},Position=UDim2.new(0,2,0,0),Size=UDim2.new(0,58,0,20),Text="0",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=0,}},
 				{4,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Title",Parent={2},Position=UDim2.new(0,-40,0,0),Size=UDim2.new(0,34,1,0),Text="Time",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=1,}},
-				{5,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.2352941185236,0.2352941185236,0.2352941185236),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),Font=3,Name="Close",Parent={1},Position=UDim2.new(1,-90,0,210),Size=UDim2.new(0,80,0,20),Text="Close",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,}},
-				{6,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.2352941185236,0.2352941185236,0.2352941185236),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),Font=3,Name="Reset",Parent={1},Position=UDim2.new(1,-180,0,210),Size=UDim2.new(0,80,0,20),Text="Reset",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,}},
-				{7,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.2352941185236,0.2352941185236,0.2352941185236),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),Font=3,Name="Delete",Parent={1},Position=UDim2.new(0,380,0,210),Size=UDim2.new(0,80,0,20),Text="Delete",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,}},
-				{8,"Frame",{BackgroundColor3=Color3.new(0.17647059261799,0.17647059261799,0.17647059261799),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),Name="NumberLineOutlines",Parent={1},Position=UDim2.new(0,10,0,20),Size=UDim2.new(1,-20,0,170),}},
+				{5,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(30,25,40),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),Font=3,Name="Close",Parent={1},Position=UDim2.new(1,-90,0,210),Size=UDim2.new(0,80,0,20),Text="Close",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,}},
+				{6,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(30,25,40),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),Font=3,Name="Reset",Parent={1},Position=UDim2.new(1,-180,0,210),Size=UDim2.new(0,80,0,20),Text="Reset",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,}},
+				{7,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(30,25,40),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),Font=3,Name="Delete",Parent={1},Position=UDim2.new(0,380,0,210),Size=UDim2.new(0,80,0,20),Text="Delete",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,}},
+				{8,"Frame",{BackgroundColor3=Color3.fromRGB(18,14,28),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),Name="NumberLineOutlines",Parent={1},Position=UDim2.new(0,10,0,20),Size=UDim2.new(1,-20,0,170),}},
 				{9,"Frame",{BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=1,BorderColor3=Color3.new(0.37647062540054,0.37647062540054,0.37647062540054),Name="NumberLine",Parent={1},Position=UDim2.new(0,10,0,20),Size=UDim2.new(1,-20,0,170),}},
-				{10,"Frame",{BackgroundColor3=Color3.new(0.14901961386204,0.14901961386204,0.14901961386204),BorderColor3=Color3.new(0.12549020349979,0.12549020349979,0.12549020349979),Name="Value",Parent={1},Position=UDim2.new(0,170,0,210),Size=UDim2.new(0,60,0,20),}},
+				{10,"Frame",{BackgroundColor3=Color3.fromRGB(22,16,34),BorderColor3=Color3.fromRGB(18,14,28),Name="Value",Parent={1},Position=UDim2.new(0,170,0,210),Size=UDim2.new(0,60,0,20),}},
 				{11,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Title",Parent={10},Position=UDim2.new(0,-40,0,0),Size=UDim2.new(0,34,1,0),Text="Value",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=1,}},
 				{12,"TextBox",{BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=1,BorderColor3=Color3.new(0.37647062540054,0.37647062540054,0.37647062540054),ClipsDescendants=true,Font=3,Name="Input",Parent={10},Position=UDim2.new(0,2,0,0),Size=UDim2.new(0,58,0,20),Text="0",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=0,}},
-				{13,"Frame",{BackgroundColor3=Color3.new(0.14901961386204,0.14901961386204,0.14901961386204),BorderColor3=Color3.new(0.12549020349979,0.12549020349979,0.12549020349979),Name="Envelope",Parent={1},Position=UDim2.new(0,300,0,210),Size=UDim2.new(0,60,0,20),}},
+				{13,"Frame",{BackgroundColor3=Color3.fromRGB(22,16,34),BorderColor3=Color3.fromRGB(18,14,28),Name="Envelope",Parent={1},Position=UDim2.new(0,300,0,210),Size=UDim2.new(0,60,0,20),}},
 				{14,"TextBox",{BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=1,BorderColor3=Color3.new(0.37647062540054,0.37647062540054,0.37647062540054),ClipsDescendants=true,Font=3,Name="Input",Parent={13},Position=UDim2.new(0,2,0,0),Size=UDim2.new(0,58,0,20),Text="0",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=0,}},
 				{15,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Title",Parent={13},Position=UDim2.new(0,-40,0,0),Size=UDim2.new(0,34,1,0),Text="Envelope",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=1,}},
 			})
@@ -10017,20 +10117,20 @@ local function main()
 			newMt.OnPickColor = Lib.Signal.new()
 
 			local guiContents = create({
-				{1,"Frame",{BackgroundColor3=Color3.new(0.17647059261799,0.17647059261799,0.17647059261799),BorderSizePixel=0,ClipsDescendants=true,Name="Content",Position=UDim2.new(0,0,0,20),Size=UDim2.new(1,0,1,-20),}},
-				{2,"Frame",{BackgroundColor3=Color3.new(0.17647059261799,0.17647059261799,0.17647059261799),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),Name="ColorLine",Parent={1},Position=UDim2.new(0,10,0,5),Size=UDim2.new(1,-20,0,70),}},
+				{1,"Frame",{BackgroundColor3=Color3.fromRGB(18,14,28),BorderSizePixel=0,ClipsDescendants=true,Name="Content",Position=UDim2.new(0,0,0,20),Size=UDim2.new(1,0,1,-20),}},
+				{2,"Frame",{BackgroundColor3=Color3.fromRGB(18,14,28),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),Name="ColorLine",Parent={1},Position=UDim2.new(0,10,0,5),Size=UDim2.new(1,-20,0,70),}},
 				{3,"Frame",{BackgroundColor3=Color3.new(1,1,1),BorderSizePixel=0,Name="Gradient",Parent={2},Size=UDim2.new(1,0,1,0),}},
 				{4,"UIGradient",{Parent={3},}},
 				{5,"Frame",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Name="Arrows",Parent={1},Position=UDim2.new(0,1,0,73),Size=UDim2.new(1,-2,0,16),}},
 				{6,"Frame",{BackgroundColor3=Color3.new(0,0,0),BackgroundTransparency=0.5,BorderSizePixel=0,Name="Cursor",Parent={1},Position=UDim2.new(0,10,0,0),Size=UDim2.new(0,1,0,80),}},
-				{7,"Frame",{BackgroundColor3=Color3.new(0.14901961386204,0.14901961386204,0.14901961386204),BorderColor3=Color3.new(0.12549020349979,0.12549020349979,0.12549020349979),Name="Time",Parent={1},Position=UDim2.new(0,40,0,95),Size=UDim2.new(0,100,0,20),}},
+				{7,"Frame",{BackgroundColor3=Color3.fromRGB(22,16,34),BorderColor3=Color3.fromRGB(18,14,28),Name="Time",Parent={1},Position=UDim2.new(0,40,0,95),Size=UDim2.new(0,100,0,20),}},
 				{8,"TextBox",{BackgroundColor3=Color3.new(0.25098040699959,0.25098040699959,0.25098040699959),BackgroundTransparency=1,BorderColor3=Color3.new(0.37647062540054,0.37647062540054,0.37647062540054),ClipsDescendants=true,Font=3,Name="Input",Parent={7},Position=UDim2.new(0,2,0,0),Size=UDim2.new(0,98,0,20),Text="0",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=0,}},
 				{9,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Title",Parent={7},Position=UDim2.new(0,-40,0,0),Size=UDim2.new(0,34,1,0),Text="Time",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=1,}},
 				{10,"Frame",{BackgroundColor3=Color3.new(1,1,1),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),Name="ColorBox",Parent={1},Position=UDim2.new(0,220,0,95),Size=UDim2.new(0,20,0,20),}},
 				{11,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Title",Parent={10},Position=UDim2.new(0,-40,0,0),Size=UDim2.new(0,34,1,0),Text="Color",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,TextXAlignment=1,}},
-				{12,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.2352941185236,0.2352941185236,0.2352941185236),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),BorderSizePixel=0,Font=3,Name="Close",Parent={1},Position=UDim2.new(1,-90,0,95),Size=UDim2.new(0,80,0,20),Text="Close",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,}},
-				{13,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.2352941185236,0.2352941185236,0.2352941185236),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),BorderSizePixel=0,Font=3,Name="Reset",Parent={1},Position=UDim2.new(1,-180,0,95),Size=UDim2.new(0,80,0,20),Text="Reset",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,}},
-				{14,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.2352941185236,0.2352941185236,0.2352941185236),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),BorderSizePixel=0,Font=3,Name="Delete",Parent={1},Position=UDim2.new(0,280,0,95),Size=UDim2.new(0,80,0,20),Text="Delete",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,}},
+				{12,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(30,25,40),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),BorderSizePixel=0,Font=3,Name="Close",Parent={1},Position=UDim2.new(1,-90,0,95),Size=UDim2.new(0,80,0,20),Text="Close",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,}},
+				{13,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(30,25,40),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),BorderSizePixel=0,Font=3,Name="Reset",Parent={1},Position=UDim2.new(1,-180,0,95),Size=UDim2.new(0,80,0,20),Text="Reset",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,}},
+				{14,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(30,25,40),BorderColor3=Color3.new(0.21568627655506,0.21568627655506,0.21568627655506),BorderSizePixel=0,Font=3,Name="Delete",Parent={1},Position=UDim2.new(0,280,0,95),Size=UDim2.new(0,80,0,20),Text="Delete",TextColor3=Color3.new(0.86274516582489,0.86274516582489,0.86274516582489),TextSize=14,}},
 				{15,"Frame",{BackgroundTransparency=1,Name="Arrow",Parent={1},Size=UDim2.new(0,16,0,16),Visible=false,}},
 				{16,"Frame",{BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BorderSizePixel=0,Parent={15},Position=UDim2.new(0,8,0,3),Size=UDim2.new(0,1,0,2),}},
 				{17,"Frame",{BackgroundColor3=Color3.new(0.86274510622025,0.86274510622025,0.86274510622025),BorderSizePixel=0,Parent={15},Position=UDim2.new(0,7,0,5),Size=UDim2.new(0,3,0,2),}},
@@ -12854,8 +12954,8 @@ local function main()
 
 	Properties.InitInputBox = function()
 		inputBox = create({
-			{1,"Frame",{BackgroundColor3=Color3.new(0.14901961386204,0.14901961386204,0.14901961386204),BorderSizePixel=0,Name="InputBox",Size=UDim2.new(0,200,0,22),Visible=false,ZIndex=2,}},
-			{2,"TextBox",{BackgroundColor3=Color3.new(0.17647059261799,0.17647059261799,0.17647059261799),BackgroundTransparency=1,BorderColor3=Color3.new(0.062745101749897,0.51764708757401,1),BorderSizePixel=0,ClearTextOnFocus=false,Font=3,Parent={1},PlaceholderColor3=Color3.new(0.69803923368454,0.69803923368454,0.69803923368454),Position=UDim2.new(0,3,0,0),Size=UDim2.new(1,-6,1,0),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,TextXAlignment=0,ZIndex=2,}},
+			{1,"Frame",{BackgroundColor3=Color3.fromRGB(22,16,34),BorderSizePixel=0,Name="InputBox",Size=UDim2.new(0,200,0,22),Visible=false,ZIndex=2,}},
+			{2,"TextBox",{BackgroundColor3=Color3.fromRGB(18,14,28),BackgroundTransparency=1,BorderColor3=Color3.new(0.062745101749897,0.51764708757401,1),BorderSizePixel=0,ClearTextOnFocus=false,Font=3,Parent={1},PlaceholderColor3=Color3.new(0.69803923368454,0.69803923368454,0.69803923368454),Position=UDim2.new(0,3,0,0),Size=UDim2.new(1,-6,1,0),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,TextXAlignment=0,ZIndex=2,}},
 		})
 		inputTextBox = inputBox.TextBox
 		inputBox.BackgroundColor3 = Settings.Theme.TextBox
@@ -12935,7 +13035,7 @@ local function main()
 
 	Properties.InitEntryStuff = function()
 		Properties.EntryTemplate = create({
-			{1,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.17647059261799,0.17647059261799,0.17647059261799),BorderColor3=Color3.new(0.1294117718935,0.1294117718935,0.1294117718935),Font=3,Name="Entry",Position=UDim2.new(0,1,0,1),Size=UDim2.new(0,250,0,22),Text="",TextSize=14,}},
+			{1,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(18,14,28),BorderColor3=Color3.fromRGB(14,11,22),Font=3,Name="Entry",Position=UDim2.new(0,1,0,1),Size=UDim2.new(0,250,0,22),Text="",TextSize=14,}},
 			{2,"Frame",{BackgroundColor3=Color3.new(0.04313725605607,0.35294118523598,0.68627452850342),BackgroundTransparency=1,BorderColor3=Color3.new(0.33725491166115,0.49019610881805,0.73725491762161),BorderSizePixel=0,Name="NameFrame",Parent={1},Position=UDim2.new(0,20,0,0),Size=UDim2.new(1,-40,1,0),}},
 			{3,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="PropName",Parent={2},Position=UDim2.new(0,2,0,0),Size=UDim2.new(1,-2,1,0),Text="Anchored",TextColor3=Color3.new(1,1,1),TextSize=14,TextTransparency=0.10000000149012,TextTruncate=1,TextXAlignment=0,}},
 			{4,"TextButton",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,ClipsDescendants=true,Font=3,Name="Expand",Parent={2},Position=UDim2.new(0,-20,0,1),Size=UDim2.new(0,20,0,20),Text="",TextSize=14,Visible=false,}},
@@ -12956,11 +13056,11 @@ local function main()
 			{19,"Frame",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Name="SoundPreview",Parent={7},Size=UDim2.new(1,0,1,0),Visible=false,}},
 			{20,"TextButton",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="ControlButton",Parent={19},Size=UDim2.new(0,20,0,22),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,}},
 			{21,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Image="rbxassetid://5642383285",ImageRectOffset=Vector2.new(144,16),ImageRectSize=Vector2.new(16,16),Name="Icon",Parent={20},Position=UDim2.new(0,2,0,3),ScaleType=4,Size=UDim2.new(0,16,0,16),}},
-			{22,"Frame",{BackgroundColor3=Color3.new(0.3137255012989,0.3137255012989,0.3137255012989),BorderSizePixel=0,Name="TimeLine",Parent={19},Position=UDim2.new(0,26,0.5,-1),Size=UDim2.new(1,-34,0,2),}},
-			{23,"Frame",{BackgroundColor3=Color3.new(0.2352941185236,0.2352941185236,0.2352941185236),BorderColor3=Color3.new(0.1294117718935,0.1294117718935,0.1294117718935),Name="Slider",Parent={22},Position=UDim2.new(0,-4,0,-8),Size=UDim2.new(0,8,0,18),}},
+			{22,"Frame",{BackgroundColor3=Color3.fromRGB(40,30,55),BorderSizePixel=0,Name="TimeLine",Parent={19},Position=UDim2.new(0,26,0.5,-1),Size=UDim2.new(1,-34,0,2),}},
+			{23,"Frame",{BackgroundColor3=Color3.fromRGB(30,25,40),BorderColor3=Color3.fromRGB(14,11,22),Name="Slider",Parent={22},Position=UDim2.new(0,-4,0,-8),Size=UDim2.new(0,8,0,18),}},
 			{24,"TextButton",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="EditAttributeButton",Parent={1},Position=UDim2.new(1,-20,0,0),Size=UDim2.new(0,20,0,22),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,}},
 			{25,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Image="rbxassetid://5034718180",ImageTransparency=0.20000000298023,Name="Icon",Parent={24},Position=UDim2.new(0,2,0,3),Size=UDim2.new(0,16,0,16),}},
-			{26,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.2352941185236,0.2352941185236,0.2352941185236),BorderSizePixel=0,Font=3,Name="RowButton",Parent={1},Size=UDim2.new(1,0,1,0),Text="Add Attribute",TextColor3=Color3.new(1,1,1),TextSize=14,TextTransparency=0.10000000149012,Visible=false,}},
+			{26,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(30,25,40),BorderSizePixel=0,Font=3,Name="RowButton",Parent={1},Size=UDim2.new(1,0,1,0),Text="Add Attribute",TextColor3=Color3.new(1,1,1),TextSize=14,TextTransparency=0.10000000149012,Visible=false,}},
 			--{27,"UIStroke",{ApplyStrokeMode=Enum.ApplyStrokeMode.Border,Color=Color3.fromRGB(33,33,33),Thickness=1,Parent={1}}}
 		})
 
@@ -12984,16 +13084,16 @@ local function main()
 	Properties.Init = function() -- TODO: MAKE BETTER
 		local guiItems = create({
 			{1,"Folder",{Name="Items",}},
-			{2,"Frame",{BackgroundColor3=Color3.new(0.20392157137394,0.20392157137394,0.20392157137394),BorderSizePixel=0,Name="ToolBar",Parent={1},Size=UDim2.new(1,0,0,22),}},
-			{3,"Frame",{BackgroundColor3=Color3.new(0.14901961386204,0.14901961386204,0.14901961386204),BorderColor3=Color3.new(0.1176470592618,0.1176470592618,0.1176470592618),BorderSizePixel=0,Name="SearchFrame",Parent={2},Position=UDim2.new(0,3,0,1),Size=UDim2.new(1,-6,0,18),}},
-			{4,"TextBox",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,ClearTextOnFocus=false,Font=3,Name="SearchBox",Parent={3},PlaceholderColor3=Color3.new(0.39215689897537,0.39215689897537,0.39215689897537),PlaceholderText="Search properties",Position=UDim2.new(0,4,0,0),Size=UDim2.new(1,-24,0,18),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,TextXAlignment=0,}},
+			{2,"Frame",{BackgroundColor3=Color3.fromRGB(18,14,28),BorderSizePixel=0,Name="ToolBar",Parent={1},Size=UDim2.new(1,0,0,22),}},
+			{3,"Frame",{BackgroundColor3=Color3.fromRGB(22,16,34),BorderColor3=Color3.fromRGB(40,30,55),BorderSizePixel=0,Name="SearchFrame",Parent={2},Position=UDim2.new(0,3,0,1),Size=UDim2.new(1,-6,0,18),}},
+			{4,"TextBox",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,ClearTextOnFocus=false,Font=3,Name="SearchBox",Parent={3},PlaceholderColor3=Color3.fromRGB(140,120,180),PlaceholderText="Search properties",Font=Enum.Font.Gotham,Position=UDim2.new(0,4,0,0),Size=UDim2.new(1,-24,0,18),Text="",TextColor3=Color3.fromRGB(220,200,255),TextSize=13,TextXAlignment=0,}},
 			{5,"UICorner",{CornerRadius=UDim.new(0,2),Parent={3},}},
-			{6,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.12549020349979,0.12549020349979,0.12549020349979),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="Reset",Parent={3},Position=UDim2.new(1,-17,0,1),Size=UDim2.new(0,16,0,16),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,}},
-			{7,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Image="rbxassetid://5034718129",ImageColor3=Color3.new(0.39215686917305,0.39215686917305,0.39215686917305),Parent={6},Size=UDim2.new(0,16,0,16),}},
-			{8,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.12549020349979,0.12549020349979,0.12549020349979),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="Refresh",Parent={2},Position=UDim2.new(1,-20,0,1),Size=UDim2.new(0,18,0,18),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,Visible=false,}},
+			{6,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(18,14,28),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="Reset",Parent={3},Position=UDim2.new(1,-17,0,1),Size=UDim2.new(0,16,0,16),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,}},
+			{7,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Image="rbxassetid://5034718129",ImageColor3=Color3.fromRGB(160,140,200),Parent={6},Size=UDim2.new(0,16,0,16),}},
+			{8,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(18,14,28),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="Refresh",Parent={2},Position=UDim2.new(1,-20,0,1),Size=UDim2.new(0,18,0,18),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,Visible=false,}},
 			{9,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Image="rbxassetid://5642310344",Parent={8},Position=UDim2.new(0,3,0,3),Size=UDim2.new(0,12,0,12),}},
-			{10,"Frame",{BackgroundColor3=Color3.new(0.15686275064945,0.15686275064945,0.15686275064945),BorderSizePixel=0,Name="ScrollCorner",Parent={1},Position=UDim2.new(1,-16,1,-16),Size=UDim2.new(0,16,0,16),Visible=false,}},
-			{11,"Frame",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,ClipsDescendants=true,Name="List",Parent={1},Position=UDim2.new(0,0,0,23),Size=UDim2.new(1,0,1,-23),}},
+			{10,"Frame",{BackgroundColor3=Color3.fromRGB(14,11,22),BorderSizePixel=0,Name="ScrollCorner",Parent={1},Position=UDim2.new(1,-16,1,-16),Size=UDim2.new(0,16,0,16),Visible=false,}},
+			{11,"Frame",{BackgroundColor3=Color3.fromRGB(12,10,18),BackgroundTransparency=0,ClipsDescendants=true,Name="List",Parent={1},Position=UDim2.new(0,0,0,23),Size=UDim2.new(1,0,1,-23),}},
 		})
 
 		-- Vars
@@ -13008,10 +13108,16 @@ local function main()
 		-- Init window
 		window = Lib.Window.new()
 		Properties.Window = window
-		window:SetTitle("Properties · Femboy")
+		window:SetTitle("Properties")
+		pcall(function()
+			window.GuiElems.Line.BackgroundColor3 = Color3.fromRGB(140, 60, 255)
+			window.GuiElems.Line.Position = UDim2.new(0,0,0,22)
+		end)
 
 		toolBar = guiItems.ToolBar
 		propsFrame = guiItems.List
+		toolBar.BackgroundColor3 = Color3.fromRGB(18, 14, 28)
+		propsFrame.BackgroundColor3 = Color3.fromRGB(12, 10, 18)
 
 		Properties.GuiElems.ToolBar = toolBar
 		Properties.GuiElems.PropsFrame = propsFrame
@@ -13227,7 +13333,7 @@ local function main()
 		ListFrame.ScrollBarThickness = 16
 		ListFrame.BottomImage = ""
 		ListFrame.TopImage = ""
-		ListFrame.ScrollBarImageColor3 = Color3.fromRGB(70, 70, 70)
+		ListFrame.ScrollBarImageColor3 = Color3.fromRGB(40, 30, 55)
 		ListFrame.ScrollBarImageTransparency = 0
 		ListFrame.ZIndex = 2
 		ListFrame.BorderSizePixel = 0
@@ -13526,71 +13632,72 @@ local function main()
 
 	ScriptViewer.Init = function()
 		window = Lib.Window.new()
-		window:SetTitle("Notepad · Femboy")
-		window:Resize(500,400)
+		window:SetTitle("Notepad")
+		window:Resize(400,300)
 		ScriptViewer.Window = window
 
-		codeFrame = Lib.CodeFrame.new()
-		codeFrame.Frame.Position = UDim2.new(0,0,0,20)
-		codeFrame.Frame.Size = UDim2.new(1,0,1,-40)
-		codeFrame.Frame.Parent = window.GuiElems.Content
-		
-		local copy = Instance.new("TextButton",window.GuiElems.Content)
-		copy.BackgroundTransparency = 1
-		copy.Size = UDim2.new(0.33,0,0,20)
-		copy.Position = UDim2.new(0,0,0,0)
-		copy.Text = "Copy to Clipboard"
-		
-		if env.setclipboard then
-			copy.TextColor3 = Color3.new(1,1,1)
-			copy.Interactable = true
-		else
-			copy.TextColor3 = Color3.new(0.5,0.5,0.5)
-			copy.Interactable = false
+		local content = window.GuiElems.Content
+		local bar = Instance.new("Frame")
+		bar.BackgroundColor3 = Color3.fromRGB(18, 14, 28)
+		bar.BorderSizePixel = 0
+		bar.Size = UDim2.new(1, 0, 0, 28)
+		bar.Parent = content
+		local barLine = Instance.new("Frame")
+		barLine.BackgroundColor3 = Color3.fromRGB(140, 60, 255)
+		barLine.BorderSizePixel = 0
+		barLine.Size = UDim2.new(1, 0, 0, 1)
+		barLine.Position = UDim2.new(0, 0, 1, -1)
+		barLine.Parent = bar
+
+		local function styleBtn(btn, enabled)
+			btn.BackgroundColor3 = enabled and Color3.fromRGB(30, 25, 40) or Color3.fromRGB(20, 16, 28)
+			btn.BackgroundTransparency = 0
+			btn.BorderSizePixel = 0
+			btn.Font = Enum.Font.Gotham
+			btn.TextSize = 12
+			btn.TextColor3 = enabled and Color3.fromRGB(220, 200, 255) or Color3.fromRGB(100, 85, 130)
+			btn.AutoButtonColor = false
+			local c = Instance.new("UICorner")
+			c.CornerRadius = UDim.new(0, 5)
+			c.Parent = btn
 		end
 
+		codeFrame = Lib.CodeFrame.new()
+		codeFrame.Frame.Position = UDim2.new(0, 4, 0, 32)
+		codeFrame.Frame.Size = UDim2.new(1, -8, 1, -64)
+		codeFrame.Frame.Parent = content
+		
+		local copy = Instance.new("TextButton", bar)
+		copy.Size = UDim2.new(0.32, -6, 0, 22)
+		copy.Position = UDim2.new(0, 4, 0, 3)
+		copy.Text = "Copy"
+		local canClip = env.setclipboard and true or false
+		styleBtn(copy, canClip)
+		copy.Interactable = canClip
 		copy.MouseButton1Click:Connect(function()
 			local source = codeFrame:GetText()
 			env.setclipboard(source)
 		end)
 
-		local save = Instance.new("TextButton",window.GuiElems.Content)
-		save.BackgroundTransparency = 1
-		save.Size = UDim2.new(0.33,0,0,20)
-		save.Position = UDim2.new(0.33,0,0,0)
-		save.Text = "Save to File"
-		save.TextColor3 = Color3.new(1,1,1)
-		
-		if env.writefile then
-			save.TextColor3 = Color3.new(1,1,1)
-			save.Interactable = true
-		else
-			save.TextColor3 = Color3.new(0.5,0.5,0.5)
-			--save.Interactable = false
-		end
-
+		local save = Instance.new("TextButton", bar)
+		save.Size = UDim2.new(0.32, -6, 0, 22)
+		save.Position = UDim2.new(0.32, 2, 0, 3)
+		save.Text = "Save File"
+		local canWrite = env.writefile and true or false
+		styleBtn(save, canWrite)
 		save.MouseButton1Click:Connect(function()
 			local source = codeFrame:GetText()
 			local filename = "Place_"..game.PlaceId.."_Script_"..os.time()..".txt"
-
 			Lib.SaveAsPrompt(filename,source)
-			--env.writefile(filename,source)
 		end)
 		
-		dumpbtn = Instance.new("TextButton",window.GuiElems.Content)
-		dumpbtn.BackgroundTransparency = 1
-		dumpbtn.Position = UDim2.new(0.7,0,0,0)
-		dumpbtn.Size = UDim2.new(0.3,0,0,20)
+		dumpbtn = Instance.new("TextButton", bar)
+		dumpbtn.Position = UDim2.new(0.64, 2, 0, 3)
+		dumpbtn.Size = UDim2.new(0.36, -6, 0, 22)
 		dumpbtn.Text = "Dump Functions"
-		dumpbtn.TextColor3 = Color3.new(0.5,0.5,0.5)
-		
-		if env.getgc then
-			dumpbtn.TextColor3 = Color3.new(1,1,1)
-			dumpbtn.Interactable = true
-		else
-			dumpbtn.TextColor3 = Color3.new(0.5,0.5,0.5)
-			dumpbtn.Interactable = false
-		end
+		local canGc = env.getgc and true or false
+		styleBtn(dumpbtn, canGc)
+		dumpbtn.Interactable = canGc
 
 		dumpbtn.MouseButton1Click:Connect(function()
 			if PreviousScr ~= nil then
@@ -13598,36 +13705,34 @@ local function main()
 			end
 		end)
 		
-		-- Buttons below the editor
-		
-		
-		execute = Instance.new("TextButton",window.GuiElems.Content)
-		execute.BackgroundTransparency = 1
-		execute.Size = UDim2.new(0.5,0,0,20)
-		execute.Position = UDim2.new(0,0,1,-20)
-		execute.Text = "Execute"
-		execute.TextColor3 = Color3.new(1,1,1)
-		
-		if env.loadstring then
-			execute.TextColor3 = Color3.new(1,1,1)
-			execute.Interactable = true
-		else
-			execute.TextColor3 = Color3.new(0.5,0.5,0.5)
-			execute.Interactable = false
-		end
+		local bot = Instance.new("Frame")
+		bot.BackgroundColor3 = Color3.fromRGB(18, 14, 28)
+		bot.BorderSizePixel = 0
+		bot.Size = UDim2.new(1, 0, 0, 28)
+		bot.Position = UDim2.new(0, 0, 1, -28)
+		bot.Parent = content
+		local botLine = Instance.new("Frame")
+		botLine.BackgroundColor3 = Color3.fromRGB(140, 60, 255)
+		botLine.BorderSizePixel = 0
+		botLine.Size = UDim2.new(1, 0, 0, 1)
+		botLine.Parent = bot
 
+		execute = Instance.new("TextButton", bot)
+		execute.Size = UDim2.new(0.5, -6, 0, 22)
+		execute.Position = UDim2.new(0, 4, 0, 3)
+		execute.Text = "Execute"
+		styleBtn(execute, env.loadstring and true or false)
+		execute.Interactable = env.loadstring and true or false
 		execute.MouseButton1Click:Connect(function()
 			local source = codeFrame:GetText()
 			env.loadstring(source)()
 		end)
 
-		clear = Instance.new("TextButton",window.GuiElems.Content)
-		clear.BackgroundTransparency = 1
-		clear.Size = UDim2.new(0.5,0,0,20)
-		clear.Position = UDim2.new(0.5,0,1,-20)
+		clear = Instance.new("TextButton", bot)
+		clear.Size = UDim2.new(0.5, -6, 0, 22)
+		clear.Position = UDim2.new(0.5, 2, 0, 3)
 		clear.Text = "Clear"
-		clear.TextColor3 = Color3.new(1,1,1)
-
+		styleBtn(clear, true)
 		clear.MouseButton1Click:Connect(function()
 			codeFrame:SetText("")
 		end)
@@ -13927,7 +14032,7 @@ local function main()
 	
 	SettingsWindow.Init = function()
 		window = Lib.Window.new()
-		window:SetTitle("Settings · Femboy")
+		window:SetTitle("Settings")
 		window:Resize(250,375)
 		SettingsWindow.Window = window
 		
@@ -13943,7 +14048,7 @@ local function main()
 		ListFrame.ScrollBarThickness = 16
 		ListFrame.BottomImage = ""
 		ListFrame.TopImage = ""
-		ListFrame.ScrollBarImageColor3 = Color3.fromRGB(70, 70, 70)
+		ListFrame.ScrollBarImageColor3 = Color3.fromRGB(40, 30, 55)
 		ListFrame.ScrollBarImageTransparency = 0
 		ListFrame.ZIndex = 2
 		ListFrame.BorderSizePixel = 0
@@ -14093,7 +14198,7 @@ local function main()
 			SettingsWindow.ReloadPrompt()
 			task.wait(3)
 			
-			window:SetTitle("Settings · Femboy")
+			window:SetTitle("Settings")
 		end)
 	end
 
@@ -14197,8 +14302,8 @@ DefaultSettings = (function()
 			ExplorerIconMap = "",
 			MiscIconMap = "",
 			Syntax = {
-				Text = rgb(204,204,204),
-				Background = rgb(36,36,36),
+				Text = rgb(220,200,255),
+				Background = rgb(12,10,18),
 				Selection = rgb(255,255,255),
 				SelectionBack = rgb(140,60,255),
 				Operator = rgb(204,204,204),
@@ -14208,9 +14313,9 @@ DefaultSettings = (function()
 				Keyword = rgb(168,95,255),
 				Error = rgb(255,0,0),
 				FindBackground = rgb(141,118,0),
-				MatchingWord = rgb(85,85,85),
+				MatchingWord = rgb(40,30,55),
 				BuiltIn = rgb(132,214,247),
-				CurrentLine = rgb(45,50,65),
+				CurrentLine = rgb(22,16,34),
 				LocalMethod = rgb(253,251,172),
 				LocalProperty = rgb(97,161,241),
 				Nil = rgb(255,198,0),
@@ -14289,7 +14394,7 @@ Main = (function()
 	Main.Elevated = false
 	Main.AllowDraggableOnMobile = true
 	Main.MissingEnv = {}
-	Main.Version = "Femboy"
+	Main.Version = "1.00 Beta"
 	Main.Mouse = plr:GetMouse()
 	Main.AppControls = {}
 	Main.Apps = Apps
@@ -14391,7 +14496,7 @@ Main = (function()
 	
 	Main.SecureGui = function(gui)
 		--warn("Secured: "..gui.Name)
-		gui.Name = "_DPP_".. Main.GetRandomString()
+		gui.Name = "_FDX_".. Main.GetRandomString()
 		-- service already using cloneref
 		if gethui then
 			gui.Parent = gethui()
@@ -14468,7 +14573,7 @@ Main = (function()
 
 				-- Check if local copy exists with matching hashs
 				local hashfunc = (syn and syn.crypt.hash) or function() return "" end
-				local filePath = "dex/ModuleCache/"..name..".lua"
+				local filePath = "femdex/ModuleCache/"..name..".lua"
 				local s,moduleStr = pcall(env.readfile,filePath)
 
 				if s and hashfunc(moduleStr) == hashs[name] then
@@ -14868,7 +14973,7 @@ Main = (function()
 	--warn(Main.ExportSettings())
 
 	Main.LoadSettings = function()
-		local s, data = pcall(env.readfile or error, "DexPlusPlusSettings.json")
+		local s, data = pcall(env.readfile or error, "FemdexSettings.json")
 		if s and data and data ~= "" then
 			
 			local s, decoded = pcall(service.HttpService.JSONDecode, service.HttpService, data)
@@ -14923,7 +15028,7 @@ Main = (function()
 		local api,rawAPI
 		if Main.Elevated then
 			if Main.LocalDepsUpToDate() then
-				local localAPI = Lib.ReadFile("dex/rbx_api.dat")
+				local localAPI = Lib.ReadFile("femdex/rbx_api.dat")
 				if localAPI then 
 					rawAPI = localAPI
 				else
@@ -15084,7 +15189,7 @@ Main = (function()
 		local rawXML
 		if Main.Elevated then
 			if Main.LocalDepsUpToDate() then
-				local localRMD = Lib.ReadFile("dex/rbx_rmd.dat")
+				local localRMD = Lib.ReadFile("femdex/rbx_rmd.dat")
 				if localRMD then 
 					rawXML = localRMD
 				else
@@ -15200,18 +15305,18 @@ Main = (function()
 	Main.CreateIntro = function(initStatus) -- TODO: Must theme and show errors
 		local gui = create({
 			{1,"ScreenGui",{Name="Intro",}},
-			{2,"Frame",{Active=true,BackgroundColor3=Color3.new(0.20392157137394,0.20392157137394,0.20392157137394),BorderSizePixel=0,Name="Main",Parent={1},Position=UDim2.new(0.5,-175,0.5,-100),Size=UDim2.new(0,350,0,200),}},
-			{3,"Frame",{BackgroundColor3=Color3.new(0.17647059261799,0.17647059261799,0.17647059261799),BorderSizePixel=0,ClipsDescendants=true,Name="Holder",Parent={2},Size=UDim2.new(1,0,1,0),}},
+			{2,"Frame",{Active=true,BackgroundColor3=Color3.fromRGB(18,14,28),BorderSizePixel=0,Name="Main",Parent={1},Position=UDim2.new(0.5,-175,0.5,-100),Size=UDim2.new(0,350,0,200),}},
+			{3,"Frame",{BackgroundColor3=Color3.fromRGB(18,14,28),BorderSizePixel=0,ClipsDescendants=true,Name="Holder",Parent={2},Size=UDim2.new(1,0,1,0),}},
 			{4,"UIGradient",{Parent={3},Rotation=30,Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,1,0),NumberSequenceKeypoint.new(1,1,0),}),}},
-			{5,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=4,Name="Title",Parent={3},Position=UDim2.new(0,-190,0,15),Size=UDim2.new(0,100,0,50),Text="Femboy",TextColor3=Color3.new(1,1,1),TextSize=50,TextTransparency=1,}},
-			{6,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Desc",Parent={3},Position=UDim2.new(0,-230,0,60),Size=UDim2.new(0,180,0,25),Text="Femboy · powered by dex",TextColor3=Color3.new(1,1,1),TextSize=18,TextTransparency=1,}},
-			{7,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="StatusText",Parent={3},Position=UDim2.new(0,20,0,110),Size=UDim2.new(0,180,0,25),Text="Fetching API",TextColor3=Color3.new(1,1,1),TextSize=14,TextTransparency=1,}},
-			{8,"Frame",{BackgroundColor3=Color3.new(0.20392157137394,0.20392157137394,0.20392157137394),BorderSizePixel=0,Name="ProgressBar",Parent={3},Position=UDim2.new(0,110,0,145),Size=UDim2.new(0,0,0,4),}},
-			{9,"Frame",{BackgroundColor3=Color3.new(0.2392156869173,0.56078433990479,0.86274510622025),BorderSizePixel=0,Name="Bar",Parent={8},Size=UDim2.new(0,0,1,0),}},
-			{10,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Image="rbxassetid://2764171053",ImageColor3=Color3.new(0.17647059261799,0.17647059261799,0.17647059261799),Parent={8},ScaleType=1,Size=UDim2.new(1,0,1,0),SliceCenter=Rect.new(2,2,254,254),}},
-			{11,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Creator",Parent={2},Position=UDim2.new(1,-160,1,-20),Size=UDim2.new(0,155,0,20),Text="powered by dex | 4amy",TextColor3=Color3.new(1,1,1),TextSize=14,TextXAlignment=1,}},
+			{5,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=4,Name="Title",Parent={3},Position=UDim2.new(0,-190,0,15),Size=UDim2.new(0,100,0,50),Text="Femdex",TextColor3=Color3.fromRGB(220,200,255),TextSize=50,TextTransparency=1,}},
+			{6,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Desc",Parent={3},Position=UDim2.new(0,-230,0,60),Size=UDim2.new(0,180,0,25),Text="powered by dex",TextColor3=Color3.fromRGB(160,140,200),TextSize=14,TextTransparency=1,}},
+			{7,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="StatusText",Parent={3},Position=UDim2.new(0,20,0,110),Size=UDim2.new(0,180,0,25),Text="Fetching API",TextColor3=Color3.fromRGB(220,200,255),TextSize=14,TextTransparency=1,}},
+			{8,"Frame",{BackgroundColor3=Color3.fromRGB(18,14,28),BorderSizePixel=0,Name="ProgressBar",Parent={3},Position=UDim2.new(0,110,0,145),Size=UDim2.new(0,0,0,4),}},
+			{9,"Frame",{BackgroundColor3=Color3.fromRGB(168,85,247),BorderSizePixel=0,Name="Bar",Parent={8},Size=UDim2.new(0,0,1,0),}},
+			{10,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Image="rbxassetid://2764171053",ImageColor3=Color3.fromRGB(18,14,28),Parent={8},ScaleType=1,Size=UDim2.new(1,0,1,0),SliceCenter=Rect.new(2,2,254,254),}},
+			{11,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Creator",Parent={2},Position=UDim2.new(1,-160,1,-20),Size=UDim2.new(0,155,0,20),Text="4amy",TextColor3=Color3.fromRGB(220,200,255),TextSize=14,TextXAlignment=1,}},
 			{12,"UIGradient",{Parent={11},Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,1,0),NumberSequenceKeypoint.new(1,1,0),}),}},
-			{13,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Version",Parent={2},Position=UDim2.new(1,-110,1,-35),Size=UDim2.new(0,105,0,20),Text=Main.Version,TextColor3=Color3.new(1,1,1),TextSize=14,TextXAlignment=1,}},
+			{13,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Version",Parent={2},Position=UDim2.new(1,-110,1,-35),Size=UDim2.new(0,105,0,20),Text=Main.Version,TextColor3=Color3.fromRGB(220,200,255),TextSize=14,TextXAlignment=1,}},
 			{14,"UIGradient",{Parent={13},Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,1,0),NumberSequenceKeypoint.new(1,1,0),}),}},
 			{15,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Image="rbxassetid://1427967925",Name="Outlines",Parent={2},Position=UDim2.new(0,-5,0,-5),ScaleType=1,Size=UDim2.new(1,10,1,10),SliceCenter=Rect.new(6,6,25,25),TileSize=UDim2.new(0,20,0,20),}},
 			{16,"UIGradient",{Parent={15},Rotation=-30,Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,1,0),NumberSequenceKeypoint.new(1,1,0),}),}},
@@ -15440,11 +15545,11 @@ Main = (function()
 	Main.SetMainGuiOpen = function(val)
 		Main.MainGuiOpen = val
 
-		Main.MainGui.OpenButton.Text = val and "Close" or "Femboy"
+		Main.MainGui.OpenButton.Text = val and "Close" or "Menu"
 		if val then Main.MainGui.OpenButton.MainFrame.Visible = true end
 		Main.MainGui.OpenButton.MainFrame:TweenSize(val and UDim2.new(0,240,0,280) or UDim2.new(0,0,0,0),Enum.EasingDirection.Out,Enum.EasingStyle.Quad,0.2,true)
-		--Main.MainGui.OpenButton.BackgroundTransparency = val and 0 or (Lib.CheckMouseInGui(Main.MainGui.OpenButton) and 0 or 0.2)
-		service.TweenService:Create(Main.MainGui.OpenButton,TweenInfo.new(0.2,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{BackgroundTransparency = val and 0 or (Lib.CheckMouseInGui(Main.MainGui.OpenButton) and 0 or 0.2)}):Play()
+		--Main.MainGui.OpenButton.BackgroundTransparency = 0
+		service.TweenService:Create(Main.MainGui.OpenButton,TweenInfo.new(0.2,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{BackgroundTransparency = 0}):Play()
 
 		if Main.MainGuiMouseEvent then Main.MainGuiMouseEvent:Disconnect() end
 
@@ -15468,23 +15573,23 @@ Main = (function()
 	Main.CreateMainGui = function()
 		local gui = create({
 			{1,"ScreenGui",{IgnoreGuiInset=true,Name="FemboyMenu",}},
-			{2,"TextButton",{AnchorPoint=Vector2.new(0.5,0),AutoButtonColor=false,BackgroundColor3=Color3.new(0.17647059261799,0.17647059261799,0.17647059261799),BorderSizePixel=0,Font=4,Name="OpenButton",Parent={1},Position=UDim2.new(0.5,0,0,2),Size=UDim2.new(0,72,0,32),Text="Femboy",TextColor3=Color3.new(1,1,1),TextSize=16,TextTransparency=0.20000000298023,}},
+			{2,"TextButton",{AnchorPoint=Vector2.new(0.5,0),AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Font=Enum.Font.GothamBold,Name="OpenButton",Parent={1},Position=UDim2.new(0.5,0,0,2),Size=UDim2.new(0,78,0,30),Text="Menu",TextColor3=Color3.fromRGB(220,200,255),TextSize=14,TextTransparency=0,}},
 			{3,"UICorner",{CornerRadius=UDim.new(0,4),Parent={2},}},
-			{4,"Frame",{AnchorPoint=Vector2.new(0.5,0),BackgroundColor3=Color3.new(0.17647059261799,0.17647059261799,0.17647059261799),ClipsDescendants=true,Name="MainFrame",Parent={2},Position=UDim2.new(0.5,0,1,-4),Size=UDim2.new(0,240,0,280),}},
+			{4,"Frame",{AnchorPoint=Vector2.new(0.5,0),BackgroundColor3=Color3.fromRGB(12,10,18),ClipsDescendants=true,Name="MainFrame",Parent={2},Position=UDim2.new(0.5,0,1,-4),Size=UDim2.new(0,240,0,280),}},
 			{5,"UICorner",{CornerRadius=UDim.new(0,4),Parent={4},}},
-			{6,"Frame",{BackgroundColor3=Color3.new(0.20392157137394,0.20392157137394,0.20392157137394),Name="BottomFrame",Parent={4},Position=UDim2.new(0,0,1,-24),Size=UDim2.new(1,0,0,24),}},
+			{6,"Frame",{BackgroundColor3=Color3.fromRGB(22,16,34),Name="BottomFrame",Parent={4},Position=UDim2.new(0,0,1,-24),Size=UDim2.new(1,0,0,24),}},
 			{7,"UICorner",{CornerRadius=UDim.new(0,4),Parent={6},}},
-			{8,"Frame",{BackgroundColor3=Color3.new(0.20392157137394,0.20392157137394,0.20392157137394),BorderSizePixel=0,Name="CoverFrame",Parent={6},Size=UDim2.new(1,0,0,4),}},
-			{9,"Frame",{BackgroundColor3=Color3.new(0.1294117718935,0.1294117718935,0.1294117718935),BorderSizePixel=0,Name="Line",Parent={8},Position=UDim2.new(0,0,0,-1),Size=UDim2.new(1,0,0,1),}},
+			{8,"Frame",{BackgroundColor3=Color3.fromRGB(22,16,34),BorderSizePixel=0,Name="CoverFrame",Parent={6},Size=UDim2.new(1,0,0,4),}},
+			{9,"Frame",{BackgroundColor3=Color3.fromRGB(168,85,255),BorderSizePixel=0,Name="Line",Parent={8},Position=UDim2.new(0,0,0,-1),Size=UDim2.new(1,0,0,1),}},
 			{10,"TextButton",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Settings",Parent={6},Position=UDim2.new(1,-48,0,0),Size=UDim2.new(0,24,1,0),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,}},
 			{11,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Image="rbxassetid://6578871732",ImageTransparency=0.20000000298023,Name="Icon",Parent={10},Position=UDim2.new(0,4,0,4),Size=UDim2.new(0,16,0,16),}},
 			{12,"TextButton",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Information",Parent={6},Position=UDim2.new(1,-24,0,0),Size=UDim2.new(0,24,1,0),Text="",TextColor3=Color3.new(1,1,1),TextSize=14,}},
 			{13,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Image="rbxassetid://6578933307",ImageTransparency=0.20000000298023,Name="Icon",Parent={12},Position=UDim2.new(0,4,0,4),Size=UDim2.new(0,16,0,16),}},
-			{14,"ScrollingFrame",{Active=true,AnchorPoint=Vector2.new(0.5,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.new(0.1294117718935,0.1294117718935,0.1294117718935),BorderSizePixel=0,Name="AppsFrame",Parent={4},Position=UDim2.new(0.5,0,0,0),ScrollBarImageColor3=Color3.new(0,0,0),ScrollBarThickness=4,Size=UDim2.new(0,222,1,-25),}},
+			{14,"ScrollingFrame",{Active=true,AnchorPoint=Vector2.new(0.5,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderColor3=Color3.fromRGB(14,11,22),BorderSizePixel=0,Name="AppsFrame",Parent={4},Position=UDim2.new(0.5,0,0,0),ScrollBarImageColor3=Color3.new(0,0,0),ScrollBarThickness=4,Size=UDim2.new(0,222,1,-25),}},
 			{15,"Frame",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Name="Container",Parent={14},Position=UDim2.new(0,7,0,8),Size=UDim2.new(1,-14,0,2),}},
 			{16,"UIGridLayout",{CellSize=UDim2.new(0,66,0,74),Parent={15},SortOrder=2,}},
 			{17,"Frame",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Name="App",Parent={1},Size=UDim2.new(0,100,0,100),Visible=false,}},
-			{18,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.new(0.2352941185236,0.2352941185236,0.2352941185236),BorderSizePixel=0,Font=3,Name="Main",Parent={17},Size=UDim2.new(1,0,0,60),Text="",TextColor3=Color3.new(0,0,0),TextSize=14,}},
+			{18,"TextButton",{AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(18,14,28),BorderSizePixel=0,Font=Enum.Font.Gotham,Name="Main",Parent={17},Size=UDim2.new(1,0,0,60),Text="",TextColor3=Color3.new(0,0,0),TextSize=14,}},
 			{19,"ImageLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Image="rbxassetid://129589545519436",ImageRectSize=Vector2.new(32,32),Name="Icon",Parent={18},Position=UDim2.new(0.5,-16,0,4),ScaleType=4,Size=UDim2.new(0,32,0,32),}},
 			{20,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,BorderSizePixel=0,Font=3,Name="AppName",Parent={18},Position=UDim2.new(0,2,0,38),Size=UDim2.new(1,-4,1,-40),Text="Explorer",TextColor3=Color3.new(1,1,1),TextSize=14,TextTransparency=0.10000000149012,TextTruncate=1,TextWrapped=true,TextYAlignment=0,}},
 			{21,"Frame",{BackgroundColor3=Color3.new(0,0.66666668653488,1),BorderSizePixel=0,Name="Highlight",Parent={18},Position=UDim2.new(0,0,1,-2),Size=UDim2.new(1,0,0,2),}},
@@ -15497,7 +15602,49 @@ Main = (function()
 		Main.MainGuiOpen = false
 
 		local openButton = gui.OpenButton
-		openButton.BackgroundTransparency = 0.2
+		openButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+		openButton.TextColor3 = Color3.fromRGB(220, 200, 255)
+		openButton.Font = Enum.Font.GothamBold
+		openButton.BackgroundTransparency = 0
+		openButton.TextStrokeTransparency = 1
+		openButton.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+		openButton.BorderSizePixel = 0
+		do
+			for _, ch in ipairs(openButton:GetChildren()) do
+				if ch:IsA("UIStroke") then ch:Destroy() end
+			end
+			local c = openButton:FindFirstChildOfClass("UICorner") or Instance.new("UICorner")
+			c.CornerRadius = UDim.new(0, 8)
+			c.Parent = openButton
+			local s = Instance.new("UIStroke")
+			s.Name = "ButtonOutline"
+			s.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+			s.Color = Color3.fromRGB(168, 85, 255)
+			s.Thickness = 2
+			s.Transparency = 0
+			s.LineJoinMode = Enum.LineJoinMode.Round
+			s.Parent = openButton
+		end
+		-- purple outline on popup menu
+		pcall(function()
+			local mf = openButton.MainFrame
+			mf.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			mf.BackgroundTransparency = 0
+			local existing = mf:FindFirstChildOfClass("UIStroke")
+			if not existing then
+				local s = Instance.new("UIStroke")
+				s.Color = Color3.fromRGB(168, 85, 255)
+				s.Thickness = 1.6
+				s.Transparency = 0.05
+				s.Parent = mf
+			end
+			local corner = mf:FindFirstChildOfClass("UICorner")
+			if not corner then
+				local c = Instance.new("UICorner")
+				c.CornerRadius = UDim.new(0, 8)
+				c.Parent = mf
+			end
+		end)
 		openButton.MainFrame.Size = UDim2.new(0,0,0,0)
 		openButton.MainFrame.Visible = false
 		openButton.MouseButton1Click:Connect(function()
@@ -15512,7 +15659,7 @@ Main = (function()
 
 		openButton.InputEnded:Connect(function(input)
 			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-				service.TweenService:Create(Main.MainGui.OpenButton,TweenInfo.new(0,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{BackgroundTransparency = Main.MainGuiOpen and 0 or 0.2}):Play()
+				service.TweenService:Create(Main.MainGui.OpenButton,TweenInfo.new(0,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{BackgroundTransparency = 0}):Play()
 			end
 		end)
 		
@@ -15595,11 +15742,790 @@ Main = (function()
 		Main.CreateApp({Name = "3D Viewer", IconMap = Main.LargeIcons, Icon = "Object", Window = ModelViewer.Window})
 
 		-- Multi Select Toggle + Menu
-		Main.CreateApp({Name = "Multi Select", IconMap = Main.MiscIcons, Icon = "SelectChildren", OnClick = function(open)
+
+		local function bindMenuAppClose(win, appName)
+			if not win or win._MenuAppBound then return end
+			win._MenuAppBound = true
+			win.OnDeactivate:Connect(function()
+				local ctrl = Main.MenuApps and Main.MenuApps[appName]
+				if ctrl and ctrl.Disable then
+					ctrl.Disable(true)
+				end
+			end)
+		end
+
+				-- Femdex AI Chat v3 — Gemini, clean settings layout
+		local AI = {
+			C = {
+				Model = "gemini-2.0-flash",
+				Effort = "standard",
+				Keys = {},
+				ActiveKey = 1,
+				Scale = 1,
+				Access = { Dex = false, Spy = false, Execute = false, Control = false },
+			},
+			Tabs = {},
+			Gui = nil,
+			Shell = nil,
+			ScaleObj = nil,
+			EffortCounts = {},
+			Seq = 0,
+			WorkingModel = nil,
+		}
+		local AI_CFG = "FemdexAI.json"
+		local AI_MAX = 400000
+		local AI_EFFORTS = {"lite", "standard", "deep", "exhaustive"}
+		local AI_MODELS = {
+			"gemini-2.5-flash",
+			"gemini-2.0-flash",
+			"gemini-flash-latest",
+			"gemini-1.5-flash",
+			"gemini-1.5-flash-latest",
+		}
+		local AI_TEMP = { lite = 0.4, standard = 0.75, deep = 1.0, exhaustive = 1.15 }
+		local C = {
+			bg = Color3.fromRGB(10, 10, 14),
+			bg2 = Color3.fromRGB(16, 16, 22),
+			panel = Color3.fromRGB(22, 22, 30),
+			purple = Color3.fromRGB(168, 85, 247),
+			text = Color3.fromRGB(245, 245, 250),
+			dim = Color3.fromRGB(150, 150, 165),
+			user = Color3.fromRGB(48, 32, 78),
+			ai = Color3.fromRGB(20, 24, 36),
+			green = Color3.fromRGB(52, 211, 153),
+			red = Color3.fromRGB(239, 68, 68),
+		}
+		-- seed default key from deobfs-style gemini key if none saved yet
+		local DEFAULT_GEMINI_KEY = "AQ.Ab8RN6LtEd3otYVJTJIGCucboA-gAIKNHsgQeU9eJ3Fy2fJ9Qg"
+
+		local function aiHttp(url, method, headers, body)
+			local req = (env and env.request) or request or (syn and syn.request) or http_request
+			if not req then return nil, "no request" end
+			local ok, res = pcall(function()
+				return req({ Url = url, Method = method or "POST", Headers = headers or {}, Body = body })
+			end)
+			if not ok then return nil, tostring(res) end
+			if type(res) ~= "table" then return nil, "bad response" end
+			return res.Body or res.body or res.Content, res.StatusCode or res.Status
+		end
+		local function aiSave()
+			pcall(function()
+				local wf = (env and env.writefile) or writefile
+				if wf then wf(AI_CFG, service.HttpService:JSONEncode(AI.C)) end
+			end)
+		end
+		local function aiLoad()
+			pcall(function()
+				local rf = (env and env.readfile) or readfile
+				if not rf then return end
+				local d = service.HttpService:JSONDecode(rf(AI_CFG))
+				if type(d) == "table" then for k, v in pairs(d) do AI.C[k] = v end end
+			end)
+			if type(AI.C.Access) ~= "table" then
+				AI.C.Access = { Dex = false, Spy = false, Execute = false, Control = false }
+			end
+			if type(AI.C.Keys) ~= "table" then AI.C.Keys = {} end
+			if #AI.C.Keys == 0 and DEFAULT_GEMINI_KEY and #DEFAULT_GEMINI_KEY > 10 then
+				table.insert(AI.C.Keys, { name = "Default Gemini", key = DEFAULT_GEMINI_KEY })
+				AI.C.ActiveKey = 1
+			end
+		end
+		local function aiGetKey()
+			local keys = AI.C.Keys or {}
+			local i = math.clamp(tonumber(AI.C.ActiveKey) or 1, 1, math.max(1, #keys))
+			local e = keys[i]
+			if not e then return nil end
+			local k = tostring(e.key or e.Key or ""):gsub("%s+", "")
+			if #k < 8 then return nil end
+			return k
+		end
+		local function aiExtractCode(s)
+			if type(s) ~= "string" then return "" end
+			local blocks = {}
+			for b in s:gmatch("```[%w_]*%s*\n(.-)```") do table.insert(blocks, b) end
+			if #blocks == 0 then for b in s:gmatch("```(.-)```") do table.insert(blocks, b) end end
+			-- also support deobfs 🤣 markers if present
+			for b in s:gmatch("🤣\n(.-)\n🤣") do table.insert(blocks, b) end
+			return table.concat(blocks, "\n\n")
+		end
+		local function aiGatherContext()
+			local a = AI.C.Access or {}
+			local lines = {}
+			table.insert(lines, "PlaceId=" .. tostring(game.PlaceId))
+			table.insert(lines, "Game=" .. tostring(game.Name))
+			pcall(function()
+				local p = game:GetService("Players").LocalPlayer
+				if p then
+					table.insert(lines, "LocalPlayer=" .. p.Name)
+					if p.Character then table.insert(lines, "Character=" .. p.Character:GetFullName()) end
+				end
+			end)
+			if a.Dex then
+				table.insert(lines, "DexAccess=ON")
+				pcall(function()
+					if Explorer and Explorer.GetSelected and selection then
+						local n = 0
+						for obj in pairs(selection.Map or {}) do
+							n = n + 1
+							if n <= 12 then
+								table.insert(lines, "Selected=" .. tostring(obj:GetFullName()) .. " [" .. obj.ClassName .. "]")
+							end
+						end
+						table.insert(lines, "SelectedCount=" .. tostring(n))
+					end
+				end)
+				pcall(function()
+					if ScriptViewer and ScriptViewer.Window then
+						table.insert(lines, "NotepadOpen=true")
+					end
+				end)
+			end
+			if a.Spy then
+				table.insert(lines, "SpyAccess=ON")
+				pcall(function()
+					if getgenv and (getgenv().CobaltInitialized or getgenv().MenuSpyLoaded) then
+						table.insert(lines, "SpyLoaded=true")
+					end
+				end)
+			end
+			if a.Execute then table.insert(lines, "AutoExecute=ON") end
+			if a.Control then table.insert(lines, "FullControl=ON") end
+			return table.concat(lines, "\n")
+		end
+		local function aiSystem()
+			local a = AI.C.Access or {}
+			local s = {
+				"You are Femdex AI (Gemini) inside a Roblox exploit client.",
+				"Answer the user directly. Prefer correct Luau. No filler.",
+				"When providing scripts, use ```lua fences.",
+			}
+			if a.Dex then table.insert(s, "You can use Dex context: Explorer selection, Properties, Console, decompiled scripts the user shares.") end
+			if a.Spy then table.insert(s, "You can help with remote spy / remote events the user describes.") end
+			if a.Execute then table.insert(s, "Auto-execute is enabled: runnable code may be executed automatically.") end
+			if a.Control then table.insert(s, "Full control is enabled: you may provide gameplay automation scripts when asked.") end
+			return table.concat(s, " ")
+		end
+		local function aiParseGemini(body)
+			local ok, data = pcall(function() return service.HttpService:JSONDecode(body) end)
+			if not ok or type(data) ~= "table" then return nil, "bad json: " .. tostring(body):sub(1, 120) end
+			if data.error then
+				local e = data.error
+				return nil, type(e) == "table" and tostring(e.message or e.status or e) or tostring(e)
+			end
+			local c = data.candidates and data.candidates[1]
+			if not c then return nil, "no candidates" end
+			local parts = c.content and c.content.parts
+			if type(parts) == "table" then
+				local out = {}
+				for _, p in ipairs(parts) do if p.text then table.insert(out, p.text) end end
+				if #out > 0 then return table.concat(out, "\n") end
+			end
+			if c.finishReason then return nil, "finishReason=" .. tostring(c.finishReason) end
+			return nil, "empty"
+		end
+		local function aiCallModel(model, userText)
+			local key = aiGetKey()
+			if not key then return nil, "No API key selected" end
+			local temp = AI_TEMP[AI.C.Effort or "standard"] or 0.75
+			local contents = {
+				{ role = "user", parts = { { text = userText .. "\n\n[CLIENT CONTEXT]\n" .. aiGatherContext() } } },
+			}
+			local bodyTable = {
+				contents = contents,
+				systemInstruction = { parts = { { text = aiSystem() } } },
+				generationConfig = { temperature = temp, maxOutputTokens = 8192, topP = 0.95 },
+			}
+			local body = service.HttpService:JSONEncode(bodyTable)
+			-- try query key
+			local raw = select(1, aiHttp(
+				"https://generativelanguage.googleapis.com/v1beta/models/" .. model .. ":generateContent?key=" .. key,
+				"POST", { ["Content-Type"] = "application/json" }, body
+			))
+			if raw then
+				local text, err = aiParseGemini(raw)
+				if text then return text end
+				-- if API key error, try header form
+				if tostring(err):lower():find("api key") or tostring(raw):find("API key") then
+					raw = select(1, aiHttp(
+						"https://generativelanguage.googleapis.com/v1beta/models/" .. model .. ":generateContent",
+						"POST",
+						{ ["Content-Type"] = "application/json", ["x-goog-api-key"] = key },
+						body
+					))
+					if raw then
+						text, err = aiParseGemini(raw)
+						if text then return text end
+					end
+				else
+					return nil, err
+				end
+			end
+			return nil, "request failed"
+		end
+		local function aiCall(userText)
+			local errors = {}
+			local preferred = AI.C.Model
+			local order = {}
+			if preferred and preferred ~= "" then table.insert(order, preferred) end
+			if AI.WorkingModel and AI.WorkingModel ~= preferred then table.insert(order, AI.WorkingModel) end
+			for _, m in ipairs(AI_MODELS) do
+				local seen = false
+				for _, x in ipairs(order) do if x == m then seen = true break end end
+				if not seen then table.insert(order, m) end
+			end
+			for _, model in ipairs(order) do
+				local reply, err = aiCallModel(model, userText)
+				if reply then
+					AI.WorkingModel = model
+					return reply
+				end
+				table.insert(errors, model .. ": " .. tostring(err))
+				task.wait(0.08)
+			end
+			return nil, table.concat(errors, " | ")
+		end
+		local function aiTryExec(reply)
+			local a = AI.C.Access or {}
+			if not (a.Execute or a.Control) then return end
+			local code = aiExtractCode(reply)
+			if code == "" or #code < 4 then return end
+			local ls = (env and env.loadstring) or loadstring
+			if not ls then return end
+			task.spawn(function()
+				local fn = ls(code)
+				if fn then pcall(fn) end
+			end)
+		end
+		local function mk(parent, class, props)
+			local o = Instance.new(class)
+			for k, v in pairs(props or {}) do o[k] = v end
+			o.Parent = parent
+			return o
+		end
+		local function corner(o, r)
+			local c = Instance.new("UICorner")
+			c.CornerRadius = UDim.new(0, r or 8)
+			c.Parent = o
+		end
+		local function stroke(o, col, th)
+			local s = Instance.new("UIStroke")
+			s.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+			s.Color = col or C.purple
+			s.Thickness = th or 1.5
+			s.Parent = o
+			return s
+		end
+		local function tabName(effort)
+			effort = tostring(effort or "lite"):lower()
+			AI.EffortCounts[effort] = (AI.EffortCounts[effort] or 0) + 1
+			local n = AI.EffortCounts[effort]
+			return n == 1 and effort or (effort .. " " .. tostring(n))
+		end
+		local function dropdown(parent, w, h, options, value, onChange)
+			local root = mk(parent, "Frame", {
+				BackgroundColor3 = C.panel, BorderSizePixel = 0, Size = UDim2.fromOffset(w, h or 30), ZIndex = 30,
+			})
+			corner(root, 6)
+			local btn = mk(root, "TextButton", {
+				BackgroundTransparency = 1, Size = UDim2.new(1, 0, 1, 0),
+				Text = "  " .. tostring(value) .. "  ▼", TextColor3 = C.text, Font = Enum.Font.Gotham,
+				TextSize = 12, TextXAlignment = Enum.TextXAlignment.Left, AutoButtonColor = false, ZIndex = 31,
+			})
+			local menu
+			local function set(v) btn.Text = "  " .. tostring(v) .. "  ▼" end
+			local function close() if menu then menu:Destroy() menu = nil end end
+			btn.MouseButton1Click:Connect(function()
+				if menu then close() return end
+				menu = mk(root, "ScrollingFrame", {
+					BackgroundColor3 = C.bg2, BorderSizePixel = 0, Position = UDim2.new(0, 0, 1, 4),
+					Size = UDim2.new(1, 0, 0, math.min(150, #options * 28 + 8)),
+					CanvasSize = UDim2.new(0, 0, 0, 0), AutomaticCanvasSize = Enum.AutomaticSize.Y,
+					ScrollBarThickness = 3, ScrollBarImageColor3 = C.purple, ZIndex = 200,
+				})
+				corner(menu, 6)
+				stroke(menu, C.purple, 1)
+				local lay = Instance.new("UIListLayout")
+				lay.Parent = menu
+				local pad = Instance.new("UIPadding")
+				pad.PaddingTop = UDim.new(0, 4)
+				pad.Parent = menu
+				for _, opt in ipairs(options) do
+					local b = mk(menu, "TextButton", {
+						BackgroundColor3 = C.panel, BorderSizePixel = 0, Size = UDim2.new(1, -6, 0, 26),
+						Text = "  " .. tostring(opt), TextColor3 = C.text, Font = Enum.Font.Gotham, TextSize = 12,
+						TextXAlignment = Enum.TextXAlignment.Left, AutoButtonColor = false, ZIndex = 201,
+					})
+					corner(b, 4)
+					b.MouseButton1Click:Connect(function()
+						set(opt)
+						close()
+						if onChange then onChange(opt) end
+					end)
+				end
+			end)
+			return { Root = root, Set = set, Close = close }
+		end
+		local function aiBuild()
+			if AI.Gui then return AI.Gui end
+			aiLoad()
+			local sg = Instance.new("ScreenGui")
+			sg.Name = "FemdexAI"
+			sg.ResetOnSpawn = false
+			sg.DisplayOrder = 250
+			sg.IgnoreGuiInset = true
+			sg.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+			pcall(function()
+				sg.Parent = (env and env.gethui and env.gethui()) or game:GetService("CoreGui")
+			end)
+			if not sg.Parent then sg.Parent = plr:WaitForChild("PlayerGui") end
+			AI.Gui = sg
+
+			local shell = mk(sg, "Frame", {
+				BackgroundTransparency = 1, Size = UDim2.fromOffset(680, 430),
+				Position = UDim2.new(0.5, -340, 0.5, -215),
+			})
+			AI.Shell = shell
+			local uisc = Instance.new("UIScale")
+			uisc.Scale = tonumber(AI.C.Scale) or 1
+			uisc.Parent = shell
+			AI.ScaleObj = uisc
+
+			local main = mk(shell, "Frame", {
+				BackgroundColor3 = C.bg, BorderSizePixel = 0, Size = UDim2.new(1, 0, 1, 0), ClipsDescendants = true,
+			})
+			corner(main, 12)
+			stroke(main, C.purple, 1.6)
+
+			-- title (no double corner clip issues)
+			local title = mk(main, "Frame", {
+				BackgroundColor3 = C.bg2, BorderSizePixel = 0, Size = UDim2.new(1, 0, 0, 38), ZIndex = 5,
+			})
+			mk(title, "TextLabel", {
+				BackgroundTransparency = 1, Position = UDim2.new(0, 14, 0, 0), Size = UDim2.new(1, -50, 1, 0),
+				Text = "AI Chat  ·  Gemini", Font = Enum.Font.GothamBold, TextSize = 15, TextColor3 = C.text,
+				TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 6,
+			})
+			local close = mk(title, "TextButton", {
+				BackgroundColor3 = C.red, BorderSizePixel = 0, Size = UDim2.fromOffset(28, 24),
+				Position = UDim2.new(1, -36, 0.5, -12), Text = "X", Font = Enum.Font.GothamBold, TextSize = 12,
+				TextColor3 = C.text, AutoButtonColor = false, ZIndex = 6,
+			})
+			corner(close, 6)
+			close.MouseButton1Click:Connect(function()
+				sg.Enabled = false
+				local ctrl = Main.MenuApps and Main.MenuApps["AI Chat"]
+				if ctrl and ctrl.Disable then ctrl.Disable(true) end
+			end)
+			do
+				local drag, st, pos
+				title.InputBegan:Connect(function(inp)
+					if inp.UserInputType == Enum.UserInputType.MouseButton1 or inp.UserInputType == Enum.UserInputType.Touch then
+						drag, st, pos = true, inp.Position, shell.Position
+					end
+				end)
+				title.InputEnded:Connect(function(inp)
+					if inp.UserInputType == Enum.UserInputType.MouseButton1 or inp.UserInputType == Enum.UserInputType.Touch then drag = false end
+				end)
+				service.UserInputService.InputChanged:Connect(function(inp)
+					if not drag then return end
+					if inp.UserInputType == Enum.UserInputType.MouseMovement or inp.UserInputType == Enum.UserInputType.Touch then
+						local d = inp.Position - st
+						shell.Position = UDim2.new(pos.X.Scale, pos.X.Offset + d.X, pos.Y.Scale, pos.Y.Offset + d.Y)
+					end
+				end)
+			end
+
+			-- tabs
+			local tabBar = mk(main, "Frame", {
+				BackgroundColor3 = C.panel, BorderSizePixel = 0, Position = UDim2.new(0, 0, 0, 38), Size = UDim2.new(1, 0, 0, 36), ZIndex = 5,
+			})
+			local tabScroll = mk(tabBar, "ScrollingFrame", {
+				BackgroundTransparency = 1, BorderSizePixel = 0, Size = UDim2.new(1, -44, 1, 0),
+				ScrollBarThickness = 0, ScrollingDirection = Enum.ScrollingDirection.X,
+				CanvasSize = UDim2.new(0, 0, 0, 0), AutomaticCanvasSize = Enum.AutomaticSize.X, ZIndex = 5,
+			})
+			local tabLay = Instance.new("UIListLayout")
+			tabLay.FillDirection = Enum.FillDirection.Horizontal
+			tabLay.Padding = UDim.new(0, 6)
+			tabLay.Parent = tabScroll
+			local tabPad = Instance.new("UIPadding")
+			tabPad.PaddingLeft = UDim.new(0, 10)
+			tabPad.PaddingTop = UDim.new(0, 5)
+			tabPad.Parent = tabScroll
+			local plus = mk(tabBar, "TextButton", {
+				BackgroundColor3 = C.purple, BorderSizePixel = 0, Size = UDim2.fromOffset(30, 28),
+				Position = UDim2.new(1, -36, 0.5, -14), Text = "+", Font = Enum.Font.GothamBold, TextSize = 18,
+				TextColor3 = C.text, AutoButtonColor = false, ZIndex = 6,
+			})
+			corner(plus, 6)
+
+			local body = mk(main, "Frame", {
+				BackgroundColor3 = C.bg, BorderSizePixel = 0, Position = UDim2.new(0, 0, 0, 74), Size = UDim2.new(1, 0, 1, -74), ZIndex = 1,
+			})
+
+			local function show(idx)
+				for i, tab in pairs(AI.Tabs) do
+					if tab and tab.Page then tab.Page.Visible = (i == idx) end
+					if tab and tab.Btn then
+						local on = (i == idx)
+						tab.Btn.BackgroundColor3 = on and C.purple or C.bg2
+						tab.Btn.TextColor3 = on and C.text or C.dim
+					end
+				end
+			end
+
+			local function bubble(list, role, text, full)
+				full = full or text
+				local wrap = mk(list, "Frame", {
+					BackgroundColor3 = role == "user" and C.user or C.ai, BorderSizePixel = 0,
+					Size = UDim2.new(1, -8, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, ZIndex = 2,
+				})
+				corner(wrap, 10)
+				local lay = Instance.new("UIListLayout")
+				lay.Padding = UDim.new(0, 8)
+				lay.Parent = wrap
+				local pad = Instance.new("UIPadding")
+				pad.PaddingTop = UDim.new(0, 10)
+				pad.PaddingBottom = UDim.new(0, 10)
+				pad.PaddingLeft = UDim.new(0, 12)
+				pad.PaddingRight = UDim.new(0, 12)
+				pad.Parent = wrap
+				mk(wrap, "TextLabel", {
+					BackgroundTransparency = 1, Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y,
+					Text = text, TextColor3 = C.text, TextWrapped = true, TextSize = 13, Font = Enum.Font.Gotham,
+					TextXAlignment = Enum.TextXAlignment.Left, TextYAlignment = Enum.TextYAlignment.Top, LayoutOrder = 1, ZIndex = 3,
+				})
+				if role == "ai" then
+					local row = mk(wrap, "Frame", { BackgroundTransparency = 1, Size = UDim2.new(1, 0, 0, 28), LayoutOrder = 2, ZIndex = 3 })
+					local function b(txt, x, fn)
+						local btn = mk(row, "TextButton", {
+							BackgroundColor3 = C.panel, BorderSizePixel = 0, Size = UDim2.fromOffset(92, 26),
+							Position = UDim2.new(1, x, 0, 1), Text = txt, TextColor3 = C.text, TextSize = 12,
+							Font = Enum.Font.GothamMedium, AutoButtonColor = false, ZIndex = 4,
+						})
+						corner(btn, 6)
+						btn.MouseButton1Click:Connect(fn)
+					end
+					b("Copy text", -192, function() if env.setclipboard then pcall(env.setclipboard, full) end end)
+					b("Copy code", -94, function()
+						local code = aiExtractCode(full)
+						if code == "" then code = full end
+						if env.setclipboard then pcall(env.setclipboard, code) end
+					end)
+				end
+			end
+
+			local function makeChat()
+				AI.Seq = AI.Seq + 1
+				local effort = AI.C.Effort or "standard"
+				local name = tabName(effort)
+				local page = mk(body, "Frame", { BackgroundColor3 = C.bg, BorderSizePixel = 0, Size = UDim2.new(1, 0, 1, 0), Visible = false })
+				local list = mk(page, "ScrollingFrame", {
+					BackgroundColor3 = C.bg, BorderSizePixel = 0, Position = UDim2.new(0, 8, 0, 8),
+					Size = UDim2.new(1, -16, 1, -56), CanvasSize = UDim2.new(0, 0, 0, 0),
+					AutomaticCanvasSize = Enum.AutomaticSize.Y, ScrollBarThickness = 4, ScrollBarImageColor3 = C.purple,
+				})
+				local ll = Instance.new("UIListLayout")
+				ll.Padding = UDim.new(0, 10)
+				ll.Parent = list
+				local input = mk(page, "TextBox", {
+					BackgroundColor3 = C.panel, BorderSizePixel = 0, Position = UDim2.new(0, 10, 1, -42),
+					Size = UDim2.new(1, -100, 0, 34), Text = "", PlaceholderText = "Message Gemini…",
+					PlaceholderColor3 = C.dim, TextColor3 = C.text, Font = Enum.Font.Gotham, TextSize = 13,
+					ClearTextOnFocus = false, TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 5,
+				})
+				corner(input, 8)
+				local ip = Instance.new("UIPadding")
+				ip.PaddingLeft = UDim.new(0, 10)
+				ip.Parent = input
+				local send = mk(page, "TextButton", {
+					BackgroundColor3 = C.purple, BorderSizePixel = 0, Position = UDim2.new(1, -82, 1, -42),
+					Size = UDim2.fromOffset(72, 34), Text = "Send", TextColor3 = C.text, Font = Enum.Font.GothamBold,
+					TextSize = 13, AutoButtonColor = false, ZIndex = 5,
+				})
+				corner(send, 8)
+				local busy = false
+				local function doSend()
+					if busy then return end
+					local msg = input.Text
+					if not msg or msg == "" then return end
+					input.Text = ""
+					busy = true
+					bubble(list, "user", msg, msg)
+					local waitF = mk(list, "Frame", { BackgroundColor3 = C.ai, BorderSizePixel = 0, Size = UDim2.new(1, -8, 0, 32) })
+					corner(waitF, 8)
+					mk(waitF, "TextLabel", {
+						BackgroundTransparency = 1, Size = UDim2.new(1, -12, 1, 0), Position = UDim2.new(0, 10, 0, 0),
+						Text = "Thinking…", TextColor3 = C.dim, Font = Enum.Font.Gotham, TextSize = 13, TextXAlignment = Enum.TextXAlignment.Left,
+					})
+					task.spawn(function()
+						local reply, err = aiCall(msg)
+						waitF:Destroy()
+						if not reply then
+							bubble(list, "ai", "Error: " .. tostring(err), tostring(err))
+						else
+							local display = (#reply > AI_MAX) and "too large\n\nUse Copy text / Copy code." or reply
+							bubble(list, "ai", display, reply)
+							aiTryExec(reply)
+						end
+						busy = false
+						list.CanvasPosition = Vector2.new(0, 1e9)
+					end)
+				end
+				send.MouseButton1Click:Connect(doSend)
+				input.FocusLost:Connect(function(e) if e then doSend() end end)
+
+				local hold = mk(tabScroll, "Frame", {
+					BackgroundTransparency = 1, Size = UDim2.fromOffset(0, 26), AutomaticSize = Enum.AutomaticSize.X,
+					LayoutOrder = 20 + AI.Seq, ZIndex = 6,
+				})
+				local tbtn = mk(hold, "TextButton", {
+					BackgroundColor3 = C.bg2, BorderSizePixel = 0, AutomaticSize = Enum.AutomaticSize.X,
+					Size = UDim2.fromOffset(0, 26), Text = "  " .. name .. "  ", TextColor3 = C.dim,
+					Font = Enum.Font.Gotham, TextSize = 12, AutoButtonColor = false, ZIndex = 7,
+				})
+				corner(tbtn, 6)
+				local xbtn = mk(hold, "TextButton", {
+					BackgroundColor3 = C.red, BorderSizePixel = 0, Size = UDim2.fromOffset(18, 18),
+					Position = UDim2.new(1, 4, 0.5, -9), Text = "x", TextColor3 = C.text, Font = Enum.Font.GothamBold,
+					TextSize = 11, AutoButtonColor = false, ZIndex = 8,
+				})
+				corner(xbtn, 4)
+				tbtn:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
+					hold.Size = UDim2.fromOffset(tbtn.AbsoluteSize.X + 24, 26)
+				end)
+				local idx = #AI.Tabs + 1
+				-- ensure dense index after settings
+				while AI.Tabs[idx] do idx = idx + 1 end
+				AI.Tabs[idx] = { Name = name, Btn = tbtn, Page = page, Kind = "chat", Hold = hold }
+				tbtn.MouseButton1Click:Connect(function() show(idx) end)
+				xbtn.MouseButton1Click:Connect(function()
+					page:Destroy()
+					hold:Destroy()
+					AI.Tabs[idx] = nil
+					show(1)
+				end)
+				show(idx)
+			end
+			plus.MouseButton1Click:Connect(makeChat)
+
+			-- SETTINGS: vertical stack, no overlaps
+			do
+				local page = mk(body, "ScrollingFrame", {
+					BackgroundColor3 = C.bg, BorderSizePixel = 0, Size = UDim2.new(1, 0, 1, 0), Visible = true,
+					CanvasSize = UDim2.new(0, 0, 0, 0), AutomaticCanvasSize = Enum.AutomaticSize.Y,
+					ScrollBarThickness = 4, ScrollBarImageColor3 = C.purple,
+				})
+				local box = mk(page, "Frame", {
+					BackgroundTransparency = 1, Position = UDim2.new(0, 16, 0, 12), Size = UDim2.new(1, -32, 0, 0),
+					AutomaticSize = Enum.AutomaticSize.Y,
+				})
+				local v = Instance.new("UIListLayout")
+				v.Padding = UDim.new(0, 10)
+				v.Parent = box
+				local function section(title)
+					return mk(box, "TextLabel", {
+						BackgroundTransparency = 1, Size = UDim2.new(1, 0, 0, 18), Text = title,
+						TextColor3 = C.purple, Font = Enum.Font.GothamBold, TextSize = 12, TextXAlignment = Enum.TextXAlignment.Left,
+					})
+				end
+				local function row()
+					local f = mk(box, "Frame", { BackgroundTransparency = 1, Size = UDim2.new(1, 0, 0, 34) })
+					return f
+				end
+
+				section("MODEL")
+				local r1 = row()
+				dropdown(r1, 280, 32, AI_MODELS, AI.C.Model or AI_MODELS[2], function(m)
+					AI.C.Model = m
+					aiSave()
+				end)
+
+				section("EFFORT")
+				local r2 = row()
+				dropdown(r2, 200, 32, AI_EFFORTS, AI.C.Effort or "standard", function(e)
+					AI.C.Effort = e
+					aiSave()
+				end)
+
+				section("UI SCALE")
+				local r3 = row()
+				local scaleLbl = mk(r3, "TextLabel", {
+					BackgroundTransparency = 1, Position = UDim2.new(0, 210, 0, 4), Size = UDim2.fromOffset(50, 24),
+					Text = string.format("%.0f%%", (AI.C.Scale or 1) * 100), TextColor3 = C.text, Font = Enum.Font.Gotham, TextSize = 13,
+				})
+				local sbg = mk(r3, "Frame", {
+					BackgroundColor3 = C.panel, BorderSizePixel = 0, Size = UDim2.fromOffset(200, 22), Position = UDim2.new(0, 0, 0, 6),
+				})
+				corner(sbg, 6)
+				local sfill = mk(sbg, "Frame", {
+					BackgroundColor3 = C.purple, BorderSizePixel = 0,
+					Size = UDim2.new(math.clamp(((AI.C.Scale or 1) - 0.7) / 0.8, 0, 1), 0, 1, 0),
+				})
+				corner(sfill, 6)
+				local sliding = false
+				local function applyScale(x)
+					local rel = math.clamp(x / math.max(sbg.AbsoluteSize.X, 1), 0, 1)
+					AI.C.Scale = math.floor((0.7 + rel * 0.8) * 100 + 0.5) / 100
+					uisc.Scale = AI.C.Scale
+					sfill.Size = UDim2.new(rel, 0, 1, 0)
+					scaleLbl.Text = string.format("%.0f%%", AI.C.Scale * 100)
+					aiSave()
+				end
+				sbg.InputBegan:Connect(function(inp)
+					if inp.UserInputType == Enum.UserInputType.MouseButton1 or inp.UserInputType == Enum.UserInputType.Touch then
+						sliding = true
+						applyScale(inp.Position.X - sbg.AbsolutePosition.X)
+					end
+				end)
+				service.UserInputService.InputEnded:Connect(function(inp)
+					if inp.UserInputType == Enum.UserInputType.MouseButton1 or inp.UserInputType == Enum.UserInputType.Touch then sliding = false end
+				end)
+				service.UserInputService.InputChanged:Connect(function(inp)
+					if sliding and (inp.UserInputType == Enum.UserInputType.MouseMovement or inp.UserInputType == Enum.UserInputType.Touch) then
+						applyScale(inp.Position.X - sbg.AbsolutePosition.X)
+					end
+				end)
+
+				section("ACCESS")
+				local function toggle(key, title)
+					local r = row()
+					r.Size = UDim2.new(1, 0, 0, 36)
+					local b = mk(r, "TextButton", {
+						BackgroundColor3 = C.panel, BorderSizePixel = 0, Size = UDim2.fromOffset(300, 34), Text = "", AutoButtonColor = false,
+					})
+					corner(b, 8)
+					local on = AI.C.Access and AI.C.Access[key]
+					local dot = mk(b, "Frame", {
+						BackgroundColor3 = on and C.green or C.bg2, BorderSizePixel = 0,
+						Size = UDim2.fromOffset(18, 18), Position = UDim2.new(0, 10, 0.5, -9),
+					})
+					corner(dot, 5)
+					mk(b, "TextLabel", {
+						BackgroundTransparency = 1, Position = UDim2.new(0, 36, 0, 0), Size = UDim2.new(1, -44, 1, 0),
+						Text = title, TextColor3 = C.text, Font = Enum.Font.Gotham, TextSize = 13, TextXAlignment = Enum.TextXAlignment.Left,
+					})
+					b.MouseButton1Click:Connect(function()
+						AI.C.Access = AI.C.Access or {}
+						AI.C.Access[key] = not AI.C.Access[key]
+						dot.BackgroundColor3 = AI.C.Access[key] and C.green or C.bg2
+						aiSave()
+					end)
+				end
+				toggle("Dex", "Dex (Explorer / Properties / Console)")
+				toggle("Spy", "Remote Spy")
+				toggle("Execute", "Auto-execute scripts")
+				toggle("Control", "Full game control")
+
+				section("API KEY")
+				local rKey = row()
+				rKey.Size = UDim2.new(1, 0, 0, 36)
+				local keyBox = mk(rKey, "TextBox", {
+					BackgroundColor3 = C.panel, BorderSizePixel = 0, Size = UDim2.fromOffset(280, 32),
+					Text = "", PlaceholderText = "Paste Gemini API key", PlaceholderColor3 = C.dim,
+					TextColor3 = C.text, Font = Enum.Font.Code, TextSize = 12, ClearTextOnFocus = false,
+				})
+				corner(keyBox, 6)
+				local saveBtn = mk(rKey, "TextButton", {
+					BackgroundColor3 = C.purple, BorderSizePixel = 0, Position = UDim2.new(0, 290, 0, 0),
+					Size = UDim2.fromOffset(80, 32), Text = "Save", TextColor3 = C.text, Font = Enum.Font.GothamBold,
+					TextSize = 13, AutoButtonColor = false,
+				})
+				corner(saveBtn, 6)
+
+				section("ACTIVE KEY")
+				local rActive = row()
+				rActive.Size = UDim2.new(1, 0, 0, 36)
+				local function labels()
+					local t = {}
+					for i, k in ipairs(AI.C.Keys or {}) do
+						table.insert(t, (k.name or ("Key " .. i)) .. " · " .. tostring(k.key or ""):sub(-6))
+					end
+					if #t == 0 then table.insert(t, "(none)") end
+					return t
+				end
+				local function curLab()
+					local k = AI.C.Keys[AI.C.ActiveKey or 1]
+					if not k then return "(none)" end
+					return (k.name or "Key") .. " · " .. tostring(k.key or ""):sub(-6)
+				end
+				local keyDD = dropdown(rActive, 280, 32, labels(), curLab(), function(sel)
+					for i, k in ipairs(AI.C.Keys or {}) do
+						local lab = (k.name or ("Key " .. i)) .. " · " .. tostring(k.key or ""):sub(-6)
+						if lab == sel then AI.C.ActiveKey = i aiSave() break end
+					end
+				end)
+				local delBtn = mk(rActive, "TextButton", {
+					BackgroundColor3 = C.red, BorderSizePixel = 0, Position = UDim2.new(0, 290, 0, 0),
+					Size = UDim2.fromOffset(80, 32), Text = "Delete", TextColor3 = C.text, Font = Enum.Font.GothamBold,
+					TextSize = 13, AutoButtonColor = false,
+				})
+				corner(delBtn, 6)
+				local function remakeKeyDD()
+					keyDD.Root:Destroy()
+					keyDD = dropdown(rActive, 280, 32, labels(), curLab(), function(sel)
+						for i, k in ipairs(AI.C.Keys or {}) do
+							local lab = (k.name or ("Key " .. i)) .. " · " .. tostring(k.key or ""):sub(-6)
+							if lab == sel then AI.C.ActiveKey = i aiSave() break end
+						end
+					end)
+				end
+				saveBtn.MouseButton1Click:Connect(function()
+					local key = keyBox.Text
+					if not key or #key < 8 then return end
+					table.insert(AI.C.Keys, { name = "Key " .. tostring(#AI.C.Keys + 1), key = key:gsub("%s+", "") })
+					AI.C.ActiveKey = #AI.C.Keys
+					keyBox.Text = ""
+					aiSave()
+					remakeKeyDD()
+				end)
+				delBtn.MouseButton1Click:Connect(function()
+					local i = AI.C.ActiveKey or 1
+					if AI.C.Keys[i] then
+						table.remove(AI.C.Keys, i)
+						AI.C.ActiveKey = math.clamp(i, 1, math.max(1, #AI.C.Keys))
+						aiSave()
+						remakeKeyDD()
+					end
+				end)
+
+				mk(box, "TextLabel", {
+					BackgroundTransparency = 1, Size = UDim2.new(1, 0, 0, 36),
+					Text = "Gemini only. Model + Effort control quality. Enable Access toggles for Dex/Spy/Execute context.",
+					TextColor3 = C.dim, Font = Enum.Font.Gotham, TextSize = 12, TextWrapped = true, TextXAlignment = Enum.TextXAlignment.Left,
+				})
+
+				local sbtn = mk(tabScroll, "TextButton", {
+					BackgroundColor3 = C.purple, BorderSizePixel = 0, AutomaticSize = Enum.AutomaticSize.X,
+					Size = UDim2.fromOffset(0, 26), Text = "  Settings  ", TextColor3 = C.text,
+					Font = Enum.Font.GothamBold, TextSize = 12, AutoButtonColor = false, LayoutOrder = 0, ZIndex = 7,
+				})
+				corner(sbtn, 6)
+				AI.Tabs[1] = { Name = "Settings", Btn = sbtn, Page = page, Kind = "settings" }
+				sbtn.MouseButton1Click:Connect(function() show(1) end)
+			end
+			show(1)
+			sg.Enabled = true
+			return sg
+		end
+
+		Main.CreateApp({
+			Name = "AI Chat",
+			Icon = "rbxassetid://7733960981",
+			OnClick = function(open)
+				if open then
+					aiBuild().Enabled = true
+				else
+					if AI.Gui then AI.Gui.Enabled = false end
+				end
+			end,
+		})
+
+Main.CreateApp({Name = "Multi Select", IconMap = Main.MiscIcons, Icon = "SelectChildren", OnClick = function(open)
 			if open then
 				if not MultiSelectWindow then
 					MultiSelectWindow = Lib.Window.new()
-					MultiSelectWindow:SetTitle("Multi Select · Femboy")
+					MultiSelectWindow:SetTitle("Multi Select")
 					MultiSelectWindow:Resize(280, 140)
 					local content = MultiSelectWindow.GuiElems.Content
 
@@ -15649,6 +16575,7 @@ Main = (function()
 					hint.Gui.TextColor3 = Color3.fromRGB(180, 180, 180)
 					hint.Gui.TextSize = 13
 				end
+				bindMenuAppClose(MultiSelectWindow, "Multi Select")
 				MultiSelectWindow:Show()
 			else
 				if MultiSelectWindow then MultiSelectWindow:Hide() end
@@ -15660,7 +16587,7 @@ Main = (function()
 			if open then
 				if not SelectionSaveWindow then
 					SelectionSaveWindow = Lib.Window.new()
-					SelectionSaveWindow:SetTitle("Save · Femboy")
+					SelectionSaveWindow:SetTitle("Save Selection")
 					SelectionSaveWindow:Resize(360, 280)
 					local content = SelectionSaveWindow.GuiElems.Content
 
@@ -15742,7 +16669,7 @@ Main = (function()
 					Instance.new("UICorner", progressBg).CornerRadius = UDim.new(0, 4)
 
 					local progressBar = Instance.new("Frame")
-					progressBar.BackgroundColor3 = Color3.fromRGB(11, 90, 175)
+					progressBar.BackgroundColor3 = Color3.fromRGB(140, 60, 255)
 					progressBar.BorderSizePixel = 0
 					progressBar.Size = UDim2.new(0, 0, 1, 0)
 					progressBar.Parent = progressBg
@@ -15979,7 +16906,7 @@ Main = (function()
 							safeBase = safeBase .. "_" .. tostring(idx)
 
 							local lines = {}
-							table.insert(lines, "-- Femboy Save | powered by dex | 4amy")
+							table.insert(lines, "-- Femdex Save | powered by dex | 4amy")
 							table.insert(lines, "-- Session: " .. sessionFolder)
 							table.insert(lines, "-- PlaceId: " .. tostring(game.PlaceId))
 							local fullPath = displayPath
@@ -16036,7 +16963,7 @@ Main = (function()
 									lastPath = flat
 								else
 									failedCount = failedCount + 1
-									warn("[Femboy] write fail: ", tostring(err), " / ", tostring(err2))
+									warn("[Femdex] write fail: ", tostring(err), " / ", tostring(err2))
 								end
 							end
 
@@ -16048,43 +16975,76 @@ Main = (function()
 						local msg = string.format("Done: %d saved, %d failed\nFolder: %s\nLast: %s", savedCount, failedCount, sessionFolder, tostring(lastPath))
 						statusLbl.Text = msg
 						saveBtn.Text = "Save Selected"
-						warn("[Femboy] " .. msg)
+						warn("[Femdex] " .. msg)
 						SelectionSaveWindow:SetTitle("Save Selection - " .. savedCount .. " saved")
 						task.delay(4, function()
-							if SelectionSaveWindow then SelectionSaveWindow:SetTitle("Save · Femboy") end
+							if SelectionSaveWindow then SelectionSaveWindow:SetTitle("Save Selection") end
 						end)
 					end)
 				end
+				bindMenuAppClose(SelectionSaveWindow, "Save Selection")
 				SelectionSaveWindow:Show()
 			else
 				if SelectionSaveWindow then SelectionSaveWindow:Hide() end
 			end
 		end})
 
-		Main.CreateApp({Name = "Remote", IconMap = Main.MiscIcons, Icon = "CallRemote", OnClick = function(open)
+		Main.CreateApp({Name = "Remotes", IconMap = Main.MiscIcons, Icon = "CallRemote", OnClick = function(open)
 			if open then
 				if not RemotePanelWindow then
 					RemotePanelWindow = Lib.Window.new()
-					RemotePanelWindow:SetTitle("Remote · Femboy")
-					RemotePanelWindow:Resize(340, 220)
+					RemotePanelWindow:SetTitle("Remotes")
+					RemotePanelWindow:Resize(360, 320)
 					local content = RemotePanelWindow.GuiElems.Content
+
+					local DumpOpts = {
+						Events = true,
+						Functions = true,
+						Unreliable = true,
+						IncludeNative = false,
+					}
 
 					local title = Instance.new("TextLabel")
 					title.BackgroundTransparency = 1
-					title.Position = UDim2.new(0, 15, 0, 8)
-					title.Size = UDim2.new(1, -30, 0, 22)
+					title.Position = UDim2.new(0, 15, 0, 6)
+					title.Size = UDim2.new(1, -30, 0, 20)
 					title.Font = Enum.Font.GothamBold
-					title.TextSize = 16
+					title.TextSize = 15
 					title.TextColor3 = TH.text
 					title.TextXAlignment = Enum.TextXAlignment.Left
-					title.Text = "Network Tools"
+					title.Text = "Remote Dumper"
 					title.Parent = content
+
+					local function addOpt(label, key, y)
+						local cb = Lib.Checkbox.new()
+						cb.Gui.Parent = content
+						cb.Gui.Position = UDim2.new(0, 15, 0, y)
+						cb.Gui.Size = UDim2.new(0, 16, 0, 16)
+						cb:SetState(DumpOpts[key])
+						cb.OnInput:Connect(function()
+							DumpOpts[key] = cb.Toggled
+						end)
+						local lb = Instance.new("TextLabel")
+						lb.BackgroundTransparency = 1
+						lb.Position = UDim2.new(0, 38, 0, y - 1)
+						lb.Size = UDim2.new(1, -50, 0, 18)
+						lb.Font = Enum.Font.Gotham
+						lb.TextSize = 12
+						lb.TextColor3 = TH.text
+						lb.TextXAlignment = Enum.TextXAlignment.Left
+						lb.Text = label
+						lb.Parent = content
+					end
+					addOpt("RemoteEvents", "Events", 32)
+					addOpt("RemoteFunctions", "Functions", 54)
+					addOpt("UnreliableRemoteEvents", "Unreliable", 76)
+					addOpt("Include native Roblox remotes (RRS / Core)", "IncludeNative", 98)
 
 					local dumpBtn = Lib.Button.new()
 					dumpBtn.Gui.Parent = content
-					dumpBtn.Gui.Position = UDim2.new(0, 15, 0, 40)
-					dumpBtn.Gui.Size = UDim2.new(1, -30, 0, 32)
-					dumpBtn.Text = "Dump All Remotes"
+					dumpBtn.Gui.Position = UDim2.new(0, 15, 0, 128)
+					dumpBtn.Gui.Size = UDim2.new(1, -30, 0, 30)
+					dumpBtn.Text = "Save Remote Dump"
 					dumpBtn.OnClick:Connect(function()
 						local function safeWrite(path, data)
 							local ok = false
@@ -16097,97 +17057,142 @@ Main = (function()
 							if makefolder then pcall(makefolder, path) end
 						end
 						safeMkdir("4saved")
+
+						local gameName = "Place_" .. tostring(game.PlaceId)
+						pcall(function()
+							local info = service.MarketplaceService:GetProductInfo(game.PlaceId)
+							if info and type(info.Name) == "string" and #info.Name > 0 then
+								if env.parsefile then
+									gameName = env.parsefile(info.Name)
+								else
+									gameName = info.Name:gsub("[^%w%-%_ ]", "_")
+								end
+							end
+						end)
+						if not gameName or gameName == "" then
+							gameName = "Place_" .. tostring(game.PlaceId)
+						end
+
+						local nativeRoots = {}
+						pcall(function()
+							local rrs = game:GetService("RobloxReplicatedStorage")
+							if rrs then nativeRoots[rrs] = true end
+						end)
+						pcall(function()
+							local cg = game:GetService("CoreGui")
+							if cg then nativeRoots[cg] = true end
+						end)
+						pcall(function()
+							local cp = game:GetService("CorePackages")
+							if cp then nativeRoots[cp] = true end
+						end)
+						pcall(function()
+							local cs = game:GetService("Chat")
+							if cs then nativeRoots[cs] = true end
+						end)
+
+						local function isNative(inst)
+							if not inst then return false end
+							local ok, full = pcall(function() return inst:GetFullName() end)
+							if ok and type(full) == "string" then
+								if full:find("RobloxReplicatedStorage") then return true end
+								if full:find("CoreGui") then return true end
+								if full:find("CorePackages") then return true end
+							end
+							for root in pairs(nativeRoots) do
+								local s, r = pcall(function() return inst:IsDescendantOf(root) or inst == root end)
+								if s and r then return true end
+							end
+							return false
+						end
+
 						local events, funcs, unreliable = {}, {}, {}
 						local function pathOf(o)
 							local p = o:GetFullName()
-							if p:sub(1,5) == "game." then p = p:sub(6) end
+							if p:sub(1, 5) == "game." then p = p:sub(6) end
 							return p
 						end
-						local function scan(root)
-							for _, d in ipairs(root:GetDescendants()) do
-								if d:IsA("RemoteEvent") then
-									table.insert(events, pathOf(d))
-								elseif d:IsA("RemoteFunction") then
-									table.insert(funcs, pathOf(d))
-								elseif d:IsA("UnreliableRemoteEvent") then
-									table.insert(unreliable, pathOf(d))
-								end
+						local function consider(d)
+							if not DumpOpts.IncludeNative and isNative(d) then
+								return
+							end
+							if d:IsA("RemoteEvent") and DumpOpts.Events then
+								table.insert(events, pathOf(d))
+							elseif d:IsA("RemoteFunction") and DumpOpts.Functions then
+								table.insert(funcs, pathOf(d))
+							elseif d:IsA("UnreliableRemoteEvent") and DumpOpts.Unreliable then
+								table.insert(unreliable, pathOf(d))
 							end
 						end
-						pcall(scan, game)
+						pcall(function()
+							for _, d in ipairs(game:GetDescendants()) do
+								consider(d)
+							end
+						end)
 						table.sort(events)
 						table.sort(funcs)
 						table.sort(unreliable)
+
 						local lines = {
-							"-- Femboy Remote Dump | powered by dex | 4amy",
+							"-- Femdex Remote Dump | powered by dex | 4amy",
+							"-- Game: " .. tostring(gameName),
 							"-- PlaceId: " .. tostring(game.PlaceId),
+							"-- IncludeNative: " .. tostring(DumpOpts.IncludeNative),
 							"",
-							"========== CLIENT-FIREABLE EVENTS (RemoteEvent) ==========",
 						}
-						for _, p in ipairs(events) do table.insert(lines, p) end
-						table.insert(lines, "")
-						table.insert(lines, "========== FUNCTIONS (RemoteFunction) ==========")
-						for _, p in ipairs(funcs) do table.insert(lines, p) end
-						table.insert(lines, "")
-						table.insert(lines, "========== UNRELIABLE (UnreliableRemoteEvent) ==========")
-						for _, p in ipairs(unreliable) do table.insert(lines, p) end
-						table.insert(lines, "")
+						if DumpOpts.Events then
+							table.insert(lines, "========== REMOTE EVENTS ==========")
+							for _, p in ipairs(events) do table.insert(lines, p) end
+							table.insert(lines, "")
+						end
+						if DumpOpts.Functions then
+							table.insert(lines, "========== REMOTE FUNCTIONS ==========")
+							for _, p in ipairs(funcs) do table.insert(lines, p) end
+							table.insert(lines, "")
+						end
+						if DumpOpts.Unreliable then
+							table.insert(lines, "========== UNRELIABLE REMOTE EVENTS ==========")
+							for _, p in ipairs(unreliable) do table.insert(lines, p) end
+							table.insert(lines, "")
+						end
 						table.insert(lines, string.format("-- totals: events=%d functions=%d unreliable=%d", #events, #funcs, #unreliable))
 						local body = table.concat(lines, "\n")
-						local out = "4saved/Remotes.txt"
+						local out = "4saved/" .. gameName .. "_Remotes.txt"
 						if safeWrite(out, body) then
-							dumpBtn.Text = "Saved 4saved/Remotes.txt"
+							dumpBtn.Text = "Saved " .. out
 						else
 							dumpBtn.Text = "Write failed"
 						end
-						task.delay(2.5, function() dumpBtn.Text = "Dump All Remotes" end)
+						task.delay(2.5, function() dumpBtn.Text = "Save Remote Dump" end)
 					end)
 
 					local spyBtn = Lib.Button.new()
 					spyBtn.Gui.Parent = content
-					spyBtn.Gui.Position = UDim2.new(0, 15, 0, 82)
-					spyBtn.Gui.Size = UDim2.new(1, -30, 0, 32)
-					spyBtn.Text = "Open Femboy Spy"
+					spyBtn.Gui.Position = UDim2.new(0, 15, 0, 168)
+					spyBtn.Gui.Size = UDim2.new(1, -30, 0, 30)
+					spyBtn.Text = "Open Spy"
 					spyBtn.OnClick:Connect(function()
-						if getgenv().CobaltInitialized or getgenv().FemboySpyLoaded then
+						if getgenv().CobaltInitialized or getgenv().MenuSpyLoaded then
 							spyBtn.Text = "Spy already running"
-							task.delay(1.5, function() spyBtn.Text = "Open Femboy Spy" end)
+							task.delay(1.5, function() spyBtn.Text = "Open Spy" end)
 							return
 						end
-						spyBtn.Text = "Loading..."
+						spyBtn.Text = "Updating..."
 						local SAVE_AS = "FemSpy.lua"
 						local URLS = {
 							"https://github.com/Saharalay1/yeah/raw/main/FemSpy.lua",
 							"https://raw.githubusercontent.com/Saharalay1/yeah/main/FemSpy.lua",
-						}
-						local paths = {
-							"FemSpy.lua",
-							"Femboy_Spy.lua",
-							"femboy_spy.lua",
-							"4saved/FemSpy.lua",
-							"dex/FemSpy.lua",
 						}
 						local function httpGet(url)
 							local ok, body = pcall(function()
 								local req = (env and env.request) or request or (syn and syn.request) or http_request
 								if req then
 									local r = req({ Url = url, Method = "GET", Headers = { ["User-Agent"] = "Mozilla/5.0" } })
-									return (r and (r.Body or r.body)) or nil
+									return r and (r.Body or r.body)
 								end
 								return game:HttpGet(url)
 							end)
-							if ok and type(body) == "string" and #body > 500 then
-								return body
-							end
-							return nil
-						end
-						local function tryRead(path)
-							local rf = (env and env.readfile) or readfile
-							if not rf then return nil end
-							local ok, data = pcall(rf, path)
-							if ok and type(data) == "string" and #data > 500 then
-								return data
-							end
+							if ok and type(body) == "string" and #body > 500 then return body end
 							return nil
 						end
 						local function tryWrite(path, data)
@@ -16195,56 +17200,60 @@ Main = (function()
 							if not wf then return false end
 							return pcall(wf, path, data)
 						end
+						local function tryDel(path)
+							local df = (env and env.delfile) or delfile
+							if df then pcall(df, path) end
+						end
 						local src = nil
-						for _, path in ipairs(paths) do
-							src = tryRead(path)
+						for _, url in ipairs(URLS) do
+							src = httpGet(url)
 							if src then break end
 						end
 						if not src then
-							spyBtn.Text = "Downloading..."
-							for _, url in ipairs(URLS) do
-								src = httpGet(url)
-								if src then
-									tryWrite(SAVE_AS, src)
-									break
+							local rf = (env and env.readfile) or readfile
+							if rf then
+								local ok, data = pcall(rf, SAVE_AS)
+								if ok and type(data) == "string" and #data > 500 then
+									src = data
+									spyBtn.Text = "Offline cache"
 								end
 							end
+						else
+							tryDel(SAVE_AS)
+							tryWrite(SAVE_AS, src)
 						end
 						if not src then
 							spyBtn.Text = "Download failed"
-							task.delay(2.5, function() spyBtn.Text = "Open Femboy Spy" end)
+							task.delay(2.5, function() spyBtn.Text = "Open Spy" end)
 							return
-						end
-						if not tryRead(SAVE_AS) then
-							tryWrite(SAVE_AS, src)
 						end
 						local ls = (env and env.loadstring) or loadstring
 						if not ls then
 							spyBtn.Text = "No loadstring"
-							task.delay(2, function() spyBtn.Text = "Open Femboy Spy" end)
+							task.delay(2, function() spyBtn.Text = "Open Spy" end)
 							return
 						end
 						local fn, err = ls(src)
 						if not fn then
 							spyBtn.Text = "Compile failed"
-							task.delay(2, function() spyBtn.Text = "Open Femboy Spy" end)
+							task.delay(2, function() spyBtn.Text = "Open Spy" end)
 							return
 						end
 						task.spawn(function()
 							local ok, e = pcall(fn)
 							if ok then
-								getgenv().FemboySpyLoaded = true
+								getgenv().MenuSpyLoaded = true
 								spyBtn.Text = "Spy loaded"
 							else
 								spyBtn.Text = "Spy error"
 							end
-							task.delay(2, function() spyBtn.Text = "Open Femboy Spy" end)
+							task.delay(2, function() spyBtn.Text = "Open Spy" end)
 						end)
 					end)
 
-					local note = Instance.new("TextLabel")
+										local note = Instance.new("TextLabel")
 					note.BackgroundTransparency = 1
-					note.Position = UDim2.new(0, 15, 0, 125)
+					note.Position = UDim2.new(0, 15, 0, 205)
 					note.Size = UDim2.new(1, -30, 0, 50)
 					note.Font = Enum.Font.Gotham
 					note.TextSize = 12
@@ -16252,9 +17261,10 @@ Main = (function()
 					note.TextXAlignment = Enum.TextXAlignment.Left
 					note.TextYAlignment = Enum.TextYAlignment.Top
 					note.TextWrapped = true
-					note.Text = "Dump -> 4saved/Remotes.txt\nSpy: reads FemSpy.lua or downloads from GitHub into workspace."
+					note.Text = "Dump -> 4saved/<Game>_Remotes.txt\nSpy: reads FemSpy.lua or downloads from GitHub into workspace."
 					note.Parent = content
 				end
+				bindMenuAppClose(RemotePanelWindow, "Remotes")
 				RemotePanelWindow:Show()
 			else
 				if RemotePanelWindow then RemotePanelWindow:Hide() end
@@ -16275,16 +17285,16 @@ Main = (function()
 
 		local writefile,makefolder = env.writefile,env.makefolder
 
-		makefolder("dex")
-		makefolder("dex/assets")
-		makefolder("dex/saved")
-		makefolder("dex/plugins")
-		makefolder("dex/ModuleCache")
+		makefolder("femdex")
+		makefolder("femdex/assets")
+		makefolder("femdex/saved")
+		makefolder("femdex/plugins")
+		makefolder("femdex/ModuleCache")
 	end
 
 	Main.SaveCurrentSettings = function()
 		if writefile then
-			writefile("DexPlusPlusSettings.json", Main.ExportSettings())
+			writefile("FemdexSettings.json", Main.ExportSettings())
 		end
 	end
 
@@ -16296,7 +17306,7 @@ Main = (function()
 		Main.Elevated = pcall(function() local a = game:GetService("CoreGui"):GetFullName() end)
 		
 		-- saves new settings if does not exist
-		if isfile and not isfile("DexPlusPlusSettings.json") then
+		if isfile and not isfile("FemdexSettings.json") then
 			Main.SaveCurrentSettings()
 		end
 		
@@ -16338,7 +17348,7 @@ Main = (function()
 		-- Fetch version if needed
 		intro.SetProgress("Fetching Roblox Version",0.3)
 		if Main.Elevated then
-			local fileVer = Lib.ReadFile("dex/deps_version.dat")
+			local fileVer = Lib.ReadFile("femdex/deps_version.dat")
 			Main.ClientVersion = Version()
 			if fileVer then
 				Main.DepsVersionData = string.split(fileVer,"\n")
@@ -16370,9 +17380,9 @@ Main = (function()
 
 		-- Save external deps locally if needed
 		if Main.Elevated and env.writefile and not Main.LocalDepsUpToDate() then
-			env.writefile("dex/deps_version.dat",Main.ClientVersion.."\n"..Main.RobloxVersion)
-			env.writefile("dex/rbx_api.dat",Main.RawAPI)
-			env.writefile("dex/rbx_rmd.dat",Main.RawRMD)
+			env.writefile("femdex/deps_version.dat",Main.ClientVersion.."\n"..Main.RobloxVersion)
+			env.writefile("femdex/rbx_api.dat",Main.RawAPI)
+			env.writefile("femdex/rbx_rmd.dat",Main.RawRMD)
 		end
 
 		-- Load other modules
@@ -16394,9 +17404,9 @@ Main = (function()
 		
 		
 		if env.readfile and listfiles then
-			if #listfiles("dex/plugins") > 0 then
+			if #listfiles("femdex/plugins") > 0 then
 				intro.SetProgress("Loading Plugin Files",0.8)
-				for _, pluginDir in pairs(listfiles("dex/plugins")) do
+				for _, pluginDir in pairs(listfiles("femdex/plugins")) do
 					local moduleData = Main.LoadPluginFile(pluginDir)
 					moduleData.PluginData = moduleData.PluginData or {}
 
@@ -16439,7 +17449,7 @@ Main = (function()
 		Main.AppControls = {}
 		Main.Plugins = {}
 		for _, gui in pairs(Main.GetSecureContainer():GetChildren()) do
-			if string.sub(gui.Name,1,5) == "_DPP_" then -- DPP stands for DexPlusPlus
+			if string.sub(gui.Name,1,5) == "_FDX_" then -- DPP stands for DexPlusPlus
 				gui:Destroy()
 			end
 		end
